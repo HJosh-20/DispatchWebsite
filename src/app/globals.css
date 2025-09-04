@@ -1,0 +1,96 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+@layer components {
+  .container { @apply max-w-7xl mx-auto px-6; }
+
+  /* Home Page Layout */
+  
+  /* Reusable card + motion */
+  .card { @apply border rounded-lg p-4 bg-white/80 backdrop-blur transition-all; }
+  .lift { @apply hover:-translate-y-0.5 hover:shadow-md; }
+  .card-link { @apply cursor-pointer focus:outline-none focus:ring-2 focus:ring-teal-500/60; }
+
+  /* Layout helpers */
+  .home-main { @apply flex-1 p-0; }                 /* no white ring around hero */
+  .home-container { @apply max-w-5xl mx-auto space-y-6 px-6; }
+
+  /* Hero Section */
+  .hero-section { @apply space-y-3; }
+  .hero-title { @apply text-3xl sm:text-4xl font-bold; }
+  .hero-text { @apply text-lg; }
+
+  /* ONE definition for hero-cta (merged) */
+  .hero-cta {
+    @apply inline-block bg-teal-600 text-white px-6 py-3 rounded-lg
+           shadow hover:shadow-md hover:-translate-y-0.5 transition
+           hover:bg-teal-700;
+  }
+
+  /* Benefits Section */
+  .benefits-section { @apply grid sm:grid-cols-3 gap-4 pt-4; }
+
+  /* ONE definition for benefit-card (merged) */
+  .benefit-card {
+    @apply border rounded-lg p-5 bg-white/80 backdrop-blur;
+  }
+
+  .benefit-title { @apply font-semibold; }
+  .benefit-text { @apply text-sm text-gray-600; }
+
+  /* Header shell + background image + overlay */
+  .site-header {
+    @apply z-50 border-b; /* removed sticky/relative/top here */
+  }
+  .site-header__bg {
+    @apply absolute inset-0 bg-cover bg-center pointer-events-none brightness-75; /* <- slight darken */
+    background-image: url('/austinskyline1.jpg');
+  }
+  .site-header__overlay {
+    /* stronger dark layer over the image */
+    @apply absolute inset-0 bg-black/60 sm:bg-black/50 pointer-events-none;
+    /* or, for a gradient fade:
+       @apply absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/0;
+    */
+  }
+  .site-header__row { @apply h-28 flex items-center justify-between; }
+
+  /* Logo */
+  .logo-img { @apply h-45 w-auto; }
+
+  /* Nav */
+  .main-nav { @apply flex items-center gap-10; }
+  .main-nav a { @apply text-lg font-semibold tracking-wide text-white hover:text-teal-300 transition-colors; }
+
+  /* CTA button */
+  .btn-cta { @apply ml-4 rounded-md bg-teal-600 text-white text-lg font-semibold px-5 py-2 hover:bg-teal-700 transition-colors shadow-sm; }
+
+  /* Footer */
+  .site-footer { @apply border-t bg-neutral-50; }
+  .site-footer__inner { @apply max-w-6xl mx-auto px-4 py-6 text-sm text-gray-600; }
+
+}
