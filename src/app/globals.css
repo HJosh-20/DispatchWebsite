@@ -28,16 +28,61 @@ body {
 @layer components {
   .container { @apply max-w-7xl mx-auto px-6; }
 
+  .underlined {
+    @apply underline decoration-2 underline-offset-6 decoration-teal-600;
+  }
+
+
+  /* subtle lift that your copy references */
+  .lift { 
+    @apply transition-transform shadow-sm;
+  }
+  .lift:hover { 
+    @apply -translate-y-0.5 shadow-md; 
+  }
   /* Home Page Layout */
   
   /* Reusable card + motion */
-  .card { @apply border rounded-lg p-4 bg-white/80 backdrop-blur transition-all; }
-  .lift { @apply hover:-translate-y-0.5 hover:shadow-md; }
-  .card-link { @apply cursor-pointer focus:outline-none focus:ring-2 focus:ring-teal-500/60; }
+  .surface          { @apply bg-slate-50; }     /* neutral band */
+  .section-alt { 
+    @apply rounded-lg bg-slate-100/80 p-4 border; 
+  }     /* branded band */
+  .surface-strong   { @apply bg-teal-100; }
+
+  /* Use a tinted card instead of white; keeps your lift effect */
+  .card { @apply border rounded-lg p-4 bg-slate-50/90 backdrop-blur transition-all; }
+
+  /* ——— Clickable “Who We Serve” cards: make them read as links ——— */
+  .card-link {
+    @apply relative border-teal-200 hover:border-teal-300 hover:bg-teal-50/70
+          ring-0 focus:outline-none focus:ring-2 focus:ring-teal-500/50 transition-colors;
+  }
+
+  /* Title color change on hover/focus (group from parent <a>) */
+  .card-link-title { @apply font-semibold text-gray-900 transition-colors; }
+  .group:hover .card-link-title,
+  .group:focus .card-link-title { @apply text-teal-700; }
+
+  /* Chevron that nudges on hover/focus */
+  .chev { @apply text-teal-600/70 transition-transform; transform: translateX(0); }
+  .group:hover .chev,
+  .group:focus .chev { transform: translateX(4px); }
+
+  /* Small footer row (“Learn more”) for link cards */
+  .card-link-foot {
+    @apply mt-3 inline-flex items-center gap-2 text-sm text-teal-700/80;
+  }
+  .card-link-foot .dot { @apply h-1.5 w-1.5 rounded-full bg-teal-600; }
+
+  /* Optional: make the “stats” cards feel clickable without being links */
+  .card:hover:not(a) { @apply shadow-md -translate-y-0.5; }
 
   /* Layout helpers */
   .home-main { @apply flex-1 p-0; }                 /* no white ring around hero */
-  .home-container { @apply max-w-5xl mx-auto space-y-6 px-6; }
+  .home-container {
+    /* was: max-w-5xl mx-auto px-6; */
+    @apply max-w-7xl mx-auto px-6 md:px-10;
+  }
 
   /* Hero Section */
   .hero-section { @apply space-y-3; }
@@ -80,11 +125,17 @@ body {
   .site-header__row { @apply h-28 flex items-center justify-between; }
 
   /* Logo */
-  .logo-img { @apply h-45 w-auto; }
-
+  .logo-img {
+  @apply h-auto w-auto max-h-20; /* keeps it from overflowing header */
+  }
+  .logo-chip {
+  @apply inline-block rounded-md bg-white shadow-md p-1;
+  }
   /* Nav */
   .main-nav { @apply flex items-center gap-10; }
-  .main-nav a { @apply text-lg font-semibold tracking-wide text-white hover:text-teal-300 transition-colors; }
+  .main-nav > a {
+  @apply text-lg font-semibold tracking-wide text-white hover:text-teal-300 transition-colors;
+  }
 
   /* CTA button */
   .btn-cta { @apply ml-4 rounded-md bg-teal-600 text-white text-lg font-semibold px-5 py-2 hover:bg-teal-700 transition-colors shadow-sm; }
