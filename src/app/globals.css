@@ -1,5 +1,11 @@
 @import "tailwindcss";
 
+html, body {
+  background-color: #ffffff; /* stays white */
+  color: #0f172a; /* slate-900 text color */
+  -webkit-text-size-adjust: 100%;
+}
+
 :root {
   --background: #ffffff;
   --foreground: #171717;

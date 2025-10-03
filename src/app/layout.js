@@ -8,6 +8,12 @@ const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"]
 export const metadata = {
   title: "DispATch Performance and Prevention",
   description: "On-Site Care. Stronger Teams. Fewer Injuries.",
+  /**
+   * Helps the mobile browser choose a stable UI color for the url bar.
+   * Also tells the browser we intend to use a light color scheme.
+   */
+  themeColor: "#0f766e",
+  other: { "color-scheme": "light" },
 };
 
 export const viewport = {
@@ -18,20 +24,33 @@ export const viewport = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      {/* make page fill height so footer stays at bottom */}
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col`}>
-        {/* ===== HIDE-ON-SCROLL HEADER ===== */}
+      {/* keep the site in light mode and stable colors */}
+      <body
+        className={[
+          geistSans.variable,
+          geistMono.variable,
+          "antialiased min-h-screen flex flex-col",
+          "bg-white text-slate-900",
+        ].join(" ")}
+      >
+        {/* sticky header; higher z-index than hero overlay */}
         <SiteHeader />
 
-        {/* ===== PAGE CONTENT ===== */}
-        <main className="flex-1 pt-28">{children}</main>
+        {/* add top padding only if your header overlaps content;  */}
+        {/* header is 56px (h-14).  pt-16 = 64px is a safe cushion on small screens. */}
+        <main className="flex-1 pt-16 md:pt-16">{children}</main>
 
-        {/* ===== (optional) mobile sticky CTA site-wide ===== */}
+        {/* optional mobile CTA */}
         <div className="fixed bottom-4 left-1/2 -translate-x-1/2 z-40 md:hidden">
-          <a href="/book" className="px-5 py-3 rounded-full bg-teal-600 text-white font-semibold shadow-lg">Book Now</a>
+          <a
+            href="/book"
+            className="px-5 py-3 rounded-full bg-teal-600 text-white font-semibold shadow-lg hover:bg-teal-700"
+          >
+            Book Now
+          </a>
         </div>
 
-        {/* ===== FOOTER (global) ===== */}
+        {/* footer */}
         <footer className="site-footer">
           <div className="site-footer__inner">
             As a woman-owned small business, we bring flexibility, evidence-based care, and a
