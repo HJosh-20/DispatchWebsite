@@ -1,7 +1,7 @@
 import "./globals.css";
 import { Geist, Geist_Mono } from "next/font/google";
 import SiteHeader from "./components/SiteHeader";
-import StickyCTA from "./components/StickyCTA"; // ✅ import your component
+import StickyCTA from "./components/StickyCTA"; // <- add this
 
 const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
 const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
@@ -29,17 +29,15 @@ export default function RootLayout({ children }) {
           "bg-white text-slate-900",
         ].join(" ")}
       >
-        {/* ====== Sticky Header ====== */}
         <SiteHeader />
 
-        {/* ====== Main Content ====== */}
+        {/* Header height ~56px → add safe top padding for small screens */}
         <main className="flex-1 pt-16 md:pt-16">{children}</main>
 
-        {/* ====== Sticky Book Now Button (auto hides near footer) ====== */}
+        {/* Sticky CTA (mobile); hides when footer is in view */}
         <StickyCTA />
 
-        {/* ====== Footer (must include id for observer) ====== */}
-        <footer id="site-footer" className="site-footer">
+        <footer className="site-footer">
           <div className="site-footer__inner">
             As a woman-owned small business, we bring flexibility, evidence-based care, and a
             collaborative approach that bridges performance training and medical expertise.

@@ -116,11 +116,12 @@ body {
   .site-footer__inner { @apply max-w-6xl mx-auto px-4 py-6 text-sm text-gray-600; }
 
   /* ================================
-   MOBILE CONTRAST FIXES (GLOBAL)
-   ================================ */
+     MOBILE CONTRAST FIXES (GLOBAL)
+     ================================ */
 
-  /* 1) Auto-brighten text when parent has a dark background on mobile */
+  /* Auto-brighten text when parent has a dark background on mobile */
   @media (max-width: 640px) {
+    /* Force light text for all readable elements on dark backgrounds */
     :is(
       .bg-black,
       .bg-gray-900, .bg-gray-950,
@@ -129,10 +130,11 @@ body {
       .bg-slate-900, .bg-slate-950,
       .bg-stone-900, .bg-stone-950,
       .bg-teal-900
-    ) :where(h1,h2,h3,h4,h5,h6,strong,a) {
+    ) :where(h1,h2,h3,h4,h5,h6,strong,a,button,label) {
       color: #ffffff !important;
     }
 
+    /* Body text and small elements on dark backgrounds */
     :is(
       .bg-black,
       .bg-gray-900, .bg-gray-950,
@@ -141,10 +143,11 @@ body {
       .bg-slate-900, .bg-slate-950,
       .bg-stone-900, .bg-stone-950,
       .bg-teal-900
-    ) :where(p, li, small, span, em) {
-      color: #e2e8f0 !important; /* slate-200 */
+    ) :where(p, li, small, span, em, blockquote, .hero-text, .benefit-text) {
+      color: #f1f5f9 !important; /* slate-100 */
     }
 
+    /* Catch utility classes like text-slate-* or text-gray-* */
     :is(
       .bg-black,
       .bg-gray-900, .bg-gray-950,
@@ -153,19 +156,23 @@ body {
       .bg-slate-900, .bg-slate-950,
       .bg-stone-900, .bg-stone-950,
       .bg-teal-900
-    ) :where(.text-slate-400, .text-slate-500) {
-      color: #e2e8f0 !important; /* slate-200 */
+    ) :is([class*="text-slate-"], [class*="text-gray-"]) {
+      color: #f1f5f9 !important;
     }
   }
 
-  /* 2) Optional helper for text over hero images */
+  /* =====================================
+     Optional helper for text over hero images
+     ===================================== */
   .on-hero,
   .on-hero :where(h1,h2,h3,h4,h5,h6, p, li, small, span, em, strong) {
     color: #ffffff !important;
     text-shadow: 0 1px 2px rgba(0,0,0,.45);
   }
 
-  /* 3) Footer padding so sticky CTA doesn't cover it */
+  /* =====================================
+     Footer padding (prevents sticky CTA overlap)
+     ===================================== */
   @media (max-width: 640px) {
     footer { padding-bottom: 4.5rem; }
   }
