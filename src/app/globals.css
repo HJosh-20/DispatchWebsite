@@ -177,5 +177,13 @@ body {
     footer { padding-bottom: 4.5rem; }
   }
 
-
+  .sticky-book-btn {
+    @apply fixed bottom-4 left-1/2 -translate-x-1/2 z-40 md:hidden;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+  .sticky-book-btn--hidden {
+    opacity: 0;
+    pointer-events: none;
+    transform: translate(-50%, 12px);
+  }
 }

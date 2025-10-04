@@ -1,53 +1,77 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { usePathname } from "next/navigation";
+import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
 
-/**
- * Sticky “Book Now” button
- * - Hides when the footer is visible
- * - Optional: don’t show on /book or /thank-you pages
- * - Mobile-only styling is handled via your globals.css:
- *   .sticky-book-btn + .sticky-book-btn--hidden
- */
 export default function StickyCTA() {
-  const pathname = usePathname();
+  // visible/hidden state for the button
   const [hidden, setHidden] = useState(false);
 
-  // Do not render the CTA on certain pages
-  const shouldHideCompletely = ["/book", "/thank-you"].includes(pathname);
-  if (shouldHideCompletely) return null;
+  // sentinel to detect footer proximity (this node should sit just above <footer/>)
+  const footerSentinelRef = useRef(null);
 
   useEffect(() => {
-    // If IntersectionObserver isn’t supported, just keep the CTA visible
-    if (typeof window === "undefined" || !("IntersectionObserver" in window)) {
-      return;
+    // this effect runs only in the browser
+    if (typeof window === "undefined") return;
+
+    // ---- Hide on scroll down, show on scroll up ----
+    let lastY = window.scrollY;
+    const onScroll = () => {
+      const y = window.scrollY;
+      if (y > lastY + 5 && y > 80) {
+        // scrolling down a bit and not at top -> hide
+        setHidden(true);
+      } else if (y < lastY - 5) {
+        // scrolling up -> show
+        setHidden(false);
+      }
+      lastY = y;
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+
+    // ---- Hide when the footer is in (or near) view ----
+    let io;
+    if ("IntersectionObserver" in window && footerSentinelRef.current) {
+      io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            // when sentinel is visible near the footer, hide the CTA
+            setHidden(e.isIntersecting);
+          });
+        },
+        {
+          // start hiding a bit before the actual footer to avoid overlap
+          root: null,
+          rootMargin: "0px 0px -40% 0px",
+          threshold: 0,
+        }
+      );
+      io.observe(footerSentinelRef.current);
     }
 
-    const footerEl = document.querySelector("footer");
-    if (!footerEl) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        // Hide the CTA when footer is in view
-        setHidden(entry.isIntersecting);
-      },
-      { threshold: 0.1 }
-    );
-
-    observer.observe(footerEl);
-    return () => observer.disconnect();
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      if (io) io.disconnect();
+    };
   }, []);
 
   return (
-    <div className={`sticky-book-btn ${hidden ? "sticky-book-btn--hidden" : ""}`}>
-      <a
-        href="/book"
-        aria-label="Book a consultation"
-        className="px-5 py-3 rounded-full bg-teal-600 text-white font-semibold shadow-lg hover:bg-teal-700"
+    <>
+      {/* This tiny sentinel should be placed right before <footer/> from layout */}
+      <div ref={footerSentinelRef} aria-hidden="true" className="h-px w-px" />
+
+      <div
+        className={
+          "sticky-book-btn " + (hidden ? "sticky-book-btn--hidden" : "")
+        }
       >
-        Book Now
-      </a>
-    </div>
+        <Link
+          href="/book"
+          className="px-5 py-3 rounded-full bg-teal-600 text-white font-semibold shadow-lg hover:bg-teal-700"
+        >
+          Book Now
+        </Link>
+      </div>
+    </>
   );
 }

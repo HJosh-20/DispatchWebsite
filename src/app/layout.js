@@ -1,7 +1,8 @@
+// src/app/layout.js
 import "./globals.css";
 import { Geist, Geist_Mono } from "next/font/google";
 import SiteHeader from "./components/SiteHeader";
-import StickyCTA from "./components/StickyCTA"; // <- add this
+import StickyCTA from "./components/StickyCTA";
 
 const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
 const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
@@ -13,10 +14,7 @@ export const metadata = {
   other: { "color-scheme": "light" },
 };
 
-export const viewport = {
-  width: "device-width",
-  initialScale: 1,
-};
+export const viewport = { width: "device-width", initialScale: 1 };
 
 export default function RootLayout({ children }) {
   return (
@@ -31,10 +29,9 @@ export default function RootLayout({ children }) {
       >
         <SiteHeader />
 
-        {/* Header height ~56px → add safe top padding for small screens */}
         <main className="flex-1 pt-16 md:pt-16">{children}</main>
 
-        {/* Sticky CTA (mobile); hides when footer is in view */}
+        {/* Sticky CTA (includes its own sentinel). Keep it above the footer */}
         <StickyCTA />
 
         <footer className="site-footer">
