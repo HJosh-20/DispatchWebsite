@@ -26,7 +26,7 @@ export default function BookPage() {
         <div className="home-container py-10">
           <Reveal>
             <form
-              action="https://formsubmit.co/Kristin@dispatchperformanceandprevention.com" // ← update this
+              action="https://formsubmit.co/b40568f55a69780c12844c18263dba50" 
               method="POST"
               className="bg-white/95 rounded-xl shadow-lg p-6 sm:p-8"
             >
