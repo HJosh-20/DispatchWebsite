@@ -115,59 +115,59 @@ body {
   .site-footer { @apply border-t bg-neutral-50; }
   .site-footer__inner { @apply max-w-6xl mx-auto px-4 py-6 text-sm text-gray-600; }
 
-  /* =========================================================
-     AUTO CONTRAST ON DARK BACKGROUNDS
-     Ensures readable text when a section uses dark bg utilities.
-     ========================================================= */
-  :is(.bg-black,
+  /* ================================
+   MOBILE CONTRAST FIXES (GLOBAL)
+   ================================ */
+
+  /* 1) Auto-brighten text when parent has a dark background on mobile */
+  @media (max-width: 640px) {
+    :is(
+      .bg-black,
       .bg-gray-900, .bg-gray-950,
       .bg-neutral-900, .bg-neutral-950,
       .bg-zinc-900, .bg-zinc-950,
       .bg-slate-900, .bg-slate-950,
       .bg-stone-900, .bg-stone-950,
-      .bg-teal-900) {
-    color: #ffffff;
+      .bg-teal-900
+    ) :where(h1,h2,h3,h4,h5,h6,strong,a) {
+      color: #ffffff !important;
+    }
+
+    :is(
+      .bg-black,
+      .bg-gray-900, .bg-gray-950,
+      .bg-neutral-900, .bg-neutral-950,
+      .bg-zinc-900, .bg-zinc-950,
+      .bg-slate-900, .bg-slate-950,
+      .bg-stone-900, .bg-stone-950,
+      .bg-teal-900
+    ) :where(p, li, small, span, em) {
+      color: #e2e8f0 !important; /* slate-200 */
+    }
+
+    :is(
+      .bg-black,
+      .bg-gray-900, .bg-gray-950,
+      .bg-neutral-900, .bg-neutral-950,
+      .bg-zinc-900, .bg-zinc-950,
+      .bg-slate-900, .bg-slate-950,
+      .bg-stone-900, .bg-stone-950,
+      .bg-teal-900
+    ) :where(.text-slate-400, .text-slate-500) {
+      color: #e2e8f0 !important; /* slate-200 */
+    }
   }
 
-  :is(.bg-black,.bg-gray-900,.bg-gray-950,
-      .bg-neutral-900,.bg-neutral-950,
-      .bg-zinc-900,.bg-zinc-950,
-      .bg-slate-900,.bg-slate-950,
-      .bg-stone-900,.bg-stone-950,
-      .bg-teal-900)
-  :where(h1,h2,h3,h4,h5,h6,a,strong) {
-    color: #ffffff;
+  /* 2) Optional helper for text over hero images */
+  .on-hero,
+  .on-hero :where(h1,h2,h3,h4,h5,h6, p, li, small, span, em, strong) {
+    color: #ffffff !important;
+    text-shadow: 0 1px 2px rgba(0,0,0,.45);
   }
 
-  :is(.bg-black,.bg-gray-900,.bg-gray-950,
-      .bg-neutral-900,.bg-neutral-950,
-      .bg-zinc-900,.bg-zinc-950,
-      .bg-slate-900,.bg-slate-950,
-      .bg-stone-900,.bg-stone-950,
-      .bg-teal-900)
-  :where(p,li,small,span,em) {
-    color: #cbd5e1; /* slate-300 */
+  /* 3) Footer padding so sticky CTA doesn't cover it */
+  @media (max-width: 640px) {
+    footer { padding-bottom: 4.5rem; }
   }
 
-  /* Keep light cards dark text */
-  .card, .benefit-card {
-    color: #0f172a;
-    background-color: rgba(248, 250, 252, 0.9);
-  }
-  .card a, .benefit-card a { color: #0f172a; }
-
-  /* Helper for custom dark colors */
-  .bg-deep-dark { background:#0b1220; color:#fff; }
-  .bg-deep-dark :where(p,li,small,span) { color:#cbd5e1; }
-
-  /* ===== (for later) sticky CTA helpers; harmless if not used ===== */
-  .sticky-book-btn {
-    @apply fixed bottom-4 left-1/2 -translate-x-1/2 z-40 md:hidden;
-    transition: opacity 0.3s ease, transform 0.3s ease;
-  }
-  .sticky-book-btn--hidden {
-    opacity: 0;
-    pointer-events: none;
-    transform: translate(-50%, 12px);
-  }
 }
