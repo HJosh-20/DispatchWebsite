@@ -1,8 +1,9 @@
 @import "tailwindcss";
 
+/* ----- Base (force light mode defaults) ----- */
 html, body {
-  background-color: #ffffff; /* stays white */
-  color: #0f172a; /* slate-900 text color */
+  background-color: #ffffff;       /* stays white */
+  color: #0f172a;                  /* slate-900 text color */
   -webkit-text-size-adjust: 100%;
 }
 
@@ -19,6 +20,8 @@ html, body {
 }
 
 @media (prefers-color-scheme: dark) {
+  /* keep your site light, but if the device is dark we still define these
+     so we can reference vars without surprises */
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
@@ -31,126 +34,91 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+/* =========================================================
+   COMPONENT LAYER
+   ========================================================= */
 @layer components {
   .container { @apply max-w-7xl mx-auto px-6; }
 
   .underlined {
-    @apply underline decoration-2 underline-offset-6 decoration-teal-600;
+    @apply underline decoration-2 underline-offset-4 md:underline-offset-6 decoration-teal-600;
   }
 
+  /* subtle lift referenced in your copy */
+  .lift { @apply transition-transform shadow-sm; }
+  .lift:hover { @apply -translate-y-0.5 shadow-md; }
 
-  /* subtle lift that your copy references */
-  .lift { 
-    @apply transition-transform shadow-sm;
-  }
-  .lift:hover { 
-    @apply -translate-y-0.5 shadow-md; 
-  }
-  /* Home Page Layout */
-  
-  /* Reusable card + motion */
-  .surface          { @apply bg-slate-50; }     /* neutral band */
-  .section-alt { 
-    @apply rounded-lg bg-slate-100/80 p-4 border; 
-  }     /* branded band */
-  .surface-strong   { @apply bg-teal-100; }
+  /* ---- Surfaces / Cards ---- */
+  .surface        { @apply bg-slate-50; }
+  .section-alt    { @apply rounded-lg bg-slate-100/80 p-4 border; }
+  .surface-strong { @apply bg-teal-100; }
 
-  /* Use a tinted card instead of white; keeps your lift effect */
+  /* Use a tinted card; keeps lift effect and dark-on-light text */
   .card { @apply border rounded-lg p-4 bg-slate-50/90 backdrop-blur transition-all; }
 
-  /* ——— Clickable “Who We Serve” cards: make them read as links ——— */
+  /* Clickable “Who We Serve” cards */
   .card-link {
     @apply relative border-teal-200 hover:border-teal-300 hover:bg-teal-50/70
-          ring-0 focus:outline-none focus:ring-2 focus:ring-teal-500/50 transition-colors;
+           ring-0 focus:outline-none focus:ring-2 focus:ring-teal-500/50 transition-colors;
   }
-
-  /* Title color change on hover/focus (group from parent <a>) */
   .card-link-title { @apply font-semibold text-gray-900 transition-colors; }
   .group:hover .card-link-title,
   .group:focus .card-link-title { @apply text-teal-700; }
-
-  /* Chevron that nudges on hover/focus */
   .chev { @apply text-teal-600/70 transition-transform; transform: translateX(0); }
-  .group:hover .chev,
-  .group:focus .chev { transform: translateX(4px); }
-
-  /* Small footer row (“Learn more”) for link cards */
-  .card-link-foot {
-    @apply mt-3 inline-flex items-center gap-2 text-sm text-teal-700/80;
-  }
+  .group:hover .chev, .group:focus .chev { transform: translateX(4px); }
+  .card-link-foot { @apply mt-3 inline-flex items-center gap-2 text-sm text-teal-700/80; }
   .card-link-foot .dot { @apply h-1.5 w-1.5 rounded-full bg-teal-600; }
-
-  /* Optional: make the “stats” cards feel clickable without being links */
   .card:hover:not(a) { @apply shadow-md -translate-y-0.5; }
 
-  /* Layout helpers */
-  .home-main { @apply flex-1 p-0; }                 /* no white ring around hero */
-  .home-container {
-    /* was: max-w-5xl mx-auto px-6; */
-    @apply max-w-7xl mx-auto px-6 md:px-10;
-  }
+  /* ---- Layout helpers ---- */
+  .home-main { @apply flex-1 p-0; }
+  .home-container { @apply max-w-7xl mx-auto px-6 md:px-10; }
 
-  /* Hero Section */
+  /* ---- Hero ---- */
   .hero-section { @apply space-y-3; }
   .hero-title { @apply text-3xl sm:text-4xl font-bold; }
-  .hero-text { @apply text-lg; }
-
-  /* ONE definition for hero-cta (merged) */
+  .hero-text  { @apply text-lg; }
   .hero-cta {
     @apply inline-block bg-teal-600 text-white px-6 py-3 rounded-lg
-           shadow hover:shadow-md hover:-translate-y-0.5 transition
-           hover:bg-teal-700;
+           shadow hover:shadow-md hover:-translate-y-0.5 transition hover:bg-teal-700;
   }
 
-  /* Benefits Section */
+  /* ---- Benefits grid ---- */
   .benefits-section { @apply grid sm:grid-cols-3 gap-4 pt-4; }
-
-  /* ONE definition for benefit-card (merged) */
-  .benefit-card {
-    @apply border rounded-lg p-5 bg-white/80 backdrop-blur;
-  }
-
+  .benefit-card { @apply border rounded-lg p-5 bg-white/80 backdrop-blur; }
   .benefit-title { @apply font-semibold; }
   .benefit-text { @apply text-sm text-gray-600; }
 
-  /* Header shell + background image + overlay */
-  .site-header {
-    @apply z-50 border-b; /* removed sticky/relative/top here */
-  }
+  /* ---- Header ---- */
+  .site-header { @apply z-50 border-b; }
   .site-header__bg {
-    @apply absolute inset-0 bg-cover bg-center pointer-events-none brightness-75; /* <- slight darken */
+    @apply absolute inset-0 bg-cover bg-center pointer-events-none brightness-75;
     background-image: url('/austinskyline1.jpg');
   }
-  .site-header__overlay {
-    /* stronger dark layer over the image */
-    @apply absolute inset-0 bg-black/60 sm:bg-black/50 pointer-events-none;
-    /* or, for a gradient fade:
-       @apply absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/0;
-    */
-  }
+  .site-header__overlay { @apply absolute inset-0 bg-black/60 sm:bg-black/50 pointer-events-none; }
   .site-header__row { @apply h-28 flex items-center justify-between; }
 
   /* Logo */
-  .logo-img {
-  @apply h-auto w-auto max-h-20; /* keeps it from overflowing header */
-  }
-  .logo-chip {
-  @apply inline-block rounded-md bg-white shadow-md p-1;
-  }
+  .logo-img  { @apply h-auto w-auto max-h-20; }
+  .logo-chip { @apply inline-block rounded-md bg-white shadow-md p-1; }
+
   /* Nav */
   .main-nav { @apply flex items-center gap-10; }
   .main-nav > a {
-  @apply text-lg font-semibold tracking-wide text-white hover:text-teal-300 transition-colors;
+    @apply text-lg font-semibold tracking-wide text-white hover:text-teal-300 transition-colors;
   }
 
   /* CTA button */
   .btn-cta { @apply ml-4 rounded-md bg-teal-600 text-white text-lg font-semibold px-5 py-2 hover:bg-teal-700 transition-colors shadow-sm; }
 
-  /* Footer */
+  /* ---- Footer ---- */
   .site-footer { @apply border-t bg-neutral-50; }
   .site-footer__inner { @apply max-w-6xl mx-auto px-4 py-6 text-sm text-gray-600; }
 
-  /* ========= AUTO CONTRAST FIX ========= */
+  /* =========================================================
+     AUTO CONTRAST ON DARK BACKGROUNDS
+     Ensures readable text when a section uses dark bg utilities.
+     ========================================================= */
   :is(.bg-black,
       .bg-gray-900, .bg-gray-950,
       .bg-neutral-900, .bg-neutral-950,
@@ -192,5 +160,14 @@ body {
   .bg-deep-dark { background:#0b1220; color:#fff; }
   .bg-deep-dark :where(p,li,small,span) { color:#cbd5e1; }
 
-
+  /* ===== (for later) sticky CTA helpers; harmless if not used ===== */
+  .sticky-book-btn {
+    @apply fixed bottom-4 left-1/2 -translate-x-1/2 z-40 md:hidden;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+  .sticky-book-btn--hidden {
+    opacity: 0;
+    pointer-events: none;
+    transform: translate(-50%, 12px);
+  }
 }
