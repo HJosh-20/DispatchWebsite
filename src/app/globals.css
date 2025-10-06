@@ -115,13 +115,10 @@ body {
   .site-footer { @apply border-t bg-neutral-50; }
   .site-footer__inner { @apply max-w-6xl mx-auto px-4 py-6 text-sm text-gray-600; }
 
-  /* ================================
-     MOBILE CONTRAST FIXES (GLOBAL)
-     ================================ */
+  /* ============== MOBILE CONTRAST FIXES ============== */
 
-  /* Auto-brighten text when parent has a dark background on mobile */
+  /* General catch-all for very dark Tailwind backgrounds on phones */
   @media (max-width: 640px) {
-    /* Force light text for all readable elements on dark backgrounds */
     :is(
       .bg-black,
       .bg-gray-900, .bg-gray-950,
@@ -134,7 +131,6 @@ body {
       color: #ffffff !important;
     }
 
-    /* Body text and small elements on dark backgrounds */
     :is(
       .bg-black,
       .bg-gray-900, .bg-gray-950,
@@ -143,11 +139,11 @@ body {
       .bg-slate-900, .bg-slate-950,
       .bg-stone-900, .bg-stone-950,
       .bg-teal-900
-    ) :where(p, li, small, span, em, blockquote, .hero-text, .benefit-text) {
+    ) :where(p,li,small,span,em,blockquote,.hero-text,.benefit-text) {
       color: #f1f5f9 !important; /* slate-100 */
     }
 
-    /* Catch utility classes like text-slate-* or text-gray-* */
+    /* Classes that explicitly set low-contrast text */
     :is(
       .bg-black,
       .bg-gray-900, .bg-gray-950,
@@ -161,29 +157,51 @@ body {
     }
   }
 
-  /* =====================================
-     Optional helper for text over hero images
-     ===================================== */
+  /* Drop this class on any dark band/section to force readable text on mobile */
+  .on-dark :where(h1,h2,h3,h4,h5,h6,strong,a,button,label) {
+    color: #ffffff;
+  }
+  .on-dark :where(p,li,small,span,em,blockquote) {
+    color: #f1f5f9; /* slate-100 */
+  }
+
+  /* Strengthen it on mobile (use !important to beat inline utilities) */
+  @media (max-width: 640px) {
+    .on-dark :where(h1,h2,h3,h4,h5,h6,strong,a,button,label) {
+      color: #ffffff !important;
+    }
+    .on-dark :where(p,li,small,span,em,blockquote) {
+      color: #f1f5f9 !important;
+    }
+  }
+
+  /* Optional helper for text directly over photos (hero) */
   .on-hero,
   .on-hero :where(h1,h2,h3,h4,h5,h6, p, li, small, span, em, strong) {
     color: #ffffff !important;
     text-shadow: 0 1px 2px rgba(0,0,0,.45);
   }
 
-  /* =====================================
-     Footer padding (prevents sticky CTA overlap)
-     ===================================== */
-  @media (max-width: 640px) {
-    footer { padding-bottom: 4.5rem; }
-  }
-
   .sticky-book-btn {
-    @apply fixed bottom-4 left-1/2 -translate-x-1/2 z-40 md:hidden;
-    transition: opacity 0.3s ease, transform 0.3s ease;
+    position: fixed;
+    left: 50%;
+    bottom: 1rem;
+    transform: translateX(-50%);
+    z-index: 40;
+    transition: opacity .3s ease, transform .3s ease;
   }
   .sticky-book-btn--hidden {
     opacity: 0;
     pointer-events: none;
     transform: translate(-50%, 12px);
   }
+
+  /* Give the footer breathing room under the sticky on mobile */
+  @media (max-width: 640px) {
+    footer { padding-bottom: 4.5rem; }
+  }
+
+
+
+
 }

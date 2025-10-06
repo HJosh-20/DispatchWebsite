@@ -310,21 +310,17 @@ export default function Home() {
       {/* ===== CTA ===== */}
       <Reveal className="mt-10 mb-12 block">
         <section
+          id="bottom-cta"  // ← add this
           className="max-w-3xl mx-auto rounded-xl bg-teal-600 text-white p-6 shadow-lg
                     flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4"
         >
           <div>
-            <h3 className="text-xl font-semibold">
-              Ready to keep your team healthy and on track?
-            </h3>
-            <p className="text-white/90">
-              Schedule a consultation to see how our team can help yours.
-            </p>
+            <h3 className="text-xl font-semibold">Ready to keep your team healthy and on track?</h3>
+            <p className="text-white/90">Schedule a consultation to see how our team can help yours.</p>
           </div>
           <a
             href="/book"
-            className="bg-white text-teal-700 font-semibold px-5 py-3 rounded-lg 
-                      hover:bg-white/90 transition"
+            className="bg-white text-teal-700 font-semibold px-5 py-3 rounded-lg hover:bg-white/90 transition"
           >
             Schedule a consultation
           </a>

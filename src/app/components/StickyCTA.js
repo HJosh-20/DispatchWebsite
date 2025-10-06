@@ -1,77 +1,71 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import Link from "next/link";
 
 export default function StickyCTA() {
-  // visible/hidden state for the button
   const [hidden, setHidden] = useState(false);
-
-  // sentinel to detect footer proximity (this node should sit just above <footer/>)
-  const footerSentinelRef = useRef(null);
+  const lastY = useRef(0);
+  const targetVisible = useRef(false);
 
   useEffect(() => {
-    // this effect runs only in the browser
-    if (typeof window === "undefined") return;
+    // Observe the "bottom-cta" if present; otherwise, fallback to footer
+    const target =
+      document.getElementById("bottom-cta") || document.querySelector("footer");
+    let observer;
 
-    // ---- Hide on scroll down, show on scroll up ----
-    let lastY = window.scrollY;
-    const onScroll = () => {
-      const y = window.scrollY;
-      if (y > lastY + 5 && y > 80) {
-        // scrolling down a bit and not at top -> hide
-        setHidden(true);
-      } else if (y < lastY - 5) {
-        // scrolling up -> show
-        setHidden(false);
-      }
-      lastY = y;
-    };
-    window.addEventListener("scroll", onScroll, { passive: true });
-
-    // ---- Hide when the footer is in (or near) view ----
-    let io;
-    if ("IntersectionObserver" in window && footerSentinelRef.current) {
-      io = new IntersectionObserver(
+    if (target) {
+      observer = new IntersectionObserver(
         (entries) => {
-          entries.forEach((e) => {
-            // when sentinel is visible near the footer, hide the CTA
-            setHidden(e.isIntersecting);
-          });
+          const inView = entries[0].isIntersecting;
+          targetVisible.current = inView;
+
+          // If bottom CTA/footer is visible, force-hide the sticky
+          if (inView) setHidden(true);
+          else setHidden(false);
         },
         {
-          // start hiding a bit before the actual footer to avoid overlap
+          // Hide only when the bottom CTA is truly in view:
+          // this hides when ~40% of the viewport overlaps the target.
           root: null,
+          threshold: 0.01,
           rootMargin: "0px 0px -40% 0px",
-          threshold: 0,
         }
       );
-      io.observe(footerSentinelRef.current);
+      observer.observe(target);
     }
+
+    // Scroll direction: hide on downward scroll, show on upward scroll
+    const onScroll = () => {
+      if (targetVisible.current) return; // footer/CTA wins
+      const y = window.scrollY;
+
+      if (y > lastY.current + 8) setHidden(true);     // scrolling down
+      else if (y < lastY.current - 8) setHidden(false); // scrolling up
+
+      lastY.current = y;
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
 
     return () => {
       window.removeEventListener("scroll", onScroll);
-      if (io) io.disconnect();
+      if (observer && target) observer.unobserve(target);
+      if (observer) observer.disconnect();
     };
   }, []);
 
   return (
-    <>
-      {/* This tiny sentinel should be placed right before <footer/> from layout */}
-      <div ref={footerSentinelRef} aria-hidden="true" className="h-px w-px" />
-
-      <div
-        className={
-          "sticky-book-btn " + (hidden ? "sticky-book-btn--hidden" : "")
-        }
+    <div
+      className={
+        "sticky-book-btn md:hidden" + (hidden ? " sticky-book-btn--hidden" : "")
+      }
+    >
+      <a
+        href="/book"
+        className="px-5 py-3 rounded-full bg-teal-600 text-white font-semibold shadow-lg hover:bg-teal-700"
       >
-        <Link
-          href="/book"
-          className="px-5 py-3 rounded-full bg-teal-600 text-white font-semibold shadow-lg hover:bg-teal-700"
-        >
-          Book Now
-        </Link>
-      </div>
-    </>
+        Book Now
+      </a>
+    </div>
   );
 }
