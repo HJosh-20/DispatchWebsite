@@ -306,7 +306,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-
+      <div id="cta-sentinel" className="h-1 w-full"></div>
       {/* ===== CTA ===== */}
       <Reveal className="mt-10 mb-12 block">
         <section
