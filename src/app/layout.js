@@ -1,4 +1,3 @@
-// src/app/layout.js
 import "./globals.css";
 import { Geist, Geist_Mono } from "next/font/google";
 import SiteHeader from "./components/SiteHeader";
@@ -14,7 +13,10 @@ export const metadata = {
   other: { "color-scheme": "light" },
 };
 
-export const viewport = { width: "device-width", initialScale: 1 };
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+};
 
 export default function RootLayout({ children }) {
   return (
@@ -29,15 +31,21 @@ export default function RootLayout({ children }) {
       >
         <SiteHeader />
 
-        <main className="flex-1 pt-16 md:pt-16">{children}</main>
+        {/* pad for header */}
+        <main className="flex-1 pt-16 md:pt-16">
+          {children}
+        </main>
 
-        {/* Sticky CTA (includes its own sentinel). Keep it above the footer */}
+        {/* sentinel to hide sticky CTA near the real CTA/footer */}
+        <div id="cta-sentinel" className="h-1 w-full"></div>
+
+        {/* mobile sticky CTA */}
         <StickyCTA />
 
         <footer className="site-footer">
           <div className="site-footer__inner">
-            As a woman-owned small business, we bring flexibility, evidence-based care, and a
-            collaborative approach that bridges performance training and medical expertise.
+            As a woman-owned small business, we bring flexibility, evidence-based care,
+            and a collaborative approach that bridges performance training and medical expertise.
             <br />
             <p style={{ textAlign: "center" }}>
               © {new Date().getFullYear()} DispATch Performance & Prevention
