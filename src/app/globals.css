@@ -183,12 +183,8 @@ body {
   }
 
   .sticky-book-btn {
-    position: fixed;
-    left: 50%;
-    bottom: 1rem;
-    transform: translateX(-50%);
-    z-index: 40;
-    transition: opacity .3s ease, transform .3s ease;
+    @apply fixed bottom-4 left-1/2 -translate-x-1/2 z-40 md:hidden;
+    transition: opacity 0.3s ease, transform 0.3s ease;
   }
   .sticky-book-btn--hidden {
     opacity: 0;
