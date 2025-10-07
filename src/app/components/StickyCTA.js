@@ -1,19 +1,20 @@
 "use client";
+
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
 export default function StickyCTA() {
   const pathname = usePathname();
+  const excluded = pathname === "/book" || pathname === "/thank-you";
 
-  // Don’t render on these routes
-  if (pathname === "/book" || pathname === "/thank-you") {
-    return null;
-  }
-
+  // Hooks must ALWAYS be called
   const [hidden, setHidden] = useState(false);
   const watchedVisible = useRef(false);
 
   useEffect(() => {
+    if (excluded) return; // do nothing on excluded routes
+
+    // Watch either a page CTA (#real-cta) or the footer as fallback
     const target =
       document.getElementById("real-cta") ||
       document.querySelector("footer");
@@ -24,14 +25,17 @@ export default function StickyCTA() {
       (entries) => {
         const e = entries[0];
         watchedVisible.current = e.isIntersecting;
-        setHidden(e.isIntersecting);
+        setHidden(e.isIntersecting); // hide when target is visible
       },
       { rootMargin: "0px 0px -10% 0px", threshold: 0.01 }
     );
 
     io.observe(target);
     return () => io.disconnect();
-  }, []);
+  }, [excluded]);
+
+  // If route is excluded, render nothing (hooks were still called)
+  if (excluded) return null;
 
   return (
     <div
