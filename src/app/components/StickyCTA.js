@@ -1,36 +1,46 @@
 "use client";
-import { useEffect, useState, useRef } from "react";
+import { usePathname } from "next/navigation";
+import { useEffect, useRef, useState } from "react";
 
 export default function StickyCTA() {
+  const pathname = usePathname();
+
+  // Don’t render on these routes
+  if (pathname === "/book" || pathname === "/thank-you") {
+    return null;
+  }
+
   const [hidden, setHidden] = useState(false);
-  const observerRef = useRef(null);
-  const targetVisible = useRef(false);
+  const watchedVisible = useRef(false);
 
   useEffect(() => {
-    const target = document.querySelector("#bottom-cta");
+    const target =
+      document.getElementById("real-cta") ||
+      document.querySelector("footer");
+
     if (!target) return;
 
-    observerRef.current = new IntersectionObserver(
+    const io = new IntersectionObserver(
       (entries) => {
-        const entry = entries[0];
-        targetVisible.current = entry.isIntersecting;
-        setHidden(entry.isIntersecting); // hide when #bottom-cta is visible
+        const e = entries[0];
+        watchedVisible.current = e.isIntersecting;
+        setHidden(e.isIntersecting);
       },
-      { root: null, threshold: 0.1 }
+      { rootMargin: "0px 0px -10% 0px", threshold: 0.01 }
     );
 
-    observerRef.current.observe(target);
-
-    return () => {
-      if (observerRef.current && target) observerRef.current.unobserve(target);
-    };
+    io.observe(target);
+    return () => io.disconnect();
   }, []);
 
   return (
     <div
-      className={`sticky-book-btn transition-all duration-300 ${
-        hidden ? "sticky-book-btn--hidden" : ""
-      }`}
+      aria-hidden={hidden}
+      className={[
+        "sticky-cta",
+        hidden ? "sticky-cta--hidden" : "sticky-cta--shown",
+        "md:hidden",
+      ].join(" ")}
     >
       <a
         href="/book"

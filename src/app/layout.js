@@ -29,18 +29,19 @@ export default function RootLayout({ children }) {
           "bg-white text-slate-900",
         ].join(" ")}
       >
-        {/* site header */}
+      
         <SiteHeader />
 
-        {/* page content; pad for header height */}
-        <main className="flex-1 pt-16 md:pt-16">
-          {children}
-        </main>
+        {/* Page content */}
+        <main className="flex-1 pt-16 md:pt-16">{children}</main>
 
-        {/* sticky CTA lives on every page and auto-hides near #bottom-cta or footer */}
+        {/* sentinel to hide sticky CTA near the real CTA/footer */}
+        <div id="cta-sentinel" className="h-1 w-full"></div>
+
+        {/* One global mobile only (auto-hides near real CTA/footer) */}
         <StickyCTA />
 
-        {/* global footer */}
+        {/* Footer */}
         <footer className="site-footer">
           <div className="site-footer__inner">
             As a woman-owned small business, we bring flexibility, evidence-based care,

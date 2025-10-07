@@ -310,7 +310,7 @@ export default function Home() {
       {/* ===== CTA ===== */}
       <Reveal className="mt-10 mb-12 block">
         <section
-          id="bottom-cta"  // ← add this
+          id="bottom-cta"
           className="max-w-3xl mx-auto rounded-xl bg-teal-600 text-white p-6 shadow-lg
                     flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4"
         >
