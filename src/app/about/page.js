@@ -67,7 +67,7 @@ export default function AboutPage() {
 
         {/* What We Do (cards) */}
         <Reveal className="block">
-          <section className="space-y-6">
+          <section className="space-y-6 h3-fixes ">
             <h2 className="text-2xl font-semibold underlined">What We Do</h2>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {[
@@ -177,14 +177,14 @@ export default function AboutPage() {
               </p>
 
               <div className="card lift">
-                <h3 className="font-semibold mb-2">Team Approach to Care</h3>
+                <h3 className="font-semibold mb-2 h3-fixes">Team Approach to Care</h3>
                 <p className="text-sm text-gray-700 leading-relaxed">
                   Our interdisciplinary model includes an oversight physician, athletic trainers, physical therapists,
                   strength &amp; conditioning experts, and EMTs—working together to prevent injuries and resolve issues quickly.
                 </p>
               </div>
 
-              <blockquote className="card text-base max-w-xl italic border-l-4 border-teal-600 pl-4">
+              <blockquote className="card text-base max-w-xl italic border-l-4 border-teal-600 pl-4 testimonial-block">
                 “We bridge performance and medical expertise to keep people moving. Prevention first, care always.”
               </blockquote>
             </div>

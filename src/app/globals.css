@@ -212,6 +212,10 @@ body {
       color: #0f172a !important; /* darker text for readability */
     }
   }
-
-
+  @media (max-width: 640px) {
+    /* Fix light-colored titles inside the "What We Do" section on mobile */
+    .h3-fixes h3 {
+      color: #0f172a !important; /* slate-900 for strong readable titles */
+    }
+  }
 }
