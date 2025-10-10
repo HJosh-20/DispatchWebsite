@@ -288,7 +288,7 @@ export default function Home() {
           </div>
 
           {/* TESTIMONIALS — centered below */}
-          <div className="mt-8 space-y-4">
+          <div className="mt-8 space-y-4 testimonial-block">
             <Reveal className="block">
               <blockquote className="card lift text-sm max-w-4xl mx-auto text-center">
                 “They kept our crew healthy through a brutal week—zero downtime.”
