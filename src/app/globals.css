@@ -205,7 +205,13 @@ body {
       color: #334155 !important; /* slate-700 for body text */
     }
   }
-
+  @media (max-width: 640px) {
+    /* Fix testimonial text being too light on mobile */
+    .testimonial-block blockquote,
+    .testimonial-block span {
+      color: #0f172a !important; /* darker text for readability */
+    }
+  }
 
 
 }

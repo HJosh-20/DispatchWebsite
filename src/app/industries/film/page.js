@@ -174,7 +174,7 @@ export default function FilmPage() {
         </section>
 
         {/* ===== CTA ===== */}
-        <Reveal className="block">
+        <Reveal div id="cta-sentinel" className="block">
           <section className="rounded-xl bg-teal-600 text-white p-6 shadow-lg flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
             <div>
               <h3 className="text-xl font-semibold">
