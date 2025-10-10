@@ -1,10 +1,17 @@
 @import "tailwindcss";
 
-/* Base */
+/* ---------------- Base ---------------- */
 html, body { background:#fff; color:#0f172a; -webkit-text-size-adjust:100%; }
 :root { --background:#ffffff; --foreground:#171717; }
-body { background:var(--background); color:var(--foreground); }
 
+/* Keep variables for utility use (site defaults are light) */
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Expose fonts to Tailwind theme */
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -12,44 +19,23 @@ body { background:var(--background); color:var(--foreground); }
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  /* keep your site light, but if the device is dark we still define these
-     so we can reference vars without surprises */
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-/* =========================================================
-   COMPONENT LAYER
-   ========================================================= */
+/* -------------- COMPONENT LAYER -------------- */
 @layer components {
   .container { @apply max-w-7xl mx-auto px-6; }
 
-  .underlined {
-    @apply underline decoration-2 underline-offset-4 md:underline-offset-6 decoration-teal-600;
-  }
+  .underlined { @apply underline decoration-2 underline-offset-4 md:underline-offset-6 decoration-teal-600; }
 
-  /* subtle lift referenced in your copy */
+  /* lift */
   .lift { @apply transition-transform shadow-sm; }
   .lift:hover { @apply -translate-y-0.5 shadow-md; }
 
-  /* ---- Surfaces / Cards ---- */
+  /* Surfaces / Cards (LIGHT defaults) */
   .surface        { @apply bg-slate-50; }
   .section-alt    { @apply rounded-lg bg-slate-100/80 p-4 border; }
   .surface-strong { @apply bg-teal-100; }
-
-  /* Use a tinted card; keeps lift effect and dark-on-light text */
   .card { @apply border rounded-lg p-4 bg-slate-50/90 backdrop-blur transition-all; }
 
-  /* Clickable “Who We Serve” cards */
+  /* Clickable link cards */
   .card-link {
     @apply relative border-teal-200 hover:border-teal-300 hover:bg-teal-50/70
            ring-0 focus:outline-none focus:ring-2 focus:ring-teal-500/50 transition-colors;
@@ -63,11 +49,11 @@ body {
   .card-link-foot .dot { @apply h-1.5 w-1.5 rounded-full bg-teal-600; }
   .card:hover:not(a) { @apply shadow-md -translate-y-0.5; }
 
-  /* ---- Layout helpers ---- */
+  /* Layout helpers */
   .home-main { @apply flex-1 p-0; }
   .home-container { @apply max-w-7xl mx-auto px-6 md:px-10; }
 
-  /* ---- Hero ---- */
+  /* Hero */
   .hero-section { @apply space-y-3; }
   .hero-title { @apply text-3xl sm:text-4xl font-bold; }
   .hero-text  { @apply text-lg; }
@@ -76,13 +62,13 @@ body {
            shadow hover:shadow-md hover:-translate-y-0.5 transition hover:bg-teal-700;
   }
 
-  /* ---- Benefits grid ---- */
+  /* Benefits */
   .benefits-section { @apply grid sm:grid-cols-3 gap-4 pt-4; }
   .benefit-card { @apply border rounded-lg p-5 bg-white/80 backdrop-blur; }
   .benefit-title { @apply font-semibold; }
   .benefit-text { @apply text-sm text-gray-600; }
 
-  /* ---- Header ---- */
+  /* Header */
   .site-header { @apply z-50 border-b; }
   .site-header__bg {
     @apply absolute inset-0 bg-cover bg-center pointer-events-none brightness-75;
@@ -97,20 +83,13 @@ body {
 
   /* Nav */
   .main-nav { @apply flex items-center gap-10; }
-  .main-nav > a {
-    @apply text-lg font-semibold tracking-wide text-white hover:text-teal-300 transition-colors;
-  }
+  .main-nav > a { @apply text-lg font-semibold tracking-wide text-white hover:text-teal-300 transition-colors; }
 
-  /* CTA button */
-  .btn-cta { @apply ml-4 rounded-md bg-teal-600 text-white text-lg font-semibold px-5 py-2 hover:bg-teal-700 transition-colors shadow-sm; }
-
-  /* ---- Footer ---- */
+  /* Footer */
   .site-footer { @apply border-t bg-neutral-50; }
   .site-footer__inner { @apply max-w-6xl mx-auto px-4 py-6 text-sm text-gray-600; }
 
-  /* ============== MOBILE CONTRAST FIXES ============== */
-
-  /* General catch-all for very dark Tailwind backgrounds on phones */
+  /* ===== Mobile contrast safeguards (stay) ===== */
   @media (max-width: 640px) {
     :is(
       .bg-black,
@@ -123,7 +102,6 @@ body {
     ) :where(h1,h2,h3,h4,h5,h6,strong,a,button,label) {
       color: #ffffff !important;
     }
-
     :is(
       .bg-black,
       .bg-gray-900, .bg-gray-950,
@@ -133,10 +111,8 @@ body {
       .bg-stone-900, .bg-stone-950,
       .bg-teal-900
     ) :where(p,li,small,span,em,blockquote,.hero-text,.benefit-text) {
-      color: #f1f5f9 !important; /* slate-100 */
+      color: #f1f5f9 !important;
     }
-
-    /* Classes that explicitly set low-contrast text */
     :is(
       .bg-black,
       .bg-gray-900, .bg-gray-950,
@@ -150,77 +126,83 @@ body {
     }
   }
 
+  /* Manual force for dark sections (hero, etc.) */
   .on-dark,
-  .on-dark :where(h1,h2,h3,h4,h5,h6,strong,a,button,label) {
-    color: #ffffff !important;
-  }
-  .on-dark :where(p,li,small,span,em,blockquote) {
-    color: #e6edf5 !important;  /* light-but-readable body copy */
-  }
+  .on-dark :where(h1,h2,h3,h4,h5,h6,strong,a,button,label) { color:#ffffff !important; }
+  .on-dark :where(p,li,small,span,em,blockquote)          { color:#e6edf5 !important; }
 
+  /* Sticky CTA */
   .sticky-cta {
     position: fixed;
     left: 50%;
     bottom: max(1rem, env(safe-area-inset-bottom));
-    transform: translateX(-50%);          /* no translateY -> no mid-screen jump */
+    transform: translateX(-50%);
     z-index: 60;
     transition: opacity .25s ease, visibility .25s ease;
   }
+  .sticky-cta--hidden { opacity:0; visibility:hidden; pointer-events:none; }
+  .sticky-cta--shown  { opacity:1; visibility:visible; }
 
-  .sticky-cta--hidden {
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-  }
-
-  .sticky-cta--shown {
-    opacity: 1;
-    visibility: visible;
-  }
-
-  /* Strengthen it on mobile (use !important to beat inline utilities) */
+  /* Extra mobile tweaks */
   @media (max-width: 640px) {
-    .on-dark :where(h1,h2,h3,h4,h5,h6,strong,a,button,label) {
-      color: #ffffff !important;
-    }
-    .on-dark :where(p,li,small,span,em,blockquote) {
-      color: #f1f5f9 !important;
-    }
-  }
-
-  /* Give the footer breathing room under the sticky on mobile */
-  @media (max-width: 640px) {
-    footer { padding-bottom: 4.5rem; }
-  }
-  /* Fix overly light text contrast on light backgrounds (mobile only) */
-  @media (max-width: 640px) {
-    /* Target sections with bg-slate-50 or bg-slate-100 */
-    :is(.bg-slate-50, .bg-slate-100, .bg-slate-100\/70) 
-    :where(h1, h2, h3, h4, h5, h6, strong, a, button, label) {
-      color: #0f172a !important; /* slate-900 for better contrast */
-    }
-
-    :is(.bg-slate-50, .bg-slate-100, .bg-slate-100\/70) 
-    :where(p, li, small, span, em, blockquote) {
-      color: #334155 !important; /* slate-700 for body text */
-    }
-  }
-  @media (max-width: 640px) {
-    /* Fix lighter h3 titles in About page cards */
-    .h3-fixes {
-      color: #0f172a !important; /* slate-900 (dark, high contrast) */
-    }
-
-    /* Fix blockquote readability */
-    .testimonial-block {
-      color: #0f172a !important; /* stronger text for quotes */
-    }
-
-    /* Optional: also make italic quotes less faint */
+    footer { padding-bottom: 4.5rem; } /* breathing room under sticky */
+    /* Light sections must stay readable on phones */
+    :is(.bg-slate-50, .bg-slate-100, .bg-slate-100\/70)
+      :where(h1,h2,h3,h4,h5,h6,strong,a,button,label) { color:#0f172a !important; }
+    :is(.bg-slate-50, .bg-slate-100, .bg-slate-100\/70)
+      :where(p,li,small,span,em,blockquote) { color:#334155 !important; }
+    /* About-page tiny fixes */
+    .h3-fixes { color:#0f172a !important; }
+    .testimonial-block,
     .testimonial-block blockquote,
-    .testimonial-block span {
-      color: #0f172a !important;
-      font-style: italic;
-    }
+    .testimonial-block span { color:#0f172a !important; }
   }
+}
+
+/* =========================================================
+   REAL DARK-MODE (system prefers dark)
+   ========================================================= */
+@media (prefers-color-scheme: dark) {
+  /* Base */
+  html, body {
+    background: #0f172a;        /* slate-900 */
+    color: #f1f5f9;             /* slate-100 */
+  }
+
+  /* Surfaces */
+  .surface        { background-color:#0f172a !important; }
+  .section-alt    { background-color:#0b1220 !important; border-color:#1e293b !important; }
+  .surface-strong { background-color:#0b766e1a !important; } /* subtle teal tint */
+
+  /* Cards */
+  .card, .benefit-card {
+    background-color:#1e293b !important;   /* slate-800 */
+    border-color:#334155 !important;       /* slate-700 */
+    color:#f1f5f9 !important;
+  }
+  .card a, .benefit-card a { color:#fff !important; }
+
+  /* Headings / links brighter than body text */
+  h1,h2,h3,h4,h5,h6,strong,a { color:#ffffff; }
+  p,li,small,span,em,blockquote { color:#e2e8f0; } /* slate-200 */
+
+  /* Sections that were light in day mode */
+  .bg-slate-50,
+  .bg-slate-100,
+  .bg-slate-100\/70,
+  .bg-teal-50\/70 {
+    background-color:#0f172a !important;
+  }
+
+  /* Header overlay stays readable over the skyline */
+  .site-header__overlay { background-color: rgba(0,0,0,.55); }
+  .main-nav > a { color:#e2e8f0; }
+  .main-nav > a:hover { color:#5eead4; }   /* teal-300 */
+
+  /* Testimonial blocks */
+  blockquote.card { background-color:#1e293b !important; color:#e2e8f0 !important; }
+
+  /* Footer */
+  .site-footer { background-color:#0b1220; border-color:#1f2937; }
+  .site-footer__inner { color:#94a3b8; } /* slate-400 */
 }
