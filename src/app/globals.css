@@ -206,16 +206,21 @@ body {
     }
   }
   @media (max-width: 640px) {
-    /* Fix testimonial text being too light on mobile */
+    /* Fix lighter h3 titles in About page cards */
+    .h3-fixes {
+      color: #0f172a !important; /* slate-900 (dark, high contrast) */
+    }
+
+    /* Fix blockquote readability */
+    .testimonial-block {
+      color: #0f172a !important; /* stronger text for quotes */
+    }
+
+    /* Optional: also make italic quotes less faint */
     .testimonial-block blockquote,
     .testimonial-block span {
-      color: #0f172a !important; /* darker text for readability */
-    }
-  }
-  @media (max-width: 640px) {
-    /* Fix light-colored titles inside the "What We Do" section on mobile */
-    .h3-fixes h3 {
-      color: #0f172a !important; /* slate-900 for strong readable titles */
+      color: #0f172a !important;
+      font-style: italic;
     }
   }
 }

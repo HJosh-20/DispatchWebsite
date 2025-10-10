@@ -74,13 +74,13 @@ export default function Home() {
           {/* LEFT COLUMN — WHAT WE DO */}
           <div>
             <Reveal>
-              <h2 className="text-2xl font-bold mb-4">What We Do</h2>
+              <h2 className="text-2xl font-bold mb-4 on-dark">What We Do</h2>
             </Reveal>
 
             <div className="grid sm:grid-cols-2 gap-4 auto-rows-[1fr] items-stretch">
               <Reveal>
                 <div className="card lift h-full min-h-[220px]">
-                  <h3 className="benefit-title">Injury Prevention</h3>
+                  <h3 className="benefit-title on-dark">Injury Prevention</h3>
                   <p className="benefit-text text-gray-800 mt-1">
                     Warmups, functional mechanical prep, and strength plans tailored to your team.
                   </p>
@@ -95,7 +95,7 @@ export default function Home() {
 
               <Reveal>
                 <div className="card lift h-full min-h-[220px]">
-                  <h3 className="benefit-title">Fast Response</h3>
+                  <h3 className="benefit-title on-dark">Fast Response</h3>
                   <p className="benefit-text text-gray-800 mt-1">
                     Licensed ATs assess and manage minor injuries quickly.
                   </p>
@@ -114,7 +114,7 @@ export default function Home() {
               <Reveal className="sm:col-span-2">
                 <div className="mx-auto w-full max-w-md">
                   <div className="card lift h-full min-h-[160px]">
-                    <h3 className="benefit-title">Quick Recovery Process</h3>
+                    <h3 className="benefit-title on-dark">Quick Recovery Process</h3>
                     <p className="benefit-text text-gray-800 mt-1">
                       Stepwise return-to-duty guidance that protects productivity.
                     </p>
@@ -135,7 +135,7 @@ export default function Home() {
           {/* RIGHT COLUMN — HOW IT WORKS */}
           <div>
             <Reveal>
-              <h2 className="text-2xl font-bold mb-4">How It Works</h2>
+              <h2 className="text-2xl font-bold mb-4 on-dark">How It Works</h2>
             </Reveal>
 
             <div className="grid sm:grid-cols-2 gap-4 auto-rows-[1fr] items-stretch">
@@ -143,7 +143,7 @@ export default function Home() {
                 <div className="card lift h-full min-h-[220px]">
                   <div className="flex items-baseline gap-2">
                     <span className="text-teal-700 font-bold">1</span>
-                    <h3 className="benefit-title m-0">Book an On-Site AT</h3>
+                    <h3 className="benefit-title m-0 on-dark">Book an On-Site AT</h3>
                   </div>
                   <p className="text-sm text-gray-800 mt-1">Tell us your schedule and key risks.</p>
                   <ul className="mt-2 list-disc pl-5 text-sm text-gray-700 space-y-1">
@@ -158,7 +158,7 @@ export default function Home() {
                 <div className="card lift h-full min-h-[220px]">
                   <div className="flex items-baseline gap-2">
                     <span className="text-teal-700 font-bold">2</span>
-                    <h3 className="benefit-title m-0">Prevent &amp; Treat</h3>
+                    <h3 className="benefit-title m-0 on-dark">Prevent &amp; Treat</h3>
                   </div>
                   <p className="text-sm text-gray-800 mt-1">Daily presence for prevention and quick care.</p>
                   <ul className="mt-2 list-disc pl-5 text-sm text-gray-700 space-y-1">
@@ -175,7 +175,7 @@ export default function Home() {
                   <div className="card lift h-full min-h-[160px]">
                     <div className="flex items-baseline gap-2">
                       <span className="text-teal-700 font-bold">3</span>
-                      <h3 className="benefit-title m-0">Keep Moving</h3>
+                      <h3 className="benefit-title m-0 on-dark">Keep Moving</h3>
                     </div>
                     <p className="text-sm text-gray-800 mt-1">
                       Fewer injuries and less downtime for your team.
@@ -288,7 +288,7 @@ export default function Home() {
           </div>
 
           {/* TESTIMONIALS — centered below */}
-          <div className="mt-8 space-y-4 testimonial-block">
+          <div className="mt-8 space-y-4 testimonial-block on-dark">
             <Reveal className="block">
               <blockquote className="card lift text-sm max-w-4xl mx-auto text-center">
                 “They kept our crew healthy through a brutal week—zero downtime.”
@@ -306,7 +306,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <div id="cta-sentinel" className="h-1 w-full"></div>
+      <div id="real-cta" className="h-1 w-full"></div>
       {/* ===== CTA ===== */}
       <Reveal className="mt-10 mb-12 block">
         <section
