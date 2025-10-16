@@ -122,44 +122,47 @@ export default function Home() {
             {/* LEFT: two stacked clean panels */}
             <div className="lg:col-span-7 space-y-4">
               {/* Education panel */}
-              <div className="rounded-lg border border-teal-200 bg-white/95 backdrop-blur px-5 py-4 shadow-sm">
-                <div className="text-sm font-semibold tracking-wide text-teal-700 uppercase">Education &amp; Licensure</div>
-                <p className="text-sm text-gray-800 mt-2">
-                  Athletic trainers complete accredited programs (often postgraduate), pass a national certification exam,
-                  and are state-licensed healthcare professionals.
-                </p>
-              </div>
+              <Reveal>
+                <div className="card lift animate-slide-up rounded-lg border border-teal-200 bg-white/95 backdrop-blur px-5 py-4 shadow-sm">
+                  <div className="text-sm font-semibold tracking-wide text-teal-700 uppercase">Education &amp; Licensure</div>
+                  <p className="text-sm text-gray-800 mt-2">
+                    Athletic trainers complete accredited programs (often postgraduate), pass a national certification exam,
+                    and are state-licensed healthcare professionals.
+                  </p>
+                </div>
+              </Reveal>
 
               {/* What ATs Do panel */}
-              <div className="rounded-lg border border-slate-200 bg-white/95 backdrop-blur px-5 py-4 shadow-sm">
-                <div className="text-sm font-semibold tracking-wide text-teal-700 uppercase">What ATs Do</div>
-                <ul className="mt-2 space-y-2 text-sm text-gray-800">
-                  {[
-                    <> <strong>Prevention:</strong>&nbsp;Programs, technique coaching, and equipment recommendations.</>,
-                    <> <strong>Immediate care:</strong>&nbsp;On-site first response; trained for TBI/spinal stabilization,
-                      cardiac/respiratory arrest support, heat illness, mental-health crisis response, tourniquets,
-                      basic wound care; all CPR/BLS certified.</>,
-                    <> <strong>Clinical diagnosis:</strong>&nbsp;Evaluation and coordination with physicians, S&amp;C coaches, and PTs.</>,
-                    <> <strong>Rehabilitation:</strong>&nbsp;Therapeutic interventions and individual/group strengthening programs.</>,
-                    <> <strong>Emergency action planning:</strong>&nbsp;Build and execute EAPs, including weather-related protocols.</>,
-                    <> <strong>Communication &amp; coordination:</strong>&nbsp;Clear coordination with managers and care teams to keep work moving.</>,
-                  ].map((content, i) => (
-                    <li key={i} className="flex items-start gap-2">
-                      {/* check icon */}
-                      <svg viewBox="0 0 20 20" fill="currentColor" className="mt-1 h-4 w-4 text-teal-600 shrink-0" aria-hidden="true">
-                        <path
-                          fillRule="evenodd"
-                          d="M16.704 5.29a1 1 0 0 1 .006 1.414l-7.2 7.3a1 1 0 0 1-1.428 0l-3.2-3.2a1 1 0 1 1 1.414-1.414l2.486 2.486 6.486-6.578a1 1 0 0 1 1.436-.008Z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-                      <span>{content}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+              <Reveal>
+                <div className="card lift animate-slide-up rounded-lg border border-slate-200 bg-white/95 backdrop-blur px-5 py-4 shadow-sm">
+                  <div className="text-sm font-semibold tracking-wide text-teal-700 uppercase">What ATs Do</div>
+                  <ul className="mt-2 space-y-2 text-sm text-gray-800">
+                    {[
+                      <> <strong>Prevention:</strong>&nbsp;Programs, technique coaching, and equipment recommendations.</>,
+                      <> <strong>Immediate care:</strong>&nbsp;On-site first response; trained for TBI/spinal stabilization,
+                        cardiac/respiratory arrest support, heat illness, mental-health crisis response, tourniquets,
+                        basic wound care; all CPR/BLS certified.</>,
+                      <> <strong>Clinical diagnosis:</strong>&nbsp;Evaluation and coordination with physicians, S&amp;C coaches, and PTs.</>,
+                      <> <strong>Rehabilitation:</strong>&nbsp;Therapeutic interventions and individual/group strengthening programs.</>,
+                      <> <strong>Emergency action planning:</strong>&nbsp;Build and execute EAPs, including weather-related protocols.</>,
+                      <> <strong>Communication &amp; coordination:</strong>&nbsp;Clear coordination with managers and care teams to keep work moving.</>,
+                    ].map((content, i) => (
+                      <li key={i} className="flex items-start gap-2">
+                        {/* check icon */}
+                        <svg viewBox="0 0 20 20" fill="currentColor" className="mt-1 h-4 w-4 text-teal-600 shrink-0" aria-hidden="true">
+                          <path
+                            fillRule="evenodd"
+                            d="M16.704 5.29a1 1 0 0 1 .006 1.414l-7.2 7.3a1 1 0 0 1-1.428 0l-3.2-3.2a1 1 0 1 1 1.414-1.414l2.486 2.486 6.486-6.578a1 1 0 0 1 1.436-.008Z"
+                            clipRule="evenodd"
+                          />
+                        </svg>
+                        <span>{content}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </Reveal>
             </div>
-
             {/* RIGHT: subtle teal highlight block to balance the grid */}
             <div className="lg:col-span-5">
               <div className="rounded-xl bg-teal-600 text-white p-6 shadow-lg h-full flex flex-col items-center justify-center text-center">

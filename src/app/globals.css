@@ -4,7 +4,6 @@
 html, body { background:#fff; color:#0f172a; -webkit-text-size-adjust:100%; }
 :root { --background:#ffffff; --foreground:#171717; }
 
-/* Keep variables for utility use (site defaults are light) */
 body {
   background: var(--background);
   color: var(--foreground);
@@ -89,7 +88,7 @@ body {
   .site-footer { @apply border-t bg-neutral-50; }
   .site-footer__inner { @apply max-w-6xl mx-auto px-4 py-6 text-sm text-gray-600; }
 
-  /* ===== Mobile contrast safeguards (stay) ===== */
+  /* ===== Mobile contrast safeguards ===== */
   @media (max-width: 640px) {
     :is(
       .bg-black,
@@ -126,7 +125,7 @@ body {
     }
   }
 
-  /* Manual force for dark sections (hero, etc.) */
+  /* Manual force for dark sections */
   .on-dark,
   .on-dark :where(h1,h2,h3,h4,h5,h6,strong,a,button,label) { color:#ffffff !important; }
   .on-dark :where(p,li,small,span,em,blockquote)          { color:#e6edf5 !important; }
@@ -145,13 +144,11 @@ body {
 
   /* Extra mobile tweaks */
   @media (max-width: 640px) {
-    footer { padding-bottom: 4.5rem; } /* breathing room under sticky */
-    /* Light sections must stay readable on phones */
+    footer { padding-bottom: 4.5rem; }
     :is(.bg-slate-50, .bg-slate-100, .bg-slate-100\/70)
       :where(h1,h2,h3,h4,h5,h6,strong,a,button,label) { color:#0f172a !important; }
     :is(.bg-slate-50, .bg-slate-100, .bg-slate-100\/70)
       :where(p,li,small,span,em,blockquote) { color:#334155 !important; }
-    /* About-page tiny fixes */
     .h3-fixes { color:#0f172a !important; }
     .testimonial-block,
     .testimonial-block blockquote,
@@ -163,53 +160,62 @@ body {
    REAL DARK-MODE (system prefers dark)
    ========================================================= */
 @media (prefers-color-scheme: dark) {
-  /* Base */
   html, body {
-    background: #0f172a;        /* slate-900 */
-    color: #f1f5f9;             /* slate-100 */
+    background: #0f172a;
+    color: #f1f5f9;
   }
 
-  /* Surfaces */
   .surface        { background-color:#0f172a !important; }
   .section-alt    { background-color:#0b1220 !important; border-color:#1e293b !important; }
-  .surface-strong { background-color:#0b766e1a !important; } /* subtle teal tint */
+  .surface-strong { background-color:#0b766e1a !important; }
 
-  /* Cards */
   .card, .benefit-card {
-    background-color:#1e293b !important;   /* slate-800 */
-    border-color:#334155 !important;       /* slate-700 */
+    background-color:rgba(30,41,59,0.9) !important;  /* darker transparent */
+    border-color:rgba(71,85,105,0.5) !important;
     color:#f1f5f9 !important;
   }
   .card a, .benefit-card a { color:#fff !important; }
 
-  /* Headings / links brighter than body text */
   h1,h2,h3,h4,h5,h6,strong,a { color:#ffffff; }
-  p,li,small,span,em,blockquote { color:#e2e8f0; } /* slate-200 */
+  p,li,small,span,em,blockquote { color:#e2e8f0; }
 
-  /* Sections that were light in day mode */
-  .bg-slate-50,
-  .bg-slate-100,
-  .bg-slate-100\/70,
-  .bg-teal-50\/70 {
-    background-color:#0f172a !important;
-  }
+  /* === DARK-MODE FIXES ADDED === */
+  /* Light-section text correction */
+  :is(.bg-slate-50, .bg-slate-100, .bg-slate-100\/70, .bg-teal-50\/70)
+      :where(h1,h2,h3,h4,h5,h6,strong,a,button,label) { color:#f1f5f9 !important; }
+  :is(.bg-slate-50, .bg-slate-100, .bg-slate-100\/70, .bg-teal-50\/70)
+      :where(p,li,small,span,em,blockquote) { color:#cbd5e1 !important; }
 
-  /* Header overlay stays readable over the skyline */
+  /* Header overlay stays readable */
   .site-header__overlay { background-color: rgba(0,0,0,.55); }
   .main-nav > a { color:#e2e8f0; }
-  .main-nav > a:hover { color:#5eead4; }   /* teal-300 */
-  /* Header CTA pill (wins over .main-nav > a) */
+  .main-nav > a:hover { color:#5eead4; }
+
   .btn-cta {
     @apply inline-block rounded-lg bg-teal-600 px-4 py-2 font-semibold text-white shadow
           hover:bg-teal-700 hover:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-500;
   }
-  /* keep text white on hover, even though .main-nav > a sets hover:text-teal-300 */
   .main-nav .btn-cta { @apply text-white hover:text-white; }
 
-  /* Testimonial blocks */
   blockquote.card { background-color:#1e293b !important; color:#e2e8f0 !important; }
 
-  /* Footer */
   .site-footer { background-color:#0b1220; border-color:#1f2937; }
-  .site-footer__inner { color:#94a3b8; } /* slate-400 */
+  .site-footer__inner { color:#94a3b8; }
+
+  /* Mobile + dark combined fixes */
+  @media (max-width: 640px) {
+    :is(.bg-slate-50, .bg-slate-100, .bg-slate-100\/70)
+        :where(h1,h2,h3,h4,h5,h6,strong,a,button,label) { color:#f1f5f9 !important; }
+    :is(.bg-slate-50, .bg-slate-100, .bg-slate-100\/70)
+        :where(p,li,small,span,em,blockquote) { color:#cbd5e1 !important; }
+  }
+
+  /* More effects */
+  @keyframes slide-up {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .animate-slide-up {
+    animation: slide-up 0.6s ease-out both;
+  }
 }
