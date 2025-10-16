@@ -66,133 +66,119 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ===== WHAT WE DO + HOW IT WORKS (side-by-side columns) ===== */}
+      {/* ===== WHAT WE DO ===== */}
       <section className="w-full bg-slate-100 py-12">
-        {/* wider wrapper; bigger gap; subtle divider on desktop */}
-        <div className="max-w-[1600px] mx-auto px-4 lg:px-6 grid lg:grid-cols-[1fr_auto_1fr] lg:gap-12 gap-8">
-
-          {/* LEFT COLUMN — WHAT WE DO */}
+        <div className="max-w-[1600px] mx-auto px-4 lg:px-6">
           <div>
-            <Reveal>
-              <h2 className="text-2xl font-bold mb-4">What We Do</h2>
-            </Reveal>
+            <h2 className="text-2xl font-bold mb-4">What We Do</h2>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 items-stretch">
+              <div className="card lift h-full min-h-[220px]">
+                <h3 className="benefit-title">Injury Prevention</h3>
+                <p className="benefit-text text-gray-800 mt-1">
+                  Warmups, functional mechanical prep, and strength plans tailored to your team.
+                </p>
+                <ul className="mt-2 list-disc pl-5 text-sm text-gray-700 space-y-1">
+                  <li>Task-specific warmups</li>
+                  <li>Consultations &amp; injury documentation</li>
+                  <li>Taping &amp; load coaching</li>
+                  <li>On-site strain checks</li>
+                </ul>
+              </div>
 
-            <div className="grid sm:grid-cols-2 gap-4 auto-rows-[1fr] items-stretch">
-              <Reveal>
-                <div className="card lift h-full min-h-[220px]">
-                  <h3 className="benefit-title">Injury Prevention</h3>
-                  <p className="benefit-text text-gray-800 mt-1">
-                    Warmups, functional mechanical prep, and strength plans tailored to your team.
-                  </p>
-                  <ul className="mt-2 list-disc pl-5 text-sm text-gray-700 space-y-1">
-                    <li>Task-specific warmups</li>
-                    <li>Consultations &amp; injury documentation</li>
-                    <li>Taping &amp; load coaching</li>
-                    <li>On-site strain checks</li>
-                  </ul>
-                </div>
-              </Reveal>
+              <div className="card lift h-full min-h-[220px]">
+                <h3 className="benefit-title">On-Site Care</h3>
+                <p className="benefit-text text-gray-800 mt-1">
+                  Licensed ATs assess and manage minor injuries quickly, limiting downtime.
+                </p>
+                <ul className="mt-2 list-disc pl-5 text-sm text-gray-700 space-y-1">
+                  <li>Triage for sprains &amp; strains</li>
+                  <li>Clear work/pause guidance</li>
+                  <li>Referrals when needed within workers’ comp protocols</li>
+                </ul>
+              </div>
 
-              <Reveal>
-                <div className="card lift h-full min-h-[220px]">
-                  <h3 className="benefit-title">Fast Response</h3>
-                  <p className="benefit-text text-gray-800 mt-1">
-                    Licensed ATs assess and manage minor injuries quickly.
-                  </p>
-                  <ul className="mt-2 list-disc pl-5 text-sm text-gray-700 space-y-1">
-                    <li>Triage for sprains &amp; strains</li>
-                    <li>Clear work/pause guidance</li>
-                    <li>
-                      Referrals when needed to a network of local healthcare providers while
-                      working within workers comp protocols
-                    </li>
-                  </ul>
-                </div>
-              </Reveal>
-
-              {/* centered single card under the two */}
-              <Reveal className="sm:col-span-2">
-                <div className="mx-auto w-full max-w-md">
-                  <div className="card lift h-full min-h-[160px]">
-                    <h3 className="benefit-title">Quick Recovery Process</h3>
-                    <p className="benefit-text text-gray-800 mt-1">
-                      Stepwise return-to-duty guidance that protects productivity.
-                    </p>
-                    <ul className="mt-2 list-disc pl-5 text-sm text-gray-700 space-y-1">
-                      <li>Progressive work plans</li>
-                      <li>Self-care instructions</li>
-                      <li>Follow-ups for managers</li>
-                    </ul>
-                  </div>
-                </div>
-              </Reveal>
-            </div>
-          </div>
-
-          {/* VERTICAL DIVIDER (desktop only) */}
-          <div className="hidden lg:block w-px bg-slate-300/60 my-2 rounded-full" />
-
-          {/* RIGHT COLUMN — HOW IT WORKS */}
-          <div>
-            <Reveal>
-              <h2 className="text-2xl font-bold mb-4">How It Works</h2>
-            </Reveal>
-
-            <div className="grid sm:grid-cols-2 gap-4 auto-rows-[1fr] items-stretch">
-              <Reveal>
-                <div className="card lift h-full min-h-[220px]">
-                  <div className="flex items-baseline gap-2">
-                    <span className="text-teal-700 font-bold">1</span>
-                    <h3 className="benefit-title m-0">Book an On-Site AT</h3>
-                  </div>
-                  <p className="text-sm text-gray-800 mt-1">Tell us your schedule and key risks.</p>
-                  <ul className="mt-2 list-disc pl-5 text-sm text-gray-700 space-y-1">
-                    <li>Headcount &amp; shifts</li>
-                    <li>Matched AT support</li>
-                    <li>Simple onboarding</li>
-                  </ul>
-                </div>
-              </Reveal>
-
-              <Reveal>
-                <div className="card lift h-full min-h-[220px]">
-                  <div className="flex items-baseline gap-2">
-                    <span className="text-teal-700 font-bold">2</span>
-                    <h3 className="benefit-title m-0">Prevent &amp; Treat</h3>
-                  </div>
-                  <p className="text-sm text-gray-800 mt-1">Daily presence for prevention and quick care.</p>
-                  <ul className="mt-2 list-disc pl-5 text-sm text-gray-700 space-y-1">
-                    <li>Taping &amp; triage on site</li>
-                    <li>Functional mechanical adjustments</li>
-                    <li>Short recovery sessions</li>
-                  </ul>
-                </div>
-              </Reveal>
-
-              {/* centered single card under the two */}
-              <Reveal className="sm:col-span-2">
-                <div className="mx-auto w-full max-w-md">
-                  <div className="card lift h-full min-h-[160px]">
-                    <div className="flex items-baseline gap-2">
-                      <span className="text-teal-700 font-bold">3</span>
-                      <h3 className="benefit-title m-0">Keep Moving</h3>
-                    </div>
-                    <p className="text-sm text-gray-800 mt-1">
-                      Fewer injuries and less downtime for your team.
-                    </p>
-                    <ul className="mt-2 list-disc pl-5 text-sm text-gray-700 space-y-1">
-                      <li>Trend reports to guide prevention</li>
-                      <li>Faster return-to-duty</li>
-                      <li>Steadier schedules — reduced PTO and workers comp claims</li>
-                    </ul>
-                  </div>
-                </div>
-              </Reveal>
+              <div className="card lift h-full min-h-[220px]">
+                <h3 className="benefit-title">Quick Recovery Process</h3>
+                <p className="benefit-text text-gray-800 mt-1">
+                  Stepwise return-to-duty guidance that protects productivity.
+                </p>
+                <ul className="mt-2 list-disc pl-5 text-sm text-gray-700 space-y-1">
+                  <li>Progressive work plans</li>
+                  <li>Self-care instructions</li>
+                  <li>Follow-ups for managers</li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
+      {/* ===== WHY HIRE ATHLETIC TRAINERS ===== */}
+      <section className="w-full bg-teal-50/70 py-12">
+        <div className="max-w-[1600px] mx-auto px-4 lg:px-6">
+          <h2 className="text-2xl font-bold mb-6">Why Hire Athletic Trainers</h2>
+
+          <div className="grid lg:grid-cols-12 gap-6 items-stretch">
+            {/* LEFT: two stacked clean panels */}
+            <div className="lg:col-span-7 space-y-4">
+              {/* Education panel */}
+              <div className="rounded-lg border border-teal-200 bg-white/95 backdrop-blur px-5 py-4 shadow-sm">
+                <div className="text-sm font-semibold tracking-wide text-teal-700 uppercase">Education &amp; Licensure</div>
+                <p className="text-sm text-gray-800 mt-2">
+                  Athletic trainers complete accredited programs (often postgraduate), pass a national certification exam,
+                  and are state-licensed healthcare professionals.
+                </p>
+              </div>
+
+              {/* What ATs Do panel */}
+              <div className="rounded-lg border border-slate-200 bg-white/95 backdrop-blur px-5 py-4 shadow-sm">
+                <div className="text-sm font-semibold tracking-wide text-teal-700 uppercase">What ATs Do</div>
+                <ul className="mt-2 space-y-2 text-sm text-gray-800">
+                  {[
+                    <> <strong>Prevention:</strong>&nbsp;Programs, technique coaching, and equipment recommendations.</>,
+                    <> <strong>Immediate care:</strong>&nbsp;On-site first response; trained for TBI/spinal stabilization,
+                      cardiac/respiratory arrest support, heat illness, mental-health crisis response, tourniquets,
+                      basic wound care; all CPR/BLS certified.</>,
+                    <> <strong>Clinical diagnosis:</strong>&nbsp;Evaluation and coordination with physicians, S&amp;C coaches, and PTs.</>,
+                    <> <strong>Rehabilitation:</strong>&nbsp;Therapeutic interventions and individual/group strengthening programs.</>,
+                    <> <strong>Emergency action planning:</strong>&nbsp;Build and execute EAPs, including weather-related protocols.</>,
+                    <> <strong>Communication &amp; coordination:</strong>&nbsp;Clear coordination with managers and care teams to keep work moving.</>,
+                  ].map((content, i) => (
+                    <li key={i} className="flex items-start gap-2">
+                      {/* check icon */}
+                      <svg viewBox="0 0 20 20" fill="currentColor" className="mt-1 h-4 w-4 text-teal-600 shrink-0" aria-hidden="true">
+                        <path
+                          fillRule="evenodd"
+                          d="M16.704 5.29a1 1 0 0 1 .006 1.414l-7.2 7.3a1 1 0 0 1-1.428 0l-3.2-3.2a1 1 0 1 1 1.414-1.414l2.486 2.486 6.486-6.578a1 1 0 0 1 1.436-.008Z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                      <span>{content}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            {/* RIGHT: subtle teal highlight block to balance the grid */}
+            <div className="lg:col-span-5">
+              <div className="rounded-xl bg-teal-600 text-white p-6 shadow-lg h-full flex flex-col items-center justify-center text-center">
+                <h3 className="text-2xl font-bold">Licensed AT Staff</h3>
+                <p className="text-white/90 mt-2 max-w-sm">
+                  Vetted, licensed ATs with a team-based approach tailored to your site.
+                </p>
+                <Link
+                  href="/services"
+                  className="mt-4 inline-block bg-white text-teal-700 font-semibold px-5 py-3 rounded-lg hover:bg-white/90 transition"
+                >
+                  Explore our services
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section> 
+      
       {/* ===== WHO WE SERVE (left) + KEY FACTS (right) + TESTIMONIAL ===== */}
       <section className="w-full bg-teal-50/70 py-12">
         <div className="max-w-[1600px] mx-auto px-4 lg:px-6">
@@ -217,7 +203,7 @@ export default function Home() {
                   },
                   {
                     t: "Event Coverage",
-                    d: "Traditional athletic training event coverage provided by ATs and EMTs.",
+                    d: "Traditional athletic training event coverage provided by ATs.",
                     href: "/industries/eventcov",
                   },
                 ].map((c) => (
@@ -269,7 +255,7 @@ export default function Home() {
                 <h2 className="text-2xl font-bold mb-4">Key Facts</h2>
               </Reveal>
 
-              <div className="grid sm:grid-cols-2 gap-4">
+              <div className="grid sm:grid-cols-2 gap-4 items-stretch">
                 {[
                   { n: "70%", t: "of workplace injuries are preventable (OSHA)" },
                   { n: "1 in 3", t: "workplace injuries linked to poor movement mechanics and repetitive strain (BLS)" },
@@ -277,9 +263,9 @@ export default function Home() {
                   { n: "2–6x", t: "ROI for every $1 invested in workplace safety (OSHA)" },
                 ].map((x) => (
                   <Reveal key={x.t}>
-                    <div className="card lift text-center">
+                    <div className="card lift h-full min-h-[160px] flex flex-col items-center justify-center text-center">
                       <div className="text-3xl font-bold text-teal-700">{x.n}</div>
-                      <p className="text-sm text-gray-800 mt-1">{x.t}</p>
+                      <p className="text-sm text-gray-800 mt-1 max-w-xs">{x.t}</p>
                     </div>
                   </Reveal>
                 ))}
@@ -306,7 +292,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
       <div id="real-cta" className="h-1 w-full"></div>
+
       {/* ===== CTA ===== */}
       <Reveal className="mt-10 mb-12 block">
         <section

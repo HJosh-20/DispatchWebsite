@@ -9,7 +9,7 @@ export default function FilmPage() {
       {/* ===== HERO ===== */}
       <section className="relative h-[48vh] sm:h-[60vh] flex items-end">
         <Image
-          src="/filmhero.jpg" // replace with your on-set photo
+          src="/filmhero.jpg"
           alt="On-set film crew"
           fill
           priority
@@ -73,31 +73,6 @@ export default function FilmPage() {
           </Reveal>
         </section>
 
-        {/* ATs vs EMTs */}
-        <Reveal className="block">
-          <section>
-            <h2 className="text-2xl font-semibold underlined mb-4">ATs vs EMTs on Set</h2>
-            <div className="grid md:grid-cols-2 gap-6">
-              <div className="card lift">
-                <h3 className="font-semibold">Athletic Trainers (ATs)</h3>
-                <ul className="mt-2 list-disc pl-5 text-sm text-gray-700 space-y-1">
-                  <li>Proactive: warmups, prevention, <span className="font-medium">functional safety advisement</span></li>
-                  <li>Manage minor musculoskeletal issues on the spot</li>
-                  <li>Keep talent &amp; crew moving safely through long days</li>
-                </ul>
-              </div>
-              <div className="card lift">
-                <h3 className="font-semibold">EMTs / Paramedics</h3>
-                <ul className="mt-2 list-disc pl-5 text-sm text-gray-700 space-y-1">
-                  <li>Reactive: respond to emergencies</li>
-                  <li>Essential for high-risk shoots—not a replacement for ATs</li>
-                  <li>Best together: ATs reduce issues; EMTs cover true emergencies</li>
-                </ul>
-              </div>
-            </div>
-          </section>
-        </Reveal>
-
         {/* ===== INCLUDED (LEFT) + HOW IT WORKS (RIGHT) ===== */}
         <section className="w-full">
           <div className="max-w-[1720px] mx-auto px-4 grid lg:grid-cols-12 gap-12 items-start">
@@ -116,6 +91,8 @@ export default function FilmPage() {
                   { t: "Documentation & Follow-up", d: "Simple notes and guidance for production leads." },
                   { t: "Trend Reporting", d: "Insights that prevent repeats and protect schedules." },
                   { t: "Weather Advisory Plans", d: "On-site heat & cold safety planning, hydration, and exposure monitoring." },
+                  // optional EMT note added per client question
+                  { t: "EMTs (Optional)", d: "Available for contract per event/day if needed or requested during contract phase." },
                 ].map((c) => (
                   <Reveal key={c.t}>
                     <div className="card lift h-full">

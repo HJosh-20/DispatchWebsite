@@ -198,6 +198,13 @@ body {
   .site-header__overlay { background-color: rgba(0,0,0,.55); }
   .main-nav > a { color:#e2e8f0; }
   .main-nav > a:hover { color:#5eead4; }   /* teal-300 */
+  /* Header CTA pill (wins over .main-nav > a) */
+  .btn-cta {
+    @apply inline-block rounded-lg bg-teal-600 px-4 py-2 font-semibold text-white shadow
+          hover:bg-teal-700 hover:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-500;
+  }
+  /* keep text white on hover, even though .main-nav > a sets hover:text-teal-300 */
+  .main-nav .btn-cta { @apply text-white hover:text-white; }
 
   /* Testimonial blocks */
   blockquote.card { background-color:#1e293b !important; color:#e2e8f0 !important; }

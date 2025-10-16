@@ -9,8 +9,8 @@ export default function EventCoveragePage() {
       {/* ===== HERO ===== */}
       <section className="relative h-[48vh] sm:h-[60vh] flex items-end">
         <Image
-          src="/eventHero.jpg"    
-          alt="Sideline medical coverage at a sporting event"
+          src="/soccerstadium.jpg"  
+          alt="Soccer game in progess"
           fill
           priority
           sizes="100vw"
@@ -26,8 +26,8 @@ export default function EventCoveragePage() {
             </Reveal>
             <Reveal className="mt-2">
               <p className="text-white/90 max-w-3xl">
-                EMTs and Athletic Trainers working together to cover your
-                sporting event—planning to sideline care to post-event reports.
+                Athletic Trainers provide coordinated prevention, on-site care, and return-to-play guidance
+                so athletes can compete safely and organizers can focus on the event.
               </p>
             </Reveal>
           </div>
@@ -36,58 +36,18 @@ export default function EventCoveragePage() {
 
       {/* ===== CONTENT ===== */}
       <div className="max-w-[1600px] mx-auto px-6 space-y-16 py-14">
-        {/* WHY US */}
-        <section className="grid lg:grid-cols-2 gap-10">
-          <Reveal>
-            <div className="space-y-4">
-              <h2 className="text-2xl font-semibold underlined">Why DispATch for Events?</h2>
-              <p className="hero-text leading-relaxed">
-                We provide a coordinated team—EMTs for emergencies and Athletic
-                Trainers for prevention and musculoskeletal care—so athletes can
-                compete safely and organizers can focus on the event.
-              </p>
-              <ul className="list-disc pl-6 text-sm text-gray-700 space-y-2">
-                <li>Single point of contact &amp; turnkey planning</li>
-                <li>Emergency Action Plans &amp; venue medical maps</li>
-                <li>On-site triage, taping/bracing, and return-to-play decisions</li>
-                <li>Heat/cold weather advisory plans &amp; hydration strategies</li>
-              </ul>
-            </div>
-          </Reveal>
-
-          <Reveal>
-            <div className="relative aspect-[4/3] rounded-xl overflow-hidden shadow">
-              <Image
-                src="/whyATs.jpg"    
-                alt="At a large event"
-                fill
-                className="object-cover"
-              />
-            </div>
-          </Reveal>
-        </section>
-
-        {/* ATs vs EMTs */}
+        {/* SINGLE WIDE BOX — no side image */}
         <Reveal className="block">
-          <section>
-            <h2 className="text-2xl font-semibold underlined mb-4">ATs vs EMTs on Set</h2>
-            <div className="grid md:grid-cols-2 gap-6">
-              <div className="card lift">
-                <h3 className="font-semibold">Athletic Trainers (ATs)</h3>
-                <ul className="mt-2 list-disc pl-5 text-sm text-gray-700 space-y-1">
-                  <li>Proactive: warmups, prevention, <span className="font-medium">functional safety advisement</span></li>
-                  <li>Manage minor musculoskeletal issues on the spot</li>
-                  <li>Keep talent &amp; crew moving safely through long days</li>
-                </ul>
-              </div>
-              <div className="card lift">
-                <h3 className="font-semibold">EMTs / Paramedics</h3>
-                <ul className="mt-2 list-disc pl-5 text-sm text-gray-700 space-y-1">
-                  <li>Reactive: respond to emergencies</li>
-                  <li>Essential for high-risk shoots—not a replacement for ATs</li>
-                  <li>Best together: ATs reduce issues; EMTs cover true emergencies</li>
-                </ul>
-              </div>
+          <section className="max-w-4xl mx-auto">
+            <div className="card lift px-6 py-6 text-center">
+              <h2 className="text-2xl font-semibold">Why DispATch for Events?</h2>
+              <p className="hero-text leading-relaxed mt-2">
+                Team-based coverage built around licensed Athletic Trainers. We plan with you,
+                execute clean emergency action plans, and keep play moving safely.
+              </p>
+              <p className="text-sm text-gray-700 mt-3">
+                <strong>Vetted, licensed AT staff</strong> with sport-specific experience.
+              </p>
             </div>
           </section>
         </Reveal>
@@ -105,10 +65,13 @@ export default function EventCoveragePage() {
                 {[
                   { t: "Pre-Event Planning", d: "Medical needs analysis, staffing plan, supplies & layout." },
                   { t: "Emergency Action Plan", d: "EAP creation with radio/comms and EMS coordination." },
-                  { t: "On-Site ATs & EMTs", d: "Taping/bracing, triage, and emergency response coverage." },
+                  // remove EMTs as a headline feature
+                  { t: "On-Site Athletic Trainers", d: "Taping/bracing, triage, return-to-play decisions, and documentation." },
                   { t: "Weather Advisory Plans", d: "Heat/cold risk mitigation, hydration & recovery protocols." },
                   { t: "Documentation & Reporting", d: "Incident logs, injury documentation, and post-event summary." },
                   { t: "Referral Network", d: "Quick referral to local clinics and specialists as needed." },
+                  // add the requested EMT bullet
+                  { t: "EMTs (Optional)", d: "Available for contract per event if needed or requested during contract phase." },
                 ].map((c) => (
                   <Reveal key={c.t}>
                     <div className="card lift h-full">
@@ -120,7 +83,7 @@ export default function EventCoveragePage() {
               </div>
             </div>
 
-            {/* RIGHT — HOW IT WORKS */}
+            {/* RIGHT — HOW IT WORKS (kept near bottom section) */}
             <div className="lg:col-span-4 lg:pl-2">
               <Reveal>
                 <h2 className="text-2xl font-semibold underlined mb-4">How It Works</h2>
@@ -142,7 +105,7 @@ export default function EventCoveragePage() {
                     <div className="text-teal-700 font-bold">2</div>
                     <div className="font-semibold">Staff &amp; Equip</div>
                     <p className="text-sm text-gray-700 mt-1">
-                      We deploy ATs/EMTs, supplies, radios, and EAP.
+                      We deploy ATs, supplies, radios, and EAP.
                     </p>
                   </div>
                 </Reveal>

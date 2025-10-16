@@ -9,7 +9,7 @@ export default function SmallBusinessPage() {
       {/* ===== HERO ===== */}
       <section className="relative h-[48vh] sm:h-[60vh] flex items-end">
         <Image
-          src="/officestreching.jpg"           
+          src="/officestreching.jpg"
           alt="active workplace streching"
           fill
           priority
@@ -47,18 +47,23 @@ export default function SmallBusinessPage() {
                 work and resolve issues quickly—so operations keep moving.
               </p>
               <ul className="list-disc pl-6 text-sm text-gray-700 space-y-2">
-                <li>Daily warmups & micro-break routines</li>
+                {/* softened so it does not imply daily staffing */}
+                <li>Warmups &amp; micro-break routines your team can run</li>
                 <li>Functional mechanical adjustments on the floor</li>
-                <li>On-site triage for sprains, strains & overuse</li>
-                <li>Clear work / pause guidance & documentation</li>
+                <li>On-site triage for sprains, strains &amp; overuse</li>
+                <li>Clear work / pause guidance &amp; documentation</li>
               </ul>
+              {/* note about cadence per contract */}
+              <p className="text-xs text-gray-600">
+                Presence is scheduled <strong>monthly or quarterly</strong> depending on contract.
+              </p>
             </div>
           </Reveal>
 
           <Reveal>
             <div className="relative aspect-[4/3] rounded-xl overflow-hidden shadow">
               <Image
-                src="/ladystreching.jpg"      
+                src="/ladystreching.jpg"
                 alt="On-site prevention and rapid care in a shop/office"
                 fill
                 className="object-cover"
@@ -66,31 +71,6 @@ export default function SmallBusinessPage() {
             </div>
           </Reveal>
         </section>
-
-        {/* ATs vs EMTs */}
-        <Reveal className="block">
-          <section>
-            <h2 className="text-2xl font-semibold underlined mb-4">ATs vs EMTs on Set</h2>
-            <div className="grid md:grid-cols-2 gap-6">
-              <div className="card lift">
-                <h3 className="font-semibold">Athletic Trainers (ATs)</h3>
-                <ul className="mt-2 list-disc pl-5 text-sm text-gray-700 space-y-1">
-                  <li>Proactive: warmups, prevention, <span className="font-medium">functional safety advisement</span></li>
-                  <li>Manage minor musculoskeletal issues on the spot</li>
-                  <li>Keep talent &amp; crew moving safely through long days</li>
-                </ul>
-              </div>
-              <div className="card lift">
-                <h3 className="font-semibold">EMTs / Paramedics</h3>
-                <ul className="mt-2 list-disc pl-5 text-sm text-gray-700 space-y-1">
-                  <li>Reactive: respond to emergencies</li>
-                  <li>Essential for high-risk shoots—not a replacement for ATs</li>
-                  <li>Best together: ATs reduce issues; EMTs cover true emergencies</li>
-                </ul>
-              </div>
-            </div>
-          </section>
-        </Reveal>  
 
         {/* INCLUDED (LEFT) + HOW IT WORKS (RIGHT) */}
         <section className="w-full">
@@ -103,8 +83,9 @@ export default function SmallBusinessPage() {
 
               <div className="grid sm:grid-cols-2 gap-4 auto-rows-[1fr]">
                 {[
-                  { t: "Daily Presence", d: "Warmups, taping, and quick checks between tasks." },
-                  { t: "Rapid On-Site Care", d: "Immediate triage, orthopedic evaluation, and guidance." },
+                  // renamed & reworded items per client
+                  { t: "Scheduled Presence", d: "Monthly or quarterly on-site visits based on your contract and needs." },
+                  { t: "On-Site Care", d: "Triage, orthopedic evaluation, and exercise programs for on-site and at-home." },
                   { t: "Functional Mechanical Adjustments", d: "Task-focused tweaks to reduce strain and repetitive stress." },
                   { t: "Return-to-Duty Support", d: "Clear, safe progressions that protect productivity." },
                   { t: "Quick Referral Network", d: "Fast access to local providers within workers’ comp protocols." },
@@ -142,7 +123,7 @@ export default function SmallBusinessPage() {
                     <div className="text-teal-700 font-bold">2</div>
                     <div className="font-semibold">Deploy On-Site ATs</div>
                     <p className="text-sm text-gray-700 mt-1">
-                      Prevention, rapid care, and documentation on the floor.
+                      Prevention, care, and documentation on the floor.
                     </p>
                   </div>
                 </Reveal>

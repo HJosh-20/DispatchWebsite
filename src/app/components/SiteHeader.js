@@ -250,7 +250,7 @@ export default function SiteHeader() {
             <Link
               href="/book"
               onClick={closeMobileAll}
-              className="mt-2 block rounded-lg bg-teal-600 text-white px-3 py-2 text-base font-semibold text-center hover:bg-teal-700"
+              className="mt-2 btn-cta block rounded-lg bg-teal-600 text-white px-3 py-2 text-base font-semibold text-center hover:bg-teal-700"
             >
               Schedule a Consultation
             </Link>
