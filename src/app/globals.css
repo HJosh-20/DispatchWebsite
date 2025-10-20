@@ -295,70 +295,54 @@ body {
   #bottom-cta { box-shadow: 0 10px 24px rgba(0,0,0,0.35), 0 0 0 1px rgba(20,184,166,0.25); }
 }
 
-/* =========================================================
-   MOBILE-ONLY HEADER (match "Industries" look) + DARK TEXT FIXES
-   ========================================================= */
-@media (max-width: 640px) {
-  /* Header links: teal like "Industries" (mobile only) */
-  .site-header .main-nav > a {
-    font-weight: 700;
-    letter-spacing: 0.01em;
-    color: #0d9488 !important; /* teal-600 */
-    transition: color .2s ease;
-  }
-  .site-header .main-nav > a:hover,
-  .site-header .main-nav > a:focus-visible {
-    color: #14b8a6 !important; /* teal-500 hover */
-  }
-
-  /* Keep the header CTA a teal pill with white text (mobile only) */
-  .site-header .main-nav > a.btn-cta {
-    background-color: #0d9488 !important; /* teal-600 */
-    color: #ffffff !important;
-    font-weight: 600;
-  }
-  .site-header .main-nav > a.btn-cta:hover,
-  .site-header .main-nav > a.btn-cta:focus-visible {
-    background-color: #14b8a6 !important; /* teal-500 */
-  }
-
-  /* -------- Mobile + Dark mode readability -------- */
-  @media (prefers-color-scheme: dark) {
-    /* Make body copy brighter on phones in dark mode */
-    body,
-    p, li, span, small, em, blockquote {
-      color: #f1f5f9 !important; /* slate-100 */
-    }
-    h1, h2, h3, h4, h5, h6, strong {
-      color: #ffffff !important;
-    }
-
-    /* Header links use lighter teal on dark (mobile only) */
+/* -------------------------------------------------------
+   MOBILE — DARK MODE FIXES (safe additions)
+   ------------------------------------------------------- */
+  @media (max-width: 640px) and (prefers-color-scheme: dark) {
+    /* 1) Header links (Home/About/Services/Industries) -> teal, same tone as "Industries" */
     .site-header .main-nav > a:not(.btn-cta),
-    .site-header .main-nav > a:not(.btn-cta):visited {
-      color: #2dd4bf !important; /* teal-400 */
+    .site-header .main-nav > button:not(.btn-cta) {
+      color: #2dd4bf !important;          /* teal-300 */
+      font-weight: 600;                    /* match feel of Industries */
+      letter-spacing: 0.02em;              /* subtle tracking */
     }
     .site-header .main-nav > a:not(.btn-cta):hover,
-    .site-header .main-nav > a:not(.btn-cta):focus-visible {
-      color: #5eead4 !important; /* teal-300 */
+    .site-header .main-nav > button:not(.btn-cta):hover {
+      color: #5eead4 !important;           /* slightly brighter teal on hover */
     }
 
-    /* Card/panel readability on mobile dark */
-    .card,
-    .benefit-card,
-    .rounded-lg.border.bg-white\/95,
-    .rounded-lg.border.bg-slate-50\/90 {
-      background-color: rgba(30, 41, 59, 0.95) !important; /* slate-800/95 */
-      border-color: rgba(71, 85, 105, 0.5) !important;     /* slate-600/50 */
-      color: #e2e8f0 !important;                           /* slate-200 */
-    }
-    .card :where(p, li, small, span, em, blockquote),
-    .benefit-card :where(p, li, small, span, em, blockquote) {
-      color: #cbd5e1 !important; /* slate-300 */
+    /* The "Industries" toggle (often a <button>) must also be teal */
+    .site-header .main-nav > div button {
+      color: #2dd4bf !important;
+      font-weight: 600;
+      letter-spacing: 0.02em;
     }
 
-    /* Bottom CTA buttons (white text on teal) */
-    #bottom-cta a,
-    #bottom-cta button { color: #ffffff !important; }
-  }
+    /* 2) Keep the header CTA pill readable (white text on teal) */
+    .site-header .main-nav > a.btn-cta,
+    .site-header .main-nav > a.btn-cta:visited {
+      color: #ffffff !important;
+      background-color: #0d9488;          /* teal-600 */
+    }
+
+    /* 3) Mobile dark-mode readability inside rounded “panels/cards” */
+    .rounded-lg.border :where(h1,h2,h3,h4,h5,h6,strong),
+    .card :where(h1,h2,h3,h4,h5,h6,strong) {
+      color: #ffffff !important;
+    }
+    .rounded-lg.border :where(p,li,small,span,em,blockquote),
+    .card :where(p,li,small,span,em,blockquote) {
+      color: #e2e8f0 !important;           /* slate-200 */
+    }
+
+    /* 4) Bottom CTA: white button text must be dark (don’t inherit white) */
+    /* Works whether the teal block is 600 or 700 */
+    .on-dark .bg-white,
+    .on-dark .bg-white * {
+      color: #0f172a !important;           /* slate-900 text on white */
+    }
+    .bg-teal-600 .bg-white,
+    .bg-teal-700 .bg-white {
+      color: #0f172a !important;
+    }
 }
