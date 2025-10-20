@@ -4,7 +4,7 @@ export const metadata = { title: "Schedule a Consultation | DispATch" };
 
 export default function BookPage() {
   return (
-    <main className="home-main">
+    <main className="home-main pt-32 md:pt-36">
       <section className="w-full bg-teal-50/70 border-b border-teal-100">
         <div className="home-container py-10">
           <Reveal>

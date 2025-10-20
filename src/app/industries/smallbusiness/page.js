@@ -145,7 +145,7 @@ export default function SmallBusinessPage() {
         </section>
 
         {/* ===== CTA ===== */}
-        <Reveal div id="cta-sentinel" className="block">
+        <Reveal div id="real-cta" data-real-cta className="block">
           <section className="rounded-xl bg-teal-600 text-white p-6 shadow-lg flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
             <div>
               <h3 className="text-xl font-semibold">Ready to support your workforce?</h3>

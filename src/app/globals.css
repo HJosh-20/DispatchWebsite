@@ -193,24 +193,13 @@ body {
   .site-header .main-nav > a:not(.btn-cta):focus-visible {
     color: #5eead4 !important; /* teal hover */
   }
-  .site-header .main-nav > a.btn-cta {
-    color: #ffffff !important;
-  }
-  .site-header .main-nav > div button svg {
-    color: #ffffff !important;
-  }
+  .site-header .main-nav > a.btn-cta { color: #ffffff !important; }
+  .site-header .main-nav > div button svg { color: #ffffff !important; }
 
   /* Hero text stays white */
   .hero-section,
-  .hero-section :where(h1, h2, h3, h4, h5, h6, p, span, strong, a, button) {
-    color: #ffffff !important;
-  }
-
-  .hero-section .btn-cta {
-    color: #ffffff !important;
-  }
-  
-
+  .hero-section :where(h1, h2, h3, h4, h5, h6, p, span, strong, a, button) { color: #ffffff !important; }
+  .hero-section .btn-cta { color: #ffffff !important; }
 
   /* Surfaces */
   .surface        { background-color:#0f172a !important; }
@@ -231,9 +220,7 @@ body {
 
   /* Keep “white pill” links readable on teal blocks */
   a.bg-white,
-  .bg-white a {
-    color: #0f766e !important;       /* teal-700 text on white pill */
-  }
+  .bg-white a { color: #0f766e !important; } /* teal-700 */
 
   /* === FLUSH look for “light” sections in dark mode === */
   :is(.bg-slate-50, .bg-slate-100, .bg-slate-100\/70, .bg-teal-50\/70) { background-color: transparent !important; }
@@ -250,8 +237,7 @@ body {
   .rounded-lg.border.bg-white\/90 :where(h1,h2,h3,h4,h5,h6,strong,a),
   .rounded-lg.border.bg-slate-50\/90 :where(h1,h2,h3,h4,h5,h6,strong,a) { color: #ffffff !important; }
 
-  /* Header overlay / nav */
-  .site-header__overlay { background-color: rgba(0,0,0,.55); }
+  /* Header overlay / nav (fallback) */
   .main-nav > a { color:#e2e8f0; }
   .main-nav > a:hover { color:#5eead4; }   /* teal-300 */
 
@@ -307,4 +293,72 @@ body {
 
   /* Optional: subtle teal aura on bottom CTA */
   #bottom-cta { box-shadow: 0 10px 24px rgba(0,0,0,0.35), 0 0 0 1px rgba(20,184,166,0.25); }
+}
+
+/* =========================================================
+   MOBILE-ONLY HEADER (match "Industries" look) + DARK TEXT FIXES
+   ========================================================= */
+@media (max-width: 640px) {
+  /* Header links: teal like "Industries" (mobile only) */
+  .site-header .main-nav > a {
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    color: #0d9488 !important; /* teal-600 */
+    transition: color .2s ease;
+  }
+  .site-header .main-nav > a:hover,
+  .site-header .main-nav > a:focus-visible {
+    color: #14b8a6 !important; /* teal-500 hover */
+  }
+
+  /* Keep the header CTA a teal pill with white text (mobile only) */
+  .site-header .main-nav > a.btn-cta {
+    background-color: #0d9488 !important; /* teal-600 */
+    color: #ffffff !important;
+    font-weight: 600;
+  }
+  .site-header .main-nav > a.btn-cta:hover,
+  .site-header .main-nav > a.btn-cta:focus-visible {
+    background-color: #14b8a6 !important; /* teal-500 */
+  }
+
+  /* -------- Mobile + Dark mode readability -------- */
+  @media (prefers-color-scheme: dark) {
+    /* Make body copy brighter on phones in dark mode */
+    body,
+    p, li, span, small, em, blockquote {
+      color: #f1f5f9 !important; /* slate-100 */
+    }
+    h1, h2, h3, h4, h5, h6, strong {
+      color: #ffffff !important;
+    }
+
+    /* Header links use lighter teal on dark (mobile only) */
+    .site-header .main-nav > a:not(.btn-cta),
+    .site-header .main-nav > a:not(.btn-cta):visited {
+      color: #2dd4bf !important; /* teal-400 */
+    }
+    .site-header .main-nav > a:not(.btn-cta):hover,
+    .site-header .main-nav > a:not(.btn-cta):focus-visible {
+      color: #5eead4 !important; /* teal-300 */
+    }
+
+    /* Card/panel readability on mobile dark */
+    .card,
+    .benefit-card,
+    .rounded-lg.border.bg-white\/95,
+    .rounded-lg.border.bg-slate-50\/90 {
+      background-color: rgba(30, 41, 59, 0.95) !important; /* slate-800/95 */
+      border-color: rgba(71, 85, 105, 0.5) !important;     /* slate-600/50 */
+      color: #e2e8f0 !important;                           /* slate-200 */
+    }
+    .card :where(p, li, small, span, em, blockquote),
+    .benefit-card :where(p, li, small, span, em, blockquote) {
+      color: #cbd5e1 !important; /* slate-300 */
+    }
+
+    /* Bottom CTA buttons (white text on teal) */
+    #bottom-cta a,
+    #bottom-cta button { color: #ffffff !important; }
+  }
 }
