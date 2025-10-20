@@ -8,13 +8,15 @@ export default function StickyCTA() {
   const excluded = pathname === "/book" || pathname === "/thank-you";
 
   const [hidden, setHidden] = useState(false);
-  const watcher = useRef<IntersectionObserver | null>(null);
+  const observerRef = useRef(null);
 
   useEffect(() => {
     if (excluded) return;
 
-    // Only run in the browser
-    if (typeof window === "undefined") return;
+    // SSR guard + API availability guard
+    if (typeof window === "undefined" || !("IntersectionObserver" in window)) {
+      return;
+    }
 
     const target =
       document.getElementById("cta-sentinel") ||
@@ -22,15 +24,21 @@ export default function StickyCTA() {
 
     if (!target) return;
 
-    watcher.current = new IntersectionObserver(
+    const io = new window.IntersectionObserver(
       (entries) => {
-        setHidden(entries[0]?.isIntersecting === true);
+        const isOnScreen = entries[0]?.isIntersecting === true;
+        setHidden(isOnScreen); // hide sticky button when CTA/footer is visible
       },
       { rootMargin: "0px 0px -10% 0px", threshold: 0.01 }
     );
 
-    watcher.current.observe(target);
-    return () => watcher.current?.disconnect();
+    observerRef.current = io;
+    io.observe(target);
+
+    return () => {
+      observerRef.current?.disconnect();
+      observerRef.current = null;
+    };
   }, [excluded]);
 
   if (excluded) return null;
@@ -41,7 +49,7 @@ export default function StickyCTA() {
       className={[
         "sticky-cta",
         hidden ? "sticky-cta--hidden" : "sticky-cta--shown",
-        "md:hidden", // mobile-only
+        "md:hidden", // mobile only
       ].join(" ")}
     >
       <a
