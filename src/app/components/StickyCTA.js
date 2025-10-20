@@ -5,52 +5,36 @@ import { useEffect, useRef, useState } from "react";
 
 export default function StickyCTA() {
   const pathname = usePathname();
+  const excluded = pathname === "/book" || pathname === "/thank-you";
 
-  // pages where we never show the floating button
-  const excluded =
-    pathname === "/book" ||
-    pathname === "/thank-you";
-
+  // Hooks must always be called
   const [hidden, setHidden] = useState(false);
-  const observers = useRef<IntersectionObserver | null>(null);
+  const watchedVisible = useRef(false);
 
   useEffect(() => {
     if (excluded) return;
 
-    // Watch ALL possible targets:
-    // - explicit sentinels you add: #real-cta or [data-real-cta]
-    // - fallback to footer if none are present
-    const targets = Array.from(
-      document.querySelectorAll<HTMLElement>("#real-cta, [data-real-cta]")
-    );
-
-    if (targets.length === 0) {
-      const f = document.querySelector<HTMLElement>("footer");
-      if (f) targets.push(f);
+    // Hard guard for SSR & older browsers
+    if (typeof window === "undefined" || typeof IntersectionObserver === "undefined") {
+      return;
     }
-    if (targets.length === 0) return; // nothing to observe
 
-    // Hide a bit before the section is fully in view (negative bottom margin)
+    // Watch sentinel (prefer #real-cta, fallback to footer)
+    const target = document.getElementById("real-cta") || document.querySelector("footer");
+    if (!target) return;
+
     const io = new IntersectionObserver(
       (entries) => {
-        // If ANY watched element is intersecting, hide the sticky CTA
-        const anyVisible = entries.some((e) => e.isIntersecting);
-        setHidden(anyVisible);
+        const e = entries[0];
+        watchedVisible.current = e.isIntersecting;
+        setHidden(e.isIntersecting);
       },
-      {
-        root: null,
-        threshold: 0.05,
-        rootMargin: "0px 0px -25% 0px", // hide sooner as user nears the real CTA
-      }
+      { rootMargin: "0px 0px -10% 0px", threshold: 0.01 }
     );
 
-    targets.forEach((t) => io.observe(t));
-    observers.current = io;
-    return () => {
-      io.disconnect();
-      observers.current = null;
-    };
-  }, [excluded, pathname]);
+    io.observe(target);
+    return () => io.disconnect();
+  }, [excluded]); // only depends on excluded
 
   if (excluded) return null;
 
@@ -58,9 +42,9 @@ export default function StickyCTA() {
     <div
       aria-hidden={hidden}
       className={[
-        "sticky-cta",                                   // your CSS helper (positioning, z-index)
+        "sticky-cta",
         hidden ? "sticky-cta--hidden" : "sticky-cta--shown",
-        "md:hidden",                                     // only show on mobile
+        "md:hidden",
       ].join(" ")}
     >
       <a
