@@ -296,55 +296,59 @@ body {
 }
 
 /* =========================================================
-   DARK MODE — MOBILE ONLY FIXES (header, text, buttons)
+   DARK MODE MOBILE FIX
    ========================================================= */
   @media (prefers-color-scheme: dark) and (max-width: 640px) {
 
-    /* --- Header mobile drawer --- */
-    .site-header .mobile-drawer {
-      background-color: #ffffff !important; /* keep sheet light */
-      color: #0f172a !important;            /* readable dark text */
+    /* --- General text: force white for readability --- */
+    body, p, li, span, a, h1, h2, h3, h4, h5, h6 {
+      color: #ffffff !important;
     }
 
-    /* Drawer headings + the "Industries" button label */
-    .site-header .mobile-drawer :where(h2, .mobile-section-btn, button) {
+    /* --- Cards / Sections --- */
+    .card, .benefit-card, .section-alt, .surface {
+      color: #ffffff !important;
+    }
+
+    /* --- Sticky “Book Now” button text --- */
+    .sticky-cta a {
+      color: #ffffff !important;
+    }
+
+    /* --- Bottom Schedule CTA box --- */
+    #bottom-cta {
+      color: #ffffff !important;
+    }
+    #bottom-cta a,
+    #bottom-cta button {
+      color: #0d9488 !important; /* teal text */
+    }
+
+    /* --- Mobile Drawer (white sheet) --- */
+    .site-header .mobile-drawer {
+      background-color: #ffffff !important;
       color: #0f172a !important;
     }
 
-    /* Drawer links */
+    /* Industries label and buttons inside drawer stay black */
+    .site-header .mobile-drawer :where(h2, .mobile-section-btn, button, .drawer-link) {
+      color: #0f172a !important;
+    }
+
+    /* Links in drawer */
     .site-header .mobile-drawer a {
       color: #0f172a !important;
     }
     .site-header .mobile-drawer a:hover {
-      color: #0d9488 !important; /* teal hover */
+      color: #0d9488 !important;
     }
 
-    /* Drawer CTA pill text must stay white */
+    /* Drawer CTA (teal background) keep white text */
     .site-header .mobile-drawer .btn-cta {
       color: #ffffff !important;
     }
 
-    /* --- Body copy inside dark cards/sections on mobile --- */
-    .card, .benefit-card, .section-alt, .surface { color: #e6edf5 !important; }
-    .card :where(p, li, small, span, em, blockquote),
-    .benefit-card :where(p, li, small, span, em, blockquote),
-    .section-alt :where(p, li, small, span, em, blockquote) {
-      color: #e6edf5 !important;
-    }
-    .card :where(h1, h2, h3, h4, h5, h6),
-    .benefit-card :where(h1, h2, h3, h4, h5, h6),
-    .section-alt :where(h1, h2, h3, h4, h5, h6) {
-      color: #ffffff !important;
-    }
 
-    /* --- Sticky mobile “Book Now” button label --- */
-    .sticky-cta a { color: #ffffff !important; }
-
-    /* --- Bottom teal CTA readability --- */
-    #bottom-cta :where(a, button) { color: #ffffff !important; } /* teal pill */
-    #bottom-cta :where(.bg-white, .bg-white\/95, .bg-slate-50, .bg-slate-50\/95) {
-      color: #0f172a !important; /* white pill variant stays dark text */
-    }
 
   
 }
