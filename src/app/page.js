@@ -44,11 +44,17 @@ export default function Home() {
           <Reveal className="mt-4">
             <div className="w-fit">
               {/* chips in a compact white box */}
-              <div className="flex flex-wrap items-center gap-2 bg-slate-100/90 rounded-md px-3 py-2">
-                <span className="inline-flex items-center gap-2 rounded-full bg-slate-50/95 border border-slate-200 px-3 py-1 text-xs sm:text-sm text-black shadow-md">
+              <div className="flex flex-wrap items-center gap-2 bg-slate-100/90 rounded-md px-3 py-2
+                    dark:bg-slate-800/70 dark:border dark:border-slate-600/50">
+                <span className="inline-flex items-center gap-2 rounded-full bg-slate-50/95 border border-slate-200
+                                px-3 py-1 text-xs sm:text-sm text-slate-900 dark:text-slate-100 shadow-md
+                                dark:bg-slate-700/80 dark:border-slate-600/60">
                   <span className="h-2 w-2 rounded-full bg-teal-600" /> We’ll come to you
                 </span>
-                <span className="inline-flex items-center gap-2 rounded-full bg-slate-50/95 border border-slate-200 px-3 py-1 text-xs sm:text-sm text-black shadow-md">
+
+                <span className="inline-flex items-center gap-2 rounded-full bg-slate-50/95 border border-slate-200
+                                px-3 py-1 text-xs sm:text-sm text-slate-900 dark:text-slate-100 shadow-md
+                                dark:bg-slate-700/80 dark:border-slate-600/60">
                   <span className="h-2 w-2 rounded-full bg-teal-600" /> Licensed Athletic Trainers
                 </span>
               </div>
@@ -56,7 +62,7 @@ export default function Home() {
               {/* CTA centered under the chips */}
               <Link
                 href="/book"
-                className="block mx-auto mt-3 rounded-lg bg-teal-600 px-5 py-3 font-semibold text-white shadow
+                className="block mx-auto mt-3 rounded-lg bg-teal-600 px-5 py-3 font-semibold text-white !text-white shadow
                           hover:bg-teal-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-500"
               >
                 Schedule a consultation
