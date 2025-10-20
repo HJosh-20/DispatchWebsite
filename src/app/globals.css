@@ -295,54 +295,71 @@ body {
   #bottom-cta { box-shadow: 0 10px 24px rgba(0,0,0,0.35), 0 0 0 1px rgba(20,184,166,0.25); }
 }
 
-/* -------------------------------------------------------
-   MOBILE — DARK MODE FIXES (safe additions)
-   ------------------------------------------------------- */
-  @media (max-width: 640px) and (prefers-color-scheme: dark) {
-    /* 1) Header links (Home/About/Services/Industries) -> teal, same tone as "Industries" */
-    .site-header .main-nav > a:not(.btn-cta),
-    .site-header .main-nav > button:not(.btn-cta) {
-      color: #2dd4bf !important;          /* teal-300 */
-      font-weight: 600;                    /* match feel of Industries */
-      letter-spacing: 0.02em;              /* subtle tracking */
+/* =========================================================
+   MOBILE-ONLY DARK MODE FIXES (header, contrast, buttons)
+   ========================================================= */
+  @media (prefers-color-scheme: dark) and (max-width: 640px) {
+    /* --- Header: make top-level links teal, same weight as Industries --- */
+    .site-header .main-nav > a:not(.btn-cta) {
+      color: #14b8a6 !important;            /* teal-500 */
+      font-weight: 600;                      /* match the “Industries” feel */
+      letter-spacing: .01em;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
     }
     .site-header .main-nav > a:not(.btn-cta):hover,
-    .site-header .main-nav > button:not(.btn-cta):hover {
-      color: #5eead4 !important;           /* slightly brighter teal on hover */
+    .site-header .main-nav > a:not(.btn-cta):focus-visible {
+      color: #2dd4bf !important;            /* teal-400 on hover */
     }
 
-    /* The "Industries" toggle (often a <button>) must also be teal */
-    .site-header .main-nav > div button {
-      color: #2dd4bf !important;
+    /* Industries trigger (the label & its chevron button) */
+    .site-header button[aria-haspopup="menu"],
+    .site-header button[aria-expanded] {
+      color: #14b8a6 !important;             /* readable teal label */
       font-weight: 600;
-      letter-spacing: 0.02em;
+    }
+    .site-header button[aria-haspopup="menu"] svg,
+    .site-header button[aria-expanded] svg {
+      color: #14b8a6 !important;             /* chevron also teal */
     }
 
-    /* 2) Keep the header CTA pill readable (white text on teal) */
-    .site-header .main-nav > a.btn-cta,
-    .site-header .main-nav > a.btn-cta:visited {
-      color: #ffffff !important;
-      background-color: #0d9488;          /* teal-600 */
-    }
-
-    /* 3) Mobile dark-mode readability inside rounded “panels/cards” */
-    .rounded-lg.border :where(h1,h2,h3,h4,h5,h6,strong),
-    .card :where(h1,h2,h3,h4,h5,h6,strong) {
+    /* Schedule button in header: force WHITE text on teal pill */
+    .site-header .main-nav .btn-cta {
       color: #ffffff !important;
     }
-    .rounded-lg.border :where(p,li,small,span,em,blockquote),
-    .card :where(p,li,small,span,em,blockquote) {
-      color: #e2e8f0 !important;           /* slate-200 */
+
+    /* --- Global contrast: make body text readable inside dark cards/panels --- */
+    .card,
+    .benefit-card,
+    .section-alt,
+    .rounded-lg.border,
+    .surface {
+      color: #e2e8f0 !important;             /* slate-200 */
+    }
+    .card :where(p,li,small,span,em,blockquote),
+    .benefit-card :where(p,li,small,span,em,blockquote),
+    .section-alt :where(p,li,small,span,em,blockquote),
+    .rounded-lg.border :where(p,li,small,span,em,blockquote) {
+      color: #e2e8f0 !important;
+    }
+    .card :where(h1,h2,h3,h4,h5,h6,strong,a),
+    .benefit-card :where(h1,h2,h3,h4,h5,h6,strong,a),
+    .section-alt :where(h1,h2,h3,h4,h5,h6,strong,a),
+    .rounded-lg.border :where(h1,h2,h3,h4,h5,h6,strong,a) {
+      color: #ffffff !important;
     }
 
-    /* 4) Bottom CTA: white button text must be dark (don’t inherit white) */
-    /* Works whether the teal block is 600 or 700 */
-    .on-dark .bg-white,
-    .on-dark .bg-white * {
-      color: #0f172a !important;           /* slate-900 text on white */
+    /* --- White “pill” buttons sitting on teal panels must have teal text --- */
+    :is(.bg-teal-500,.bg-teal-600,.bg-teal-700,.bg-teal-800)
+    :is(.bg-white,.bg-white\/95,.bg-slate-50,.bg-slate-50\/95) {
+      color: #0f766e !important;             /* teal-700 text on white pill */
+      border-color: rgba(45,212,191,0.35) !important;
     }
-    .bg-teal-600 .bg-white,
-    .bg-teal-700 .bg-white {
-      color: #0f172a !important;
+
+    /* Ensure teal panel copy is white (bottom CTA panel) */
+    :is(.bg-teal-500,.bg-teal-600,.bg-teal-700,.bg-teal-800)
+    :where(h1,h2,h3,h4,h5,h6,p,span,small,em,blockquote) {
+      color: #ffffff !important;
     }
+  
 }

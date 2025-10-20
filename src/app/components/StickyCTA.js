@@ -7,34 +7,31 @@ export default function StickyCTA() {
   const pathname = usePathname();
   const excluded = pathname === "/book" || pathname === "/thank-you";
 
-  // Hooks must always be called
   const [hidden, setHidden] = useState(false);
-  const watchedVisible = useRef(false);
+  const watcher = useRef<IntersectionObserver | null>(null);
 
   useEffect(() => {
     if (excluded) return;
 
-    // Hard guard for SSR & older browsers
-    if (typeof window === "undefined" || typeof IntersectionObserver === "undefined") {
-      return;
-    }
+    // Only run in the browser
+    if (typeof window === "undefined") return;
 
-    // Watch sentinel (prefer #real-cta, fallback to footer)
-    const target = document.getElementById("real-cta") || document.querySelector("footer");
+    const target =
+      document.getElementById("cta-sentinel") ||
+      document.querySelector("footer");
+
     if (!target) return;
 
-    const io = new IntersectionObserver(
+    watcher.current = new IntersectionObserver(
       (entries) => {
-        const e = entries[0];
-        watchedVisible.current = e.isIntersecting;
-        setHidden(e.isIntersecting);
+        setHidden(entries[0]?.isIntersecting === true);
       },
       { rootMargin: "0px 0px -10% 0px", threshold: 0.01 }
     );
 
-    io.observe(target);
-    return () => io.disconnect();
-  }, [excluded]); // only depends on excluded
+    watcher.current.observe(target);
+    return () => watcher.current?.disconnect();
+  }, [excluded]);
 
   if (excluded) return null;
 
@@ -44,7 +41,7 @@ export default function StickyCTA() {
       className={[
         "sticky-cta",
         hidden ? "sticky-cta--hidden" : "sticky-cta--shown",
-        "md:hidden",
+        "md:hidden", // mobile-only
       ].join(" ")}
     >
       <a
