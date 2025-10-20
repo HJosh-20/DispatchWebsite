@@ -1,9 +1,7 @@
-import dynamic from "next/dynamic";
 import "./globals.css";
 import { Geist, Geist_Mono } from "next/font/google";
 import SiteHeader from "./components/SiteHeader";
-
-const StickyCTA = dynamic(() => import("./components/StickyCTA"), { ssr: false });
+import StickyCTA from "./components/StickyCTA"; // ← plain import (client component)
 
 const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
 const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
@@ -11,7 +9,7 @@ const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"]
 export const metadata = {
   title: "DispATch Performance and Prevention",
   description: "On-Site Care. Stronger Teams. Fewer Injuries.",
-  // themeColor must live in `viewport`, not here
+  // themeColor must NOT be here
 };
 
 export const viewport = {
@@ -37,9 +35,10 @@ export default function RootLayout({ children }) {
 
         <main className="flex-1 pt-16 md:pt-16">{children}</main>
 
-        {/* this id is what StickyCTA watches */}
+        {/* keep this id—StickyCTA watches it */}
         <div id="real-cta" className="h-1 w-full" />
 
+        {/* Client component imported normally */}
         <StickyCTA />
 
         <footer className="site-footer">
