@@ -28,6 +28,7 @@ export default function SiteHeader() {
   // ===== desktop "Industries" dropdown =====
   const [openIndustries, setOpenIndustries] = useState(false);
   const closeTimer = useRef(null);
+
   const openNow = () => {
     if (closeTimer.current) clearTimeout(closeTimer.current);
     setOpenIndustries(true);
@@ -43,6 +44,7 @@ export default function SiteHeader() {
   // ===== mobile menu (hamburger) =====
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileIndustriesOpen, setMobileIndustriesOpen] = useState(false);
+
   const closeMobileAll = () => {
     setMobileOpen(false);
     setMobileIndustriesOpen(false);
@@ -55,7 +57,7 @@ export default function SiteHeader() {
         hidden ? "-translate-y-full" : "translate-y-0"
       }`}
     >
-      {/* bg + overlay (your existing styles) */}
+      {/* background + overlay */}
       <div className="site-header__bg" />
       <div className="site-header__overlay pointer-events-none" />
 
@@ -91,7 +93,7 @@ export default function SiteHeader() {
                 type="button"
                 aria-haspopup="menu"
                 aria-expanded={openIndustries}
-                onClick={() => setOpenIndustries(v => !v)} // click works too
+                onClick={() => setOpenIndustries(v => !v)}
                 onFocus={openNow}
                 onBlur={scheduleClose}
                 className="inline-flex items-center gap-1 text-lg font-semibold tracking-wide text-white hover:text-teal-300 transition-colors"
@@ -156,7 +158,7 @@ export default function SiteHeader() {
             </Link>
           </nav>
 
-          {/* Mobile hamburger (visible < md) */}
+          {/* Mobile hamburger */}
           <button
             className="md:hidden inline-flex items-center justify-center rounded-md p-2 text-white/90 hover:bg-white/10"
             aria-label="Toggle menu"
@@ -174,9 +176,9 @@ export default function SiteHeader() {
         </div>
       </div>
 
-      {/* Mobile drawer (slides under header). Uses your brand style (white card on tinted bg). */}
+      {/* Mobile drawer */}
       {mobileOpen && (
-        <div className="md:hidden border-t border-slate-200 bg-white/95 backdrop-blur shadow-lg">
+        <div className="mobile-drawer md:hidden border-t border-slate-200 bg-white/95 backdrop-blur shadow-lg">
           <nav className="px-4 py-3 space-y-1">
             <Link
               href="/"
@@ -205,7 +207,7 @@ export default function SiteHeader() {
               type="button"
               aria-expanded={mobileIndustriesOpen}
               onClick={() => setMobileIndustriesOpen(v => !v)}
-              className="w-full text-left rounded-md px-3 py-2 text-base font-semibold text-slate-900 hover:bg-slate-100 inline-flex items-center justify-between"
+              className="mobile-section-btn w-full text-left rounded-md px-3 py-2 text-base font-semibold text-slate-900 hover:bg-slate-100 inline-flex items-center justify-between"
             >
               <span>Industries</span>
               <svg
@@ -221,26 +223,27 @@ export default function SiteHeader() {
                 />
               </svg>
             </button>
+
             {mobileIndustriesOpen && (
               <div className="ml-2 mb-2 space-y-1">
                 <Link
                   href="/industries/film"
                   onClick={closeMobileAll}
-                  className="block rounded-md px-3 py-2 text-sm font-medium text-slate-800 hover:bg-slate-100"
+                  className="drawer-link block rounded-md px-3 py-2 text-sm font-medium text-slate-800 hover:bg-slate-100"
                 >
                   Film &amp; Production
                 </Link>
                 <Link
                   href="/industries/smallbusiness"
                   onClick={closeMobileAll}
-                  className="block rounded-md px-3 py-2 text-sm font-medium text-slate-800 hover:bg-slate-100"
+                  className="drawer-link block rounded-md px-3 py-2 text-sm font-medium text-slate-800 hover:bg-slate-100"
                 >
                   Small Business
                 </Link>
                 <Link
                   href="/industries/eventcov"
                   onClick={closeMobileAll}
-                  className="block rounded-md px-3 py-2 text-sm font-medium text-slate-800 hover:bg-slate-100"
+                  className="drawer-link block rounded-md px-3 py-2 text-sm font-medium text-slate-800 hover:bg-slate-100"
                 >
                   Event Coverage
                 </Link>
