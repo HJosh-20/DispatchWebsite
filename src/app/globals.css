@@ -300,54 +300,48 @@ body {
    ========================================================= */
   @media (prefers-color-scheme: dark) and (max-width: 640px) {
 
-    /* --- General text: force white for readability --- */
+    /* --- Make all general text white for readability --- */
     body, p, li, span, a, h1, h2, h3, h4, h5, h6 {
       color: #ffffff !important;
     }
 
-    /* --- Cards / Sections --- */
+    /* --- Cards, sections, paragraphs --- */
     .card, .benefit-card, .section-alt, .surface {
       color: #ffffff !important;
     }
+    .card *, .benefit-card *, .section-alt *, .surface * {
+      color: #ffffff !important;
+    }
 
-    /* --- Sticky “Book Now” button text --- */
+    /* --- Sticky "Book Now" button text --- */
     .sticky-cta a {
       color: #ffffff !important;
     }
 
-    /* --- Bottom Schedule CTA box --- */
+    /* --- Bottom schedule section --- */
     #bottom-cta {
       color: #ffffff !important;
     }
     #bottom-cta a,
     #bottom-cta button {
-      color: #0d9488 !important; /* teal text */
+      color: #0d9488 !important; /* teal text on white button */
     }
 
-    /* --- Mobile Drawer (white sheet) --- */
+    /* --- Mobile Drawer (white background, black text) --- */
     .site-header .mobile-drawer {
       background-color: #ffffff !important;
       color: #0f172a !important;
     }
 
-    /* Industries label and buttons inside drawer stay black */
-    .site-header .mobile-drawer :where(h2, .mobile-section-btn, button, .drawer-link) {
+    /* Drawer labels & links should stay black */
+    .site-header .mobile-drawer :where(h2, .mobile-section-btn, button, .drawer-link, a) {
       color: #0f172a !important;
     }
 
-    /* Links in drawer */
-    .site-header .mobile-drawer a {
-      color: #0f172a !important;
-    }
-    .site-header .mobile-drawer a:hover {
-      color: #0d9488 !important;
-    }
-
-    /* Drawer CTA (teal background) keep white text */
+    /* Drawer CTA (Schedule a Consultation) white text on teal bg */
     .site-header .mobile-drawer .btn-cta {
       color: #ffffff !important;
     }
-
 
 
   
