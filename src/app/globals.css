@@ -165,7 +165,7 @@ body {
     .h3-fixes { color:#0f172a !important; }
   }
 
-  /* ✅ NEW: testimonial color only in LIGHT MODE */
+  /* NEW: testimonial color only in LIGHT MODE (so dark stays light text) */
   @media (prefers-color-scheme: light) and (max-width: 640px) {
     .testimonial-block,
     .testimonial-block blockquote,
@@ -220,7 +220,12 @@ body {
   /* Keep “white pill” links readable on teal blocks */
   a.bg-white, .bg-white a { color: #0f766e !important; } /* teal-700 */
 
-  /* “Light” panels rendered transparent in dark -> force readable text */
+  /* === FLUSH light-looking sections in dark === */
+  :is(.bg-slate-50, .bg-slate-100, .bg-slate-100\/70, .bg-teal-50\/70) {
+    background-color: transparent !important;
+  }
+
+  /* Keep text readable inside panels that were “light” in daytime */
   .card :where(p,li,small,span,em,blockquote),
   .benefit-card :where(p,li,small,span,em,blockquote),
   .rounded-lg.border.bg-white\/95 :where(p,li,small,span,em,blockquote),
@@ -340,11 +345,11 @@ body {
   .site-header,
   .site-header * { color:#0f172a !important; }
 
-  /* But keep the CTA pill readable (white text on teal) */
+  /* CTA pill inside header remains white text on teal */
   .site-header .btn-cta,
   .site-header .btn-cta * { color:#ffffff !important; }
 
-  /* Make sure SVG icons (hamburger, chevrons) pick up black */
+  /* Ensure hamburger/X/chevrons follow black */
   .site-header svg {
     color:#0f172a !important;
     stroke: currentColor !important;

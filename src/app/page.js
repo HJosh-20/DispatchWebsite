@@ -73,7 +73,7 @@ export default function Home() {
       </section>
 
       {/* ===== WHAT WE DO ===== */}
-      <section className="w-full bg-slate-100 py-12">
+      <section className="what-we-do-section w-full bg-slate-100 dark:bg-transparent py-12">
         <div className="max-w-[1600px] mx-auto px-4 lg:px-6 testimonial-block">
           <div>
             <h2 className="text-2xl font-bold mb-4">What We Do</h2>
