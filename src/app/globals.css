@@ -1,4 +1,3 @@
-/* ---------- Tailwind v3 entrypoints ---------- */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -61,7 +60,7 @@ body {
   .site-footer { @apply border-t bg-neutral-50; }
   .site-footer__inner { @apply max-w-6xl mx-auto px-4 py-6 text-sm text-gray-600; }
 
-  /* ===== Mobile text color safeguards ===== */
+  /* ===== Mobile text color safeguards (light mode) ===== */
   @media (max-width: 640px) {
     footer { padding-bottom: 4.5rem; }
     :is(.bg-slate-50, .bg-slate-100, .bg-slate-100\/70)
@@ -71,7 +70,7 @@ body {
     .h3-fixes { color:#0f172a !important; }
   }
 
-  /* LIGHT testimonial fix (only in light mode on mobile) */
+  /* LIGHT testimonial fix */
   @media (prefers-color-scheme: light) and (max-width: 640px) {
     .testimonial-block,
     .testimonial-block blockquote,
@@ -80,79 +79,84 @@ body {
 }
 
 /* =========================================================
-   DARK MODE
+   DARK MODE (all screens)
    ========================================================= */
 @media (prefers-color-scheme: dark) {
   html, body { background:#0f172a; color:#f1f5f9; }
 
   .site-header__overlay { background-color: rgba(0,0,0,.55); }
 
-  /* Hero & cards readability */
-  .hero-section :where(h1,h2,h3,h4,h5,h6,p,span,strong,a,button) { color:#ffffff !important; }
+  /* Hero text */
+  .hero-section :where(h1,h2,h3,h4,h5,h6,p,span,strong,a,button) { color:#fff !important; }
 
+  /* Card surfaces */
   .card, .benefit-card {
-    background-color: rgba(30,41,59,0.9) !important; /* slate-800/90 */
+    background-color: rgba(30,41,59,0.9) !important;  /* slate-800/90 */
     border-color: rgba(71,85,105,0.5) !important;     /* slate-600/50 */
     color:#f1f5f9 !important;
   }
 
-  h1,h2,h3,h4,h5,h6,strong { color:#ffffff; }
+  /* Headings vs body copy */
+  h1,h2,h3,h4,h5,h6,strong { color:#fff; }
   p,li,small,span,em,blockquote { color:#e2e8f0; }
 
-  /* keep white on teal readable (teal text on white pill) */
+  /* keep “white pill” readable on teal */
   .bg-teal-600 .bg-white,
-  .bg-teal-700 .bg-white {
-    color:#0f766e !important;
-  }
+  .bg-teal-700 .bg-white { color:#0f766e !important; }
 
-  /* Make “What We Do” readable & flush (no white background) */
+  /* Make “What We Do” readable + flush in dark */
   .what-we-do-section { background:transparent !important; }
   .what-we-do-section .card {
     background: rgba(30,41,59,0.9) !important;
     border-color: rgba(71,85,105,0.5) !important;
   }
-  .what-we-do-section .card :is(h1,h2,h3,h4,h5,h6,strong,a) { color:#ffffff !important; }
+  .what-we-do-section .card :is(h1,h2,h3,h4,h5,h6,strong,a) { color:#fff !important; }
   .what-we-do-section .card :is(p,li,small,span,em,blockquote,[class*="text-gray-"],[class*="text-slate-"]) { color:#e6edf5 !important; }
 }
 
-/* Dark + Mobile content text safety */
+/* =========================================================
+   DARK + MOBILE (extra safety)
+   ========================================================= */
 @media (prefers-color-scheme: dark) and (max-width: 640px) {
   main, section, article, .container,
-  .card, .benefit-card, .section-alt, .rounded-lg.border, .rounded-xl.border { color:#ffffff !important; }
-
-  main :where(h1,h2,h3,h4,h5,h6,strong,a,button,label,p,li,small,span,em,blockquote) {
-    color:#ffffff !important;
-  }
-
-  /* sticky CTA button text = white */
-  .sticky-cta a, .sticky-cta button { color:#ffffff !important; }
+  .card, .benefit-card, .section-alt, .rounded-lg.border, .rounded-xl.border { color:#fff !important; }
+  main :where(h1,h2,h3,h4,h5,h6,strong,a,button,label,p,li,small,span,em,blockquote) { color:#fff !important; }
+  .sticky-cta a, .sticky-cta button { color:#fff !important; }
 }
 
-/* Mobile Drawer: text black, CTA white */
+/* =========================================================
+   MOBILE Drawer: text black, CTA white
+   ========================================================= */
 @media (max-width: 640px) {
   .mobile-drawer, .mobile-drawer * { color:#0f172a !important; }
   .mobile-drawer a, .mobile-drawer .drawer-link { color:#0f172a !important; }
-  .mobile-drawer .btn-cta, .mobile-drawer .btn-cta * { color:#ffffff !important; }
+  .mobile-drawer .btn-cta, .mobile-drawer .btn-cta * { color:#fff !important; }
 }
 
-/* === DARK + MOBILE HEADER: keep header text black but hamburger icon WHITE === */
+/* =========================================================
+   DARK + MOBILE Header:
+   - header text stays BLACK
+   - hamburger icon (the three lines) is WHITE
+   ========================================================= */
 @media (prefers-color-scheme: dark) and (max-width: 640px) {
-  /* Header text/icons default black (keeps nav labels black on your hero) */
+  /* Header text/icons default black */
   .site-header, .site-header * { color:#0f172a !important; }
 
   /* CTA stays white on teal */
-  .site-header .btn-cta, .site-header .btn-cta * { color:#ffffff !important; }
+  .site-header .btn-cta, .site-header .btn-cta * { color:#fff !important; }
 
-  /* Force the hamburger icon (and any menu button icon) to white */
+  /* Hamburger icon white (covers common patterns) */
   .site-header .hamburger,
   .site-header .hamburger *,
   .site-header button[aria-label*="menu"],
   .site-header button[aria-label*="Menu"],
   .site-header button[aria-expanded],
-  .site-header button[aria-haspopup="menu"],
-  .site-header button svg,
-  .site-header .hamburger svg {
-    color:#ffffff !important;
+  .site-header button[aria-haspopup="menu"] {
+    color:#fff !important;
+  }
+  .site-header .hamburger svg,
+  .site-header button[aria-expanded] svg,
+  .site-header button[aria-label*="menu"] svg {
     stroke: currentColor !important;
     fill: currentColor !important;
   }

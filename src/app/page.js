@@ -190,7 +190,7 @@ export default function Home() {
       
       {/* ===== WHO WE SERVE (left) + KEY FACTS (right) + TESTIMONIAL ===== */}
       <section className="w-full bg-teal-50/70 py-12">
-        <div className="max-w-[1600px] mx-auto px-4 lg:px-6 testimonial-block">
+        <div className="max-w-[1600px] mx-auto px-4 lg:px-6">
           <div className="grid lg:grid-cols-12 gap-8 items-start">
             {/* LEFT: WHO WE SERVE (cards with teal-600 accents) */}
             <div className="lg:col-span-7"> 
