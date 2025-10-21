@@ -108,11 +108,10 @@ body {
   .site-footer { @apply border-t bg-neutral-50; }
   .site-footer__inner { @apply max-w-6xl mx-auto px-4 py-6 text-sm text-gray-600; }
 
-  /* ===== Mobile contrast safeguards ===== */
+  /* ===== Mobile contrast safeguards (general) ===== */
   @media (max-width: 640px) {
     :is(
-      .bg-black,
-      .bg-gray-900, .bg-gray-950,
+      .bg-black, .bg-gray-900, .bg-gray-950,
       .bg-neutral-900, .bg-neutral-950,
       .bg-zinc-900, .bg-zinc-950,
       .bg-slate-900, .bg-slate-950,
@@ -121,8 +120,7 @@ body {
     ) :where(h1,h2,h3,h4,h5,h6,strong,a,button,label) { color: #ffffff !important; }
 
     :is(
-      .bg-black,
-      .bg-gray-900, .bg-gray-950,
+      .bg-black, .bg-gray-900, .bg-gray-950,
       .bg-neutral-900, .bg-neutral-950,
       .bg-zinc-900, .bg-zinc-950,
       .bg-slate-900, .bg-slate-950,
@@ -131,8 +129,7 @@ body {
     ) :where(p,li,small,span,em,blockquote,.hero-text,.benefit-text) { color: #f1f5f9 !important; }
 
     :is(
-      .bg-black,
-      .bg-gray-900, .bg-gray-950,
+      .bg-black, .bg-gray-900, .bg-gray-950,
       .bg-neutral-900, .bg-neutral-950,
       .bg-zinc-900, .bg-zinc-950,
       .bg-slate-900, .bg-slate-950,
@@ -166,6 +163,10 @@ body {
     :is(.bg-slate-50, .bg-slate-100, .bg-slate-100\/70)
       :where(p,li,small,span,em,blockquote) { color:#334155 !important; }
     .h3-fixes { color:#0f172a !important; }
+  }
+
+  /* ✅ NEW: testimonial color only in LIGHT MODE */
+  @media (prefers-color-scheme: light) and (max-width: 640px) {
     .testimonial-block,
     .testimonial-block blockquote,
     .testimonial-block span { color:#0f172a !important; }
@@ -181,25 +182,23 @@ body {
     color: #f1f5f9;      /* slate-100 */
   }
 
-  /* Header and nav fixes */
+  /* Header and nav (desktop default for dark) */
   .site-header__overlay { background-color: rgba(0,0,0,.55); }
   .site-header .main-nav > a:not(.btn-cta),
   .site-header .main-nav > a:not(.btn-cta):visited {
-    color: #ffffff !important; /* white text for nav links */
+    color: #ffffff !important;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
   }
   .site-header .main-nav > a:not(.btn-cta):hover,
-  .site-header .main-nav > a:not(.btn-cta):focus-visible {
-    color: #5eead4 !important; /* teal hover */
-  }
+  .site-header .main-nav > a:not(.btn-cta):focus-visible { color: #5eead4 !important; }
   .site-header .main-nav > a.btn-cta { color: #ffffff !important; }
   .site-header .main-nav > div button svg { color: #ffffff !important; }
 
   /* Hero text stays white */
   .hero-section,
-  .hero-section :where(h1, h2, h3, h4, h5, h6, p, span, strong, a, button) { color: #ffffff !important; }
-  .hero-section .btn-cta { color: #ffffff !important; }
+  .hero-section :where(h1,h2,h3,h4,h5,h6,p,span,strong,a,button) { color:#ffffff !important; }
+  .hero-section .btn-cta { color:#ffffff !important; }
 
   /* Surfaces */
   .surface        { background-color:#0f172a !important; }
@@ -214,187 +213,145 @@ body {
   }
   .card a, .benefit-card a { color:#fff !important; }
 
-  /* Headings brighter than body text (DO NOT force all <a> to white) */
+  /* Headings vs body */
   h1,h2,h3,h4,h5,h6,strong { color:#ffffff; }
   p,li,small,span,em,blockquote { color:#e2e8f0; } /* slate-200 */
 
   /* Keep “white pill” links readable on teal blocks */
-  a.bg-white,
-  .bg-white a { color: #0f766e !important; } /* teal-700 */
+  a.bg-white, .bg-white a { color: #0f766e !important; } /* teal-700 */
 
-  /* === FLUSH look for “light” sections in dark mode === */
-  :is(.bg-slate-50, .bg-slate-100, .bg-slate-100\/70, .bg-teal-50\/70) { background-color: transparent !important; }
-
-  /* Keep text readable inside panels that were light in daytime */
+  /* “Light” panels rendered transparent in dark -> force readable text */
   .card :where(p,li,small,span,em,blockquote),
   .benefit-card :where(p,li,small,span,em,blockquote),
   .rounded-lg.border.bg-white\/95 :where(p,li,small,span,em,blockquote),
   .rounded-lg.border.bg-white\/90 :where(p,li,small,span,em,blockquote),
-  .rounded-lg.border.bg-slate-50\/90 :where(p,li,small,span,em,blockquote) { color: #cbd5e1 !important; }
+  .rounded-lg.border.bg-slate-50\/90 :where(p,li,small,span,em,blockquote) { color:#cbd5e1 !important; }
   .card :where(h1,h2,h3,h4,h5,h6,strong,a),
   .benefit-card :where(h1,h2,h3,h4,h5,h6,strong,a),
   .rounded-lg.border.bg-white\/95 :where(h1,h2,h3,h4,h5,h6,strong,a),
   .rounded-lg.border.bg-white\/90 :where(h1,h2,h3,h4,h5,h6,strong,a),
-  .rounded-lg.border.bg-slate-50\/90 :where(h1,h2,h3,h4,h5,h6,strong,a) { color: #ffffff !important; }
+  .rounded-lg.border.bg-slate-50\/90 :where(h1,h2,h3,h4,h5,h6,strong,a) { color:#ffffff !important; }
 
-  /* Header overlay / nav (fallback) */
-  .main-nav > a { color:#e2e8f0; }
-  .main-nav > a:hover { color:#5eead4; }   /* teal-300 */
-
-  /* Ensure header CTA stays white on hover as a pill */
-  .main-nav .btn-cta { @apply text-white hover:text-white; }
-
-  /* ===== DESKTOP DROPDOWN (Industries) — dark surface & hover ===== */
+  /* Desktop dropdown (Industries) in dark */
   [role="menu"][aria-label="Industries"]{
     background-color: rgba(30,41,59,0.95) !important;  /* slate-800/95 */
     border-color: rgba(71,85,105,0.5) !important;      /* slate-600/50 */
-    color: #e2e8f0 !important;                         /* slate-200 text */
+    color: #e2e8f0 !important;
   }
-  [role="menu"][aria-label="Industries"] a { color: #e2e8f0 !important; }
+  [role="menu"][aria-label="Industries"] a { color:#e2e8f0 !important; }
   [role="menu"][aria-label="Industries"] a:hover {
     background-color: rgba(20,184,166,0.12) !important;  /* teal-500/12 */
-    color: #5eead4 !important;                            /* teal-300 text */
+    color:#5eead4 !important;                             /* teal-300 */
   }
 
-  /* “Who We Serve” link cards */
+  /* “Who We Serve” link cards in dark */
   .group.block.rounded-lg.border.bg-white\/95,
   .group.block.rounded-lg.border.bg-white\/90 {
     background-color: rgba(30,41,59,0.9) !important;
     border-color: rgba(71,85,105,0.5) !important;
-    color: #e2e8f0 !important;
+    color:#e2e8f0 !important;
   }
   .group.block.rounded-lg.border.bg-white\/95:hover,
   .group.block.rounded-lg.border.bg-white\/90:hover {
     background-color: rgba(30,41,59,0.95) !important;
-    border-color: #14b8a6 !important; /* teal-500 hint on hover */
+    border-color:#14b8a6 !important;
   }
 
-  /* Testimonial blocks */
+  /* Testimonial blocks in dark */
   blockquote.card { background-color:#1e293b !important; color:#e2e8f0 !important; }
 
-  /* Footer */
+  /* Footer dark */
   .site-footer { background-color:#0b1220; border-color:#1f2937; }
-  .site-footer__inner { color:#94a3b8; } /* slate-400 */
+  .site-footer__inner { color:#94a3b8; }
 
-  /* Mobile + dark combined fixes (text on light backgrounds) */
-  @media (max-width: 640px) {
-    :is(.bg-slate-50, .bg-slate-100, .bg-slate-100\/70)
-        :where(h1,h2,h3,h4,h5,h6,strong,a,button,label) { color:#f1f5f9 !important; }
-    :is(.bg-slate-50, .bg-slate-100, .bg-slate-100\/70)
-        :where(p,li,small,span,em,blockquote) { color:#cbd5e1 !important; }
-  }
+  /* (A) DARK containers: force readable text inside */
+  .card,
+  .benefit-card,
+  .section-alt,
+  .rounded-lg.border,
+  .rounded-xl.border { color:#ffffff !important; }
 
-  /* Motion effect used with Reveal */
-  @keyframes slide-up {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  .animate-slide-up { animation: slide-up 0.6s ease-out both; }
+  .card :where(h1,h2,h3,h4,h5,h6,strong,a),
+  .benefit-card :where(h1,h2,h3,h4,h5,h6,strong,a),
+  .section-alt :where(h1,h2,h3,h4,h5,h6,strong,a),
+  .rounded-lg.border :where(h1,h2,h3,h4,h5,h6,strong,a),
+  .rounded-xl.border :where(h1,h2,h3,h4,h5,h6,strong,a) { color:#ffffff !important; }
 
-  /* Optional: subtle teal aura on bottom CTA */
-  #bottom-cta { box-shadow: 0 10px 24px rgba(0,0,0,0.35), 0 0 0 1px rgba(20,184,166,0.25); }
-}
-
-/* =========================================================
-   DARK MODE MOBILE FIX
-   ========================================================= */
-@media (prefers-color-scheme: dark) and (max-width: 640px) {
-  /* common content wrappers -> white text */
-  body, main, section, article, .container, .surface, .section-alt,
-  .card, .benefit-card, .home-container, .hero-section {
-    color: #ffffff !important;
-  }
-
-  /* text elements -> white */
-  body :where(h1,h2,h3,h4,h5,h6,strong,em,small,p,li,span,a,label,blockquote) {
-    color: #ffffff !important;
-  }
-
-  /* cards/panels text -> white */
   .card :where(p,li,small,span,em,blockquote),
   .benefit-card :where(p,li,small,span,em,blockquote),
-  .section-alt :where(p,li,small,span,em,blockquote) {
-    color: #ffffff !important;
-  }
+  .section-alt :where(p,li,small,span,em,blockquote),
+  .rounded-lg.border :where(p,li,small,span,em,blockquote),
+  .rounded-xl.border :where(p,li,small,span,em,blockquote) { color:#e6edf5 !important; }
 
-  /* keep “white pill” on teal readable (teal text on white) */
-  a.bg-white,
-  .bg-white a,
-  .on-teal a.bg-white,
-  .on-teal .bg-white a {
-    color: #0f766e !important; /* teal-700 */
-  }
+  .card :is([class*="text-gray-"], [class*="text-slate-"]),
+  .benefit-card :is([class*="text-gray-"], [class*="text-slate-"]),
+  .section-alt :is([class*="text-gray-"], [class*="text-slate-"]),
+  .rounded-lg.border :is([class*="text-gray-"], [class*="text-slate-"]),
+  .rounded-xl.border :is([class*="text-gray-"], [class*="text-slate-"]) { color:#e6edf5 !important; }
 
-  /* sticky "Book Now" text -> white */
-  .sticky-cta a,
-  .sticky-cta button {
-    color: #ffffff !important;
-  }
+  /* keep white pills on teal readable */
+  .card a.bg-white,
+  .benefit-card a.bg-white,
+  .bg-teal-600 .bg-white,
+  .bg-teal-700 .bg-white { color:#0f766e !important; }
 }
 
-/* Mobile drawer (hamburger) -> force black text in the drawer */
-@media (max-width: 640px) {
-  .mobile-drawer,
-  .mobile-drawer * {
-    color: #0f172a !important; /* black in drawer */
-  }
-  .mobile-drawer .btn-cta,
-  .mobile-drawer .btn-cta * {
-    color: #ffffff !important; /* CTA in drawer = white text */
-  }
-  .mobile-drawer .mobile-section-btn span,
-  .mobile-drawer .mobile-section-btn svg,
-  .mobile-drawer .drawer-link {
-    color:#0f172a !important; /* explicit */
-  }
-}
-
-/* =========================================================
-   HARD OVERRIDES (keep LAST)
-   ========================================================= */
-
-/* 1) Header nav: make ALL items black in dark mode (desktop + mobile trigger) */
-@media (prefers-color-scheme: dark) {
-  .site-header .main-nav > a,
-  .site-header .main-nav > div > button,
-  .site-header .main-nav > div > button span,
-  .site-header .main-nav > div > button svg {
-    color: #0f172a !important;         /* black */
-  }
-  .site-header .main-nav > a:hover,
-  .site-header .main-nav > div > button:hover {
-    color: #0f172a !important;         /* keep black on hover too */
-  }
-}
-
-/* 2) MOBILE + DARK: blanket white text everywhere except drawer */
+/* (B) DARK + MOBILE: belt-and-suspenders for content text */
 @media (prefers-color-scheme: dark) and (max-width: 640px) {
-  :where(body, main, section, article, .container, .home-container,
-         .surface, .section-alt, .card, .benefit-card, footer) * {
-    color: #ffffff !important;
-  }
-
-  /* white pills on teal -> teal text */
-  a.bg-white,
-  .bg-white a,
-  .on-teal a.bg-white,
-  .on-teal .bg-white a {
-    color: #0f766e !important;
-  }
-
-  /* sticky Book Now still white */
-  .sticky-cta a,
-  .sticky-cta button {
-    color: #ffffff !important;
-  }
-
-  /* drawer stays black */
-  .mobile-drawer,
-  .mobile-drawer * {
-    color: #0f172a !important;
-  }
-  .mobile-drawer .btn-cta,
-  .mobile-drawer .btn-cta * {
+  main, section, article, .container,
+  .card, .benefit-card, .section-alt, .rounded-lg.border, .rounded-xl.border {
     color:#ffffff !important;
   }
+  main :where(h1,h2,h3,h4,h5,h6,strong,a,button,label),
+  main :where(p,li,small,span,em,blockquote) {
+    color:#ffffff !important;
+  }
+  /* sticky CTA button text = white */
+  .sticky-cta a, .sticky-cta button { color:#ffffff !important; }
+}
+
+/* (C) MOBILE HEADER DRAWER: force ALL text to black; CTA stays white */
+@media (max-width: 640px) {
+  .mobile-drawer,
+  .mobile-drawer * { color:#0f172a !important; }
+
+  .mobile-drawer a,
+  .mobile-drawer a:hover,
+  .mobile-drawer a:visited,
+  .mobile-drawer a:active,
+  .mobile-drawer .drawer-link,
+  .mobile-drawer .drawer-link:hover,
+  .mobile-drawer .drawer-link:visited,
+  .mobile-drawer .drawer-link:active { color:#0f172a !important; }
+
+  .mobile-drawer .mobile-section-btn span,
+  .mobile-drawer .mobile-section-btn svg { color:#0f172a !important; }
+
+  .mobile-drawer .btn-cta,
+  .mobile-drawer .btn-cta * { color:#ffffff !important; }
+
+  .mobile-drawer a:hover,
+  .mobile-drawer .drawer-link:hover { background: rgba(15,23,42,0.06); }
+}
+
+/* === DARK + MOBILE: header bar text BLACK, CTA stays WHITE === */
+@media (prefers-color-scheme: dark) and (max-width: 640px) {
+  /* Everything in the header uses black text/icons */
+  .site-header,
+  .site-header * { color:#0f172a !important; }
+
+  /* But keep the CTA pill readable (white text on teal) */
+  .site-header .btn-cta,
+  .site-header .btn-cta * { color:#ffffff !important; }
+
+  /* Make sure SVG icons (hamburger, chevrons) pick up black */
+  .site-header svg {
+    color:#0f172a !important;
+    stroke: currentColor !important;
+    fill: currentColor !important;
+  }
+
+  /* “white on teal” bottom CTA: teal text on white pill */
+  .bg-teal-600 .bg-white,
+  .bg-teal-700 .bg-white { color:#0f766e !important; }
 }
