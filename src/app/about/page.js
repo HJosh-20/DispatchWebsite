@@ -180,7 +180,7 @@ export default function AboutPage() {
                 <h3 className="font-semibold mb-2 h3-fixes">Team Approach to Care</h3>
                 <p className="text-sm text-gray-700 leading-relaxed">
                   Our interdisciplinary model includes an oversight physician, athletic trainers, physical therapists,
-                  strength &amp; conditioning experts, and EMTs—working together to prevent injuries and resolve issues quickly.
+                  and strength &amp; conditioning experts together to prevent injuries and resolve issues quickly.
                 </p>
               </div>
 

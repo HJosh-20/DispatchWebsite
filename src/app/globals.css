@@ -299,50 +299,79 @@ body {
    DARK MODE MOBILE FIX
    ========================================================= */
   @media (prefers-color-scheme: dark) and (max-width: 640px) {
-
-    /* --- Make all general text white for readability --- */
-    body, p, li, span, a, h1, h2, h3, h4, h5, h6 {
+    /* common content wrappers */
+    body, main, section, article, .container, .surface, .section-alt,
+    .card, .benefit-card, .home-container, .hero-section {
       color: #ffffff !important;
     }
 
-    /* --- Cards, sections, paragraphs --- */
-    .card, .benefit-card, .section-alt, .surface {
-      color: #ffffff !important;
-    }
-    .card *, .benefit-card *, .section-alt *, .surface * {
+    /* text elements */
+    body :where(h1,h2,h3,h4,h5,h6,strong,em,small,p,li,span,a,label,blockquote) {
       color: #ffffff !important;
     }
 
-    /* --- Sticky "Book Now" button text --- */
-    .sticky-cta a {
+    /* cards/panels that might still be light -> make text white */
+    .card :where(p,li,small,span,em,blockquote),
+    .benefit-card :where(p,li,small,span,em,blockquote),
+    .section-alt :where(p,li,small,span,em,blockquote) {
       color: #ffffff !important;
     }
 
-    /* --- Bottom schedule section --- */
-    #bottom-cta {
-      color: #ffffff !important;
-    }
-    #bottom-cta a,
-    #bottom-cta button {
-      color: #0d9488 !important; /* teal text on white button */
+    /* keep “white pill on teal” readable (teal text on white) */
+    a.bg-white,
+    .bg-white a,
+    .on-teal a.bg-white,
+    .on-teal .bg-white a {
+      color: #0f766e !important; /* teal-700 */
     }
 
-    /* --- Mobile Drawer (white background, black text) --- */
-    .site-header .mobile-drawer {
-      background-color: #ffffff !important;
+    /* sticky "Book Now" button text should be white */
+    .sticky-cta a,
+    .sticky-cta button {
+      color: #ffffff !important;
+    }
+  }
+
+  /* 2) MOBILE DRAWER (header menu): force black text for the label + links */
+  @media (max-width: 640px) {
+    /* your drawer wrapper already has class "mobile-drawer" in SiteHeader */
+    .mobile-drawer,
+    .mobile-drawer * {
+      color: #0f172a !important;       /* black-ish text everywhere */
+    }
+    /* keep the teal CTA inside the drawer white text */
+    .mobile-drawer .btn-cta,
+    .mobile-drawer .btn-cta * {
+      color: #ffffff !important;
+    }
+    /* make sure the "Industries" label specifically is black */
+    .mobile-drawer button:where([aria-expanded]) span {
       color: #0f172a !important;
     }
-
-    /* Drawer labels & links should stay black */
-    .site-header .mobile-drawer :where(h2, .mobile-section-btn, button, .drawer-link, a) {
+    /* chevron uses currentColor -> make sure it's black too */
+    .mobile-drawer button[aria-expanded] svg {
       color: #0f172a !important;
     }
+  }
 
-    /* Drawer CTA (Schedule a Consultation) white text on teal bg */
-    .site-header .mobile-drawer .btn-cta {
-      color: #ffffff !important;
+  /* 3) MOBILE + DARK: ensure any white CTA pill on teal has teal text */
+  @media (prefers-color-scheme: dark) and (max-width: 640px) {
+    .on-teal .btn-white,
+    .on-teal .btn--inverse,
+    .cta-card .btn-white,
+    .cta-card .btn--inverse,
+    .bg-teal-600 .bg-white,
+    .bg-teal-700 .bg-white {
+      color: #0f766e !important;
     }
-
+  @media (max-width: 640px){
+    .mobile-drawer .mobile-section-btn span,
+    .mobile-drawer .mobile-section-btn svg,
+    .mobile-drawer .drawer-link {
+      color:#0f172a !important; /* black text */
+    }
+  }
+  
 
   
 }
