@@ -185,13 +185,13 @@ body {
   .site-header__overlay { background-color: rgba(0,0,0,.55); }
   .site-header .main-nav > a:not(.btn-cta),
   .site-header .main-nav > a:not(.btn-cta):visited {
-    color: #ffffff !important; /* white text for nav links */
+    color: #ffffff !important;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
   }
   .site-header .main-nav > a:not(.btn-cta):hover,
   .site-header .main-nav > a:not(.btn-cta):focus-visible {
-    color: #5eead4 !important; /* teal hover */
+    color: #5eead4 !important;
   }
   .site-header .main-nav > a.btn-cta { color: #ffffff !important; }
   .site-header .main-nav > div button svg { color: #ffffff !important; }
@@ -208,24 +208,24 @@ body {
 
   /* Cards / panels */
   .card, .benefit-card {
-    background-color: rgba(30,41,59,0.9) !important;  /* slate-800/90 */
-    border-color: rgba(71,85,105,0.5) !important;     /* slate-600/50 */
+    background-color: rgba(30,41,59,0.9) !important;
+    border-color: rgba(71,85,105,0.5) !important;
     color:#f1f5f9 !important;
   }
   .card a, .benefit-card a { color:#fff !important; }
 
-  /* Headings brighter than body text (DO NOT force all <a> to white) */
+  /* Text */
   h1,h2,h3,h4,h5,h6,strong { color:#ffffff; }
-  p,li,small,span,em,blockquote { color:#e2e8f0; } /* slate-200 */
+  p,li,small,span,em,blockquote { color:#e2e8f0; }
 
   /* Keep “white pill” links readable on teal blocks */
   a.bg-white,
-  .bg-white a { color: #0f766e !important; } /* teal-700 */
+  .bg-white a { color: #0f766e !important; }
 
-  /* === FLUSH look for “light” sections in dark mode === */
+  /* Make previously-light blocks flush in dark */
   :is(.bg-slate-50, .bg-slate-100, .bg-slate-100\/70, .bg-teal-50\/70) { background-color: transparent !important; }
 
-  /* Keep text readable inside panels that were light in daytime */
+  /* Ensure text readable in light-styled panels */
   .card :where(p,li,small,span,em,blockquote),
   .benefit-card :where(p,li,small,span,em,blockquote),
   .rounded-lg.border.bg-white\/95 :where(p,li,small,span,em,blockquote),
@@ -237,23 +237,23 @@ body {
   .rounded-lg.border.bg-white\/90 :where(h1,h2,h3,h4,h5,h6,strong,a),
   .rounded-lg.border.bg-slate-50\/90 :where(h1,h2,h3,h4,h5,h6,strong,a) { color: #ffffff !important; }
 
-  /* Header overlay / nav (fallback) */
+  /* Fallback header colors */
   .main-nav > a { color:#e2e8f0; }
-  .main-nav > a:hover { color:#5eead4; }   /* teal-300 */
+  .main-nav > a:hover { color:#5eead4; }
 
-  /* Ensure header CTA stays white on hover as a pill */
+  /* Keep header CTA white */
   .main-nav .btn-cta { @apply text-white hover:text-white; }
 
-  /* ===== DESKTOP DROPDOWN (Industries) — dark surface & hover ===== */
+  /* Desktop dropdown (Industries) */
   [role="menu"][aria-label="Industries"]{
-    background-color: rgba(30,41,59,0.95) !important;  /* slate-800/95 */
-    border-color: rgba(71,85,105,0.5) !important;      /* slate-600/50 */
-    color: #e2e8f0 !important;                         /* slate-200 text */
+    background-color: rgba(30,41,59,0.95) !important;
+    border-color: rgba(71,85,105,0.5) !important;
+    color: #e2e8f0 !important;
   }
   [role="menu"][aria-label="Industries"] a { color: #e2e8f0 !important; }
   [role="menu"][aria-label="Industries"] a:hover {
-    background-color: rgba(20,184,166,0.12) !important;  /* teal-500/12 */
-    color: #5eead4 !important;                            /* teal-300 text */
+    background-color: rgba(20,184,166,0.12) !important;
+    color: #5eead4 !important;
   }
 
   /* “Who We Serve” link cards */
@@ -266,7 +266,7 @@ body {
   .group.block.rounded-lg.border.bg-white\/95:hover,
   .group.block.rounded-lg.border.bg-white\/90:hover {
     background-color: rgba(30,41,59,0.95) !important;
-    border-color: #14b8a6 !important; /* teal-500 hint on hover */
+    border-color: #14b8a6 !important;
   }
 
   /* Testimonial blocks */
@@ -274,9 +274,9 @@ body {
 
   /* Footer */
   .site-footer { background-color:#0b1220; border-color:#1f2937; }
-  .site-footer__inner { color:#94a3b8; } /* slate-400 */
+  .site-footer__inner { color:#94a3b8; }
 
-  /* Mobile + dark combined fixes (text on light backgrounds) */
+  /* Mobile + dark fixes for light backgrounds */
   @media (max-width: 640px) {
     :is(.bg-slate-50, .bg-slate-100, .bg-slate-100\/70)
         :where(h1,h2,h3,h4,h5,h6,strong,a,button,label) { color:#f1f5f9 !important; }
@@ -296,82 +296,70 @@ body {
 }
 
 /* =========================================================
-   DARK MODE MOBILE FIX
+   DARK MODE MOBILE – force readable content
    ========================================================= */
-  @media (prefers-color-scheme: dark) and (max-width: 640px) {
-    /* common content wrappers */
-    body, main, section, article, .container, .surface, .section-alt,
-    .card, .benefit-card, .home-container, .hero-section {
-      color: #ffffff !important;
-    }
-
-    /* text elements */
-    body :where(h1,h2,h3,h4,h5,h6,strong,em,small,p,li,span,a,label,blockquote) {
-      color: #ffffff !important;
-    }
-
-    /* cards/panels that might still be light -> make text white */
-    .card :where(p,li,small,span,em,blockquote),
-    .benefit-card :where(p,li,small,span,em,blockquote),
-    .section-alt :where(p,li,small,span,em,blockquote) {
-      color: #ffffff !important;
-    }
-
-    /* keep “white pill on teal” readable (teal text on white) */
-    a.bg-white,
-    .bg-white a,
-    .on-teal a.bg-white,
-    .on-teal .bg-white a {
-      color: #0f766e !important; /* teal-700 */
-    }
-
-    /* sticky "Book Now" button text should be white */
-    .sticky-cta a,
-    .sticky-cta button {
-      color: #ffffff !important;
-    }
+@media (prefers-color-scheme: dark) and (max-width: 640px) {
+  /* Make general content text white */
+  body, main, section, article, .container, .surface, .section-alt,
+  .card, .benefit-card, .home-container, .hero-section, footer, footer * {
+    color: #ffffff !important;
   }
 
-  /* 2) MOBILE DRAWER (header menu): force black text for the label + links */
-  @media (max-width: 640px) {
-    /* your drawer wrapper already has class "mobile-drawer" in SiteHeader */
-    .mobile-drawer,
-    .mobile-drawer * {
-      color: #0f172a !important;       /* black-ish text everywhere */
-    }
-    /* keep the teal CTA inside the drawer white text */
-    .mobile-drawer .btn-cta,
-    .mobile-drawer .btn-cta * {
-      color: #ffffff !important;
-    }
-    /* make sure the "Industries" label specifically is black */
-    .mobile-drawer button:where([aria-expanded]) span {
-      color: #0f172a !important;
-    }
-    /* chevron uses currentColor -> make sure it's black too */
-    .mobile-drawer button[aria-expanded] svg {
-      color: #0f172a !important;
-    }
+  body :where(h1,h2,h3,h4,h5,h6,strong,em,small,p,li,span,a,label,blockquote) {
+    color: #ffffff !important;
   }
 
-  /* 3) MOBILE + DARK: ensure any white CTA pill on teal has teal text */
-  @media (prefers-color-scheme: dark) and (max-width: 640px) {
-    .on-teal .btn-white,
-    .on-teal .btn--inverse,
-    .cta-card .btn-white,
-    .cta-card .btn--inverse,
-    .bg-teal-600 .bg-white,
-    .bg-teal-700 .bg-white {
-      color: #0f766e !important;
-    }
-  @media (max-width: 640px){
-    .mobile-drawer .mobile-section-btn span,
-    .mobile-drawer .mobile-section-btn svg,
-    .mobile-drawer .drawer-link {
-      color:#0f172a !important; /* black text */
-    }
+  /* Panels that might still be light */
+  .card :where(p,li,small,span,em,blockquote),
+  .benefit-card :where(p,li,small,span,em,blockquote),
+  .section-alt :where(p,li,small,span,em,blockquote) {
+    color: #ffffff !important;
   }
-  
 
-  
+  /* White pill on teal should keep teal text */
+  a.bg-white,
+  .bg-white a,
+  .on-teal a.bg-white,
+  .on-teal .bg-white a {
+    color: #0f766e !important;
+  }
+
+  /* Sticky "Book Now" text should be white */
+  .sticky-cta a,
+  .sticky-cta button {
+    color: #ffffff !important;
+  }
+}
+
+/* =========================================================
+   MOBILE DRAWER (header menu) – force black text
+   ========================================================= */
+@media (max-width: 640px) {
+  .mobile-drawer,
+  .mobile-drawer * {
+    color: #0f172a !important; /* black in drawer */
+  }
+  .mobile-drawer .btn-cta,
+  .mobile-drawer .btn-cta * {
+    color: #ffffff !important; /* CTA stays white */
+  }
+  .mobile-drawer .mobile-section-btn span,
+  .mobile-drawer .mobile-section-btn svg,
+  .mobile-drawer .drawer-link {
+    color:#0f172a !important; /* explicit for Industries + links */
+  }
+}
+
+/* =========================================================
+   MOBILE + DARK – white-on-teal pill text should be teal
+   ========================================================= */
+@media (prefers-color-scheme: dark) and (max-width: 640px) {
+  .on-teal .btn-white,
+  .on-teal .btn--inverse,
+  .cta-card .btn-white,
+  .cta-card .btn--inverse,
+  .bg-teal-600 .bg-white,
+  .bg-teal-700 .bg-white {
+    color: #0f766e !important;
+  }
 }
