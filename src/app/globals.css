@@ -36,39 +36,6 @@ body {
   .surface-strong { @apply bg-teal-100; }
   .card { @apply border rounded-lg p-4 bg-slate-50/90 backdrop-blur transition-all; }
 
-  /* Clickable link cards */
-  .card-link {
-    @apply relative border-teal-200 hover:border-teal-300 hover:bg-teal-50/70
-           ring-0 focus:outline-none focus:ring-2 focus:ring-teal-500/50 transition-colors;
-  }
-  .card-link-title { @apply font-semibold text-gray-900 transition-colors; }
-  .group:hover .card-link-title,
-  .group:focus .card-link-title { @apply text-teal-700; }
-  .chev { @apply text-teal-600/70 transition-transform; transform: translateX(0); }
-  .group:hover .chev, .group:focus .chev { transform: translateX(4px); }
-  .card-link-foot { @apply mt-3 inline-flex items-center gap-2 text-sm text-teal-700/80; }
-  .card-link-foot .dot { @apply h-1.5 w-1.5 rounded-full bg-teal-600; }
-  .card:hover:not(a) { @apply shadow-md -translate-y-0.5; }
-
-  /* Layout helpers */
-  .home-main { @apply flex-1 p-0; }
-  .home-container { @apply max-w-7xl mx-auto px-6 md:px-10; }
-
-  /* Hero */
-  .hero-section { @apply space-y-3; }
-  .hero-title { @apply text-3xl sm:text-4xl font-bold; }
-  .hero-text  { @apply text-lg; }
-  .hero-cta {
-    @apply inline-block bg-teal-600 text-white px-6 py-3 rounded-lg
-           shadow hover:shadow-md hover:-translate-y-0.5 transition hover:bg-teal-700;
-  }
-
-  /* Benefits */
-  .benefits-section { @apply grid sm:grid-cols-3 gap-4 pt-4; }
-  .benefit-card { @apply border rounded-lg p-5 bg-white/80 backdrop-blur; }
-  .benefit-title { @apply font-semibold; }
-  .benefit-text { @apply text-sm text-gray-600; }
-
   /* Header */
   .site-header { @apply z-50 border-b; }
   .site-header__bg {
@@ -78,86 +45,30 @@ body {
   .site-header__overlay { @apply absolute inset-0 bg-black/60 sm:bg-black/50 pointer-events-none; }
   .site-header__row { @apply h-28 flex items-center justify-between; }
 
-  /* Teal underline for header in BOTH modes */
   .site-header::after {
     content: "";
     position: absolute;
     left: 0; right: 0; bottom: 0;
     height: 4px;
-    background-color: #0d9488; /* teal-600 */
+    background-color: #0d9488;
   }
 
-  /* Logo */
-  .logo-img  { @apply h-auto w-auto max-h-20; }
-  .logo-chip { @apply inline-block rounded-md bg-white shadow-md p-1; }
-
-  /* Nav */
   .main-nav { @apply flex items-center gap-10; }
   .main-nav > a { @apply text-lg font-semibold tracking-wide text-white hover:text-teal-300 transition-colors; }
 
-  /* --- Global CTA pill (works in light & dark) --- */
   .btn-cta {
     @apply inline-block rounded-lg bg-teal-600 px-4 py-2 font-semibold text-white shadow
            hover:bg-teal-700 hover:shadow-md focus:outline-none focus-visible:ring-2
            focus-visible:ring-teal-500 transition-colors;
   }
-  /* Don’t inherit nav hover color */
-  .main-nav .btn-cta { @apply text-white hover:text-white; }
 
   /* Footer */
   .site-footer { @apply border-t bg-neutral-50; }
   .site-footer__inner { @apply max-w-6xl mx-auto px-4 py-6 text-sm text-gray-600; }
 
-  /* ===== Mobile contrast safeguards (general) ===== */
+  /* ===== Mobile text color safeguards ===== */
   @media (max-width: 640px) {
-    :is(
-      .bg-black, .bg-gray-900, .bg-gray-950,
-      .bg-neutral-900, .bg-neutral-950,
-      .bg-zinc-900, .bg-zinc-950,
-      .bg-slate-900, .bg-slate-950,
-      .bg-stone-900, .bg-stone-950,
-      .bg-teal-900
-    ) :where(h1,h2,h3,h4,h5,h6,strong,a,button,label) { color: #ffffff !important; }
-
-    :is(
-      .bg-black, .bg-gray-900, .bg-gray-950,
-      .bg-neutral-900, .bg-neutral-950,
-      .bg-zinc-900, .bg-zinc-950,
-      .bg-slate-900, .bg-slate-950,
-      .bg-stone-900, .bg-stone-950,
-      .bg-teal-900
-    ) :where(p,li,small,span,em,blockquote,.hero-text,.benefit-text) { color: #f1f5f9 !important; }
-
-    :is(
-      .bg-black, .bg-gray-900, .bg-gray-950,
-      .bg-neutral-900, .bg-neutral-950,
-      .bg-zinc-900, .bg-zinc-950,
-      .bg-slate-900, .bg-slate-950,
-      .bg-stone-900, .bg-stone-950,
-      .bg-teal-900
-    ) :is([class*="text-slate-"], [class*="text-gray-"]) { color: #f1f5f9 !important; }
-  }
-
-  /* Manual force for dark sections */
-  .on-dark,
-  .on-dark :where(h1,h2,h3,h4,h5,h6,strong,a,button,label) { color:#ffffff !important; }
-  .on-dark :where(p,li,small,span,em,blockquote)          { color:#e6edf5 !important; }
-
-  /* Sticky CTA */
-  .sticky-cta {
-    position: fixed;
-    left: 50%;
-    bottom: max(1rem, env(safe-area-inset-bottom));
-    transform: translateX(-50%);
-    z-index: 60;
-    transition: opacity .25s ease, visibility .25s ease;
-  }
-  .sticky-cta--hidden { opacity:0; visibility:hidden; pointer-events:none; }
-  .sticky-cta--shown  { opacity:1; visibility:visible; }
-
-  /* Extra mobile tweaks */
-  @media (max-width: 640px) {
-    footer { padding-bottom: 4.5rem; } /* breathing room under sticky */
+    footer { padding-bottom: 4.5rem; }
     :is(.bg-slate-50, .bg-slate-100, .bg-slate-100\/70)
       :where(h1,h2,h3,h4,h5,h6,strong,a,button,label) { color:#0f172a !important; }
     :is(.bg-slate-50, .bg-slate-100, .bg-slate-100\/70)
@@ -165,7 +76,7 @@ body {
     .h3-fixes { color:#0f172a !important; }
   }
 
-  /* NEW: testimonial color only in LIGHT MODE (so dark stays light text) */
+  /* LIGHT testimonial fix */
   @media (prefers-color-scheme: light) and (max-width: 640px) {
     .testimonial-block,
     .testimonial-block blockquote,
@@ -174,189 +85,75 @@ body {
 }
 
 /* =========================================================
-   REAL DARK-MODE (system prefers dark)
+   DARK MODE
    ========================================================= */
 @media (prefers-color-scheme: dark) {
-  html, body {
-    background: #0f172a; /* slate-900 */
-    color: #f1f5f9;      /* slate-100 */
-  }
+  html, body { background:#0f172a; color:#f1f5f9; }
 
-  /* Header and nav (desktop default for dark) */
   .site-header__overlay { background-color: rgba(0,0,0,.55); }
-  .site-header .main-nav > a:not(.btn-cta),
-  .site-header .main-nav > a:not(.btn-cta):visited {
-    color: #ffffff !important;
-    -webkit-font-smoothing: antialiased;
-    text-rendering: optimizeLegibility;
-  }
-  .site-header .main-nav > a:not(.btn-cta):hover,
-  .site-header .main-nav > a:not(.btn-cta):focus-visible { color: #5eead4 !important; }
-  .site-header .main-nav > a.btn-cta { color: #ffffff !important; }
-  .site-header .main-nav > div button svg { color: #ffffff !important; }
 
-  /* Hero text stays white */
-  .hero-section,
-  .hero-section :where(h1,h2,h3,h4,h5,h6,p,span,strong,a,button) { color:#ffffff !important; }
-  .hero-section .btn-cta { color:#ffffff !important; }
+  /* Hero & cards readability */
+  .hero-section :where(h1,h2,h3,h4,h5,h6,p,span,strong,a,button) { color:#fff !important; }
 
-  /* Surfaces */
-  .surface        { background-color:#0f172a !important; }
-  .section-alt    { background-color:#0b1220 !important; border-color:#1e293b !important; }
-  .surface-strong { background-color:#0b766e1a !important; }
-
-  /* Cards / panels */
   .card, .benefit-card {
-    background-color: rgba(30,41,59,0.9) !important;  /* slate-800/90 */
-    border-color: rgba(71,85,105,0.5) !important;     /* slate-600/50 */
-    color:#f1f5f9 !important;
-  }
-  .card a, .benefit-card a { color:#fff !important; }
-
-  /* Headings vs body */
-  h1,h2,h3,h4,h5,h6,strong { color:#ffffff; }
-  p,li,small,span,em,blockquote { color:#e2e8f0; } /* slate-200 */
-
-  /* Keep “white pill” links readable on teal blocks */
-  a.bg-white, .bg-white a { color: #0f766e !important; } /* teal-700 */
-
-  /* === FLUSH light-looking sections in dark === */
-  :is(.bg-slate-50, .bg-slate-100, .bg-slate-100\/70, .bg-teal-50\/70) {
-    background-color: transparent !important;
-  }
-
-  /* Keep text readable inside panels that were “light” in daytime */
-  .card :where(p,li,small,span,em,blockquote),
-  .benefit-card :where(p,li,small,span,em,blockquote),
-  .rounded-lg.border.bg-white\/95 :where(p,li,small,span,em,blockquote),
-  .rounded-lg.border.bg-white\/90 :where(p,li,small,span,em,blockquote),
-  .rounded-lg.border.bg-slate-50\/90 :where(p,li,small,span,em,blockquote) { color:#cbd5e1 !important; }
-  .card :where(h1,h2,h3,h4,h5,h6,strong,a),
-  .benefit-card :where(h1,h2,h3,h4,h5,h6,strong,a),
-  .rounded-lg.border.bg-white\/95 :where(h1,h2,h3,h4,h5,h6,strong,a),
-  .rounded-lg.border.bg-white\/90 :where(h1,h2,h3,h4,h5,h6,strong,a),
-  .rounded-lg.border.bg-slate-50\/90 :where(h1,h2,h3,h4,h5,h6,strong,a) { color:#ffffff !important; }
-
-  /* Desktop dropdown (Industries) in dark */
-  [role="menu"][aria-label="Industries"]{
-    background-color: rgba(30,41,59,0.95) !important;  /* slate-800/95 */
-    border-color: rgba(71,85,105,0.5) !important;      /* slate-600/50 */
-    color: #e2e8f0 !important;
-  }
-  [role="menu"][aria-label="Industries"] a { color:#e2e8f0 !important; }
-  [role="menu"][aria-label="Industries"] a:hover {
-    background-color: rgba(20,184,166,0.12) !important;  /* teal-500/12 */
-    color:#5eead4 !important;                             /* teal-300 */
-  }
-
-  /* “Who We Serve” link cards in dark */
-  .group.block.rounded-lg.border.bg-white\/95,
-  .group.block.rounded-lg.border.bg-white\/90 {
     background-color: rgba(30,41,59,0.9) !important;
     border-color: rgba(71,85,105,0.5) !important;
-    color:#e2e8f0 !important;
-  }
-  .group.block.rounded-lg.border.bg-white\/95:hover,
-  .group.block.rounded-lg.border.bg-white\/90:hover {
-    background-color: rgba(30,41,59,0.95) !important;
-    border-color:#14b8a6 !important;
+    color:#f1f5f9 !important;
   }
 
-  /* Testimonial blocks in dark */
-  blockquote.card { background-color:#1e293b !important; color:#e2e8f0 !important; }
+  h1,h2,h3,h4,h5,h6,strong { color:#fff; }
+  p,li,small,span,em,blockquote { color:#e2e8f0; }
 
-  /* Footer dark */
-  .site-footer { background-color:#0b1220; border-color:#1f2937; }
-  .site-footer__inner { color:#94a3b8; }
-
-  /* (A) DARK containers: force readable text inside */
-  .card,
-  .benefit-card,
-  .section-alt,
-  .rounded-lg.border,
-  .rounded-xl.border { color:#ffffff !important; }
-
-  .card :where(h1,h2,h3,h4,h5,h6,strong,a),
-  .benefit-card :where(h1,h2,h3,h4,h5,h6,strong,a),
-  .section-alt :where(h1,h2,h3,h4,h5,h6,strong,a),
-  .rounded-lg.border :where(h1,h2,h3,h4,h5,h6,strong,a),
-  .rounded-xl.border :where(h1,h2,h3,h4,h5,h6,strong,a) { color:#ffffff !important; }
-
-  .card :where(p,li,small,span,em,blockquote),
-  .benefit-card :where(p,li,small,span,em,blockquote),
-  .section-alt :where(p,li,small,span,em,blockquote),
-  .rounded-lg.border :where(p,li,small,span,em,blockquote),
-  .rounded-xl.border :where(p,li,small,span,em,blockquote) { color:#e6edf5 !important; }
-
-  .card :is([class*="text-gray-"], [class*="text-slate-"]),
-  .benefit-card :is([class*="text-gray-"], [class*="text-slate-"]),
-  .section-alt :is([class*="text-gray-"], [class*="text-slate-"]),
-  .rounded-lg.border :is([class*="text-gray-"], [class*="text-slate-"]),
-  .rounded-xl.border :is([class*="text-gray-"], [class*="text-slate-"]) { color:#e6edf5 !important; }
-
-  /* keep white pills on teal readable */
-  .card a.bg-white,
-  .benefit-card a.bg-white,
+  /* keep white on teal readable */
   .bg-teal-600 .bg-white,
   .bg-teal-700 .bg-white { color:#0f766e !important; }
+
+  /* Make “What We Do” readable */
+  .what-we-do-section { background:transparent !important; }
+  .what-we-do-section .card {
+    background: rgba(30,41,59,0.9) !important;
+    border-color: rgba(71,85,105,0.5) !important;
+  }
+  .what-we-do-section .card :is(h1,h2,h3,h4,h5,h6,strong,a) { color:#fff !important; }
+  .what-we-do-section .card :is(p,li,small,span,em,blockquote,[class*="text-gray-"],[class*="text-slate-"]) { color:#e6edf5 !important; }
 }
 
-/* (B) DARK + MOBILE: belt-and-suspenders for content text */
+/* Dark + Mobile content text safety */
 @media (prefers-color-scheme: dark) and (max-width: 640px) {
   main, section, article, .container,
-  .card, .benefit-card, .section-alt, .rounded-lg.border, .rounded-xl.border {
-    color:#ffffff !important;
-  }
-  main :where(h1,h2,h3,h4,h5,h6,strong,a,button,label),
-  main :where(p,li,small,span,em,blockquote) {
-    color:#ffffff !important;
-  }
-  /* sticky CTA button text = white */
-  .sticky-cta a, .sticky-cta button { color:#ffffff !important; }
+  .card, .benefit-card, .section-alt, .rounded-lg.border, .rounded-xl.border { color:#fff !important; }
+  main :where(h1,h2,h3,h4,h5,h6,strong,a,button,label,p,li,small,span,em,blockquote) { color:#fff !important; }
+  .sticky-cta a, .sticky-cta button { color:#fff !important; }
 }
 
-/* (C) MOBILE HEADER DRAWER: force ALL text to black; CTA stays white */
+/* Mobile Drawer: text black, CTA white */
 @media (max-width: 640px) {
-  .mobile-drawer,
-  .mobile-drawer * { color:#0f172a !important; }
-
-  .mobile-drawer a,
-  .mobile-drawer a:hover,
-  .mobile-drawer a:visited,
-  .mobile-drawer a:active,
-  .mobile-drawer .drawer-link,
-  .mobile-drawer .drawer-link:hover,
-  .mobile-drawer .drawer-link:visited,
-  .mobile-drawer .drawer-link:active { color:#0f172a !important; }
-
-  .mobile-drawer .mobile-section-btn span,
-  .mobile-drawer .mobile-section-btn svg { color:#0f172a !important; }
-
-  .mobile-drawer .btn-cta,
-  .mobile-drawer .btn-cta * { color:#ffffff !important; }
-
-  .mobile-drawer a:hover,
-  .mobile-drawer .drawer-link:hover { background: rgba(15,23,42,0.06); }
+  .mobile-drawer, .mobile-drawer * { color:#0f172a !important; }
+  .mobile-drawer a, .mobile-drawer .drawer-link { color:#0f172a !important; }
+  .mobile-drawer .btn-cta, .mobile-drawer .btn-cta * { color:#fff !important; }
 }
 
-/* === DARK + MOBILE: header bar text BLACK, CTA stays WHITE === */
+/* === DARK + MOBILE HEADER: text black, hamburger icon white === */
 @media (prefers-color-scheme: dark) and (max-width: 640px) {
-  /* Everything in the header uses black text/icons */
-  .site-header,
-  .site-header * { color:#0f172a !important; }
+  /* Header text/icons default black */
+  .site-header, .site-header * { color:#0f172a !important; }
 
-  /* CTA pill inside header remains white text on teal */
-  .site-header .btn-cta,
-  .site-header .btn-cta * { color:#ffffff !important; }
+  /* CTA stays white on teal */
+  .site-header .btn-cta, .site-header .btn-cta * { color:#fff !important; }
 
-  /* Ensure hamburger/X/chevrons follow black */
-  .site-header svg {
-    color:#0f172a !important;
+  /* Hamburger icon white */
+  .site-header .hamburger,
+  .site-header .hamburger *,
+  .site-header button[aria-label*="menu"],
+  .site-header button[aria-label*="Menu"],
+  .site-header button[aria-expanded],
+  .site-header button[aria-haspopup="menu"] {
+    color:#fff !important;
+  }
+  .site-header .hamburger svg,
+  .site-header button[aria-expanded] svg,
+  .site-header button[aria-label*="menu"] svg {
     stroke: currentColor !important;
     fill: currentColor !important;
   }
-
-  /* “white on teal” bottom CTA: teal text on white pill */
-  .bg-teal-600 .bg-white,
-  .bg-teal-700 .bg-white { color:#0f766e !important; }
 }
