@@ -74,10 +74,10 @@ export default function Home() {
 
       {/* ===== WHAT WE DO ===== */}
       <section className="w-full bg-slate-100 py-12">
-        <div className="max-w-[1600px] mx-auto px-4 lg:px-6">
+        <div className="max-w-[1600px] mx-auto px-4 lg:px-6 testimonial-block">
           <div>
             <h2 className="text-2xl font-bold mb-4">What We Do</h2>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 items-stretch">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 items-stretch testimonial-block">
               <div className="card lift h-full min-h-[220px]">
                 <h3 className="benefit-title">Injury Prevention</h3>
                 <p className="benefit-text text-gray-800 mt-1">
@@ -193,7 +193,7 @@ export default function Home() {
         <div className="max-w-[1600px] mx-auto px-4 lg:px-6 testimonial-block">
           <div className="grid lg:grid-cols-12 gap-8 items-start">
             {/* LEFT: WHO WE SERVE (cards with teal-600 accents) */}
-            <div className="lg:col-span-7">
+            <div className="lg:col-span-7"> 
               <Reveal>
                 <h2 className="text-2xl font-bold mb-4">Who We Serve</h2>
               </Reveal>
