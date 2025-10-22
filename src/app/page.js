@@ -73,10 +73,10 @@ export default function Home() {
 
       {/* ===== WHAT WE DO ===== */}
       <section className="what-we-do-section w-full bg-slate-100 dark:bg-transparent py-12">
-        <div className="max-w-[1600px] mx-auto px-4 lg:px-6 testimonial-block">
+        <div className="max-w-[1600px] mx-auto px-4 lg:px-6">
           <div>
             <h2 className="text-2xl font-bold mb-4">What We Do</h2>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 items-stretch testimonial-block">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 items-stretch">
               <div className="card lift h-full min-h-[220px]">
                 <h3 className="benefit-title">Injury Prevention</h3>
                 <p className="benefit-text text-gray-800 mt-1">

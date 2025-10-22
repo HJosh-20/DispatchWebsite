@@ -406,7 +406,7 @@ body {
    DARK MODE + MOBILE: Force white text in What We Do cards
    ========================================== */
 @media (prefers-color-scheme: dark) and (max-width: 640px) {
-  /* What We Do section - NUCLEAR OPTION - force everything to white */
+  /* What We Do section - force everything to white */
   .what-we-do-section,
   .what-we-do-section *,
   .what-we-do-section .card,
@@ -455,57 +455,6 @@ body {
   /* Hero CTA button - ensure white text */
   .hero-section a[href="/book"],
   .hero-section a.bg-teal-600 {
-    color: #ffffff !important;
-  }
-}
-@media (prefers-color-scheme: dark) and (max-width: 640px) {
-  /* What We Do section - force all text to white */
-  .what-we-do-section .card,
-  .what-we-do-section .card * {
-    color: #ffffff !important;
-  }
-  
-  /* Override any gray/slate utility classes */
-  .what-we-do-section .card .benefit-title,
-  .what-we-do-section .card .benefit-text,
-  .what-we-do-section .card h3,
-  .what-we-do-section .card p,
-  .what-we-do-section .card li,
-  .what-we-do-section .card ul,
-  .what-we-do-section .card [class*="text-gray-"],
-  .what-we-do-section .card [class*="text-slate-"] {
-    color: #ffffff !important;
-  }
-  
-  /* Sticky CTA button text - force white */
-  .sticky-cta,
-  .sticky-cta * {
-    color: #ffffff !important;
-  }
-  
-  .sticky-cta a,
-  .sticky-cta button {
-    color: #ffffff !important;
-  }
-  
-  /* Hero CTA button - ensure white text */
-  .hero-section a[href="/book"],
-  .hero-section a.bg-teal-600 {
-    color: #ffffff !important;
-  }
-}
-
-/* ==========================================
-   MOBILE HAMBURGER MENU: Schedule a Consultation button white text
-   ========================================== */
-@media (max-width: 640px) {
-  /* Force white text on the green CTA button in mobile drawer */
-  .mobile-drawer a[href="/book"],
-  .mobile-drawer a[href="/book"] *,
-  .mobile-drawer .btn-cta,
-  .mobile-drawer .btn-cta *,
-  .mobile-drawer a.bg-teal-600,
-  .mobile-drawer a.bg-teal-600 * {
     color: #ffffff !important;
   }
 }
