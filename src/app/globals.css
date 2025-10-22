@@ -406,21 +406,38 @@ body {
    DARK MODE + MOBILE: Force white text in What We Do cards
    ========================================== */
 @media (prefers-color-scheme: dark) and (max-width: 640px) {
-  /* What We Do section - force all text to white */
+  /* What We Do section - NUCLEAR OPTION - force everything to white */
+  .what-we-do-section,
+  .what-we-do-section *,
   .what-we-do-section .card,
-  .what-we-do-section .card * {
+  .what-we-do-section .card *,
+  .what-we-do-section h2,
+  .what-we-do-section h3,
+  .what-we-do-section p,
+  .what-we-do-section li,
+  .what-we-do-section ul,
+  .what-we-do-section span,
+  .what-we-do-section div {
     color: #ffffff !important;
   }
   
-  /* Override any gray/slate utility classes */
+  /* Specifically target the utility classes used in page.js */
+  .what-we-do-section .text-gray-800,
+  .what-we-do-section .text-gray-700,
+  .what-we-do-section .card .text-gray-800,
+  .what-we-do-section .card .text-gray-700,
+  .what-we-do-section .benefit-text.text-gray-800,
+  .what-we-do-section .card p.text-gray-800,
+  .what-we-do-section .card ul.text-gray-700,
+  .what-we-do-section .card li {
+    color: #ffffff !important;
+  }
+  
+  /* Override benefit-title and benefit-text classes */
+  .what-we-do-section .benefit-title,
   .what-we-do-section .card .benefit-title,
-  .what-we-do-section .card .benefit-text,
-  .what-we-do-section .card h3,
-  .what-we-do-section .card p,
-  .what-we-do-section .card li,
-  .what-we-do-section .card ul,
-  .what-we-do-section .card [class*="text-gray-"],
-  .what-we-do-section .card [class*="text-slate-"] {
+  .what-we-do-section .benefit-text,
+  .what-we-do-section .card .benefit-text {
     color: #ffffff !important;
   }
   
