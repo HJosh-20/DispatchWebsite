@@ -118,7 +118,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-
+      
       {/* ===== WHY HIRE ATHLETIC TRAINERS ===== */}
       <section className="w-full bg-teal-50/70 py-12">
         <div className="max-w-[1600px] mx-auto px-4 lg:px-6">
