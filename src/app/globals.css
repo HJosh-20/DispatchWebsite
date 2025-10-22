@@ -355,7 +355,7 @@ body {
     color: #ffffff !important;
   }
 
-  /* Body text (and any gray/slate utilities) = near-white */
+  /* Body text and any gray/slate utilities = near-white */
   .what-we-do-section .card :is(
     p, li, small, span, em, blockquote,
     [class*="text-gray-"], [class*="text-slate-"]
@@ -363,12 +363,12 @@ body {
 }
 
 /* ==========================================
-   DARK + MOBILE: Hamburger icon = WHITE
+   DARK + MOBILE: Hamburger = WHITE only.
    Drawer text stays black via your existing
    .mobile-drawer rules
    ========================================== */
-@media (prefers-color-scheme: dark) and (max-width: 640px) {
-  /* Just the button/icon -> white */
+@media (prefers-color-scheme: dark) && (max-width: 640px) {
+  /* Button/icon itself (hamburger/X/chevrons) -> white */
   .site-header .hamburger,
   .site-header .hamburger *,
   .site-header button[aria-label*="menu"],
@@ -388,13 +388,15 @@ body {
     fill: currentColor !important;
   }
 
-  /* Keep header CTA pill text white */
+  /* Header CTA pill (in the bar) stays white text */
   .site-header .btn-cta,
   .site-header .btn-cta * { color: #ffffff !important; }
-
-@media (prefers-color-scheme: dark) {
-  .what-we-do-section * { color:#ffffff !important; }
 }
 
-
+/* MOBILE DRAWER CTA: make the green button text white */
+@media (max-width: 640px) {
+  .mobile-drawer .btn-cta,
+  .mobile-drawer .btn-cta * {
+    color: #ffffff !important;
+  }
 }
