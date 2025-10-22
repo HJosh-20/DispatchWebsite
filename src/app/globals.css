@@ -158,11 +158,15 @@ body {
   /* Extra mobile tweaks */
   @media (max-width: 640px) {
     footer { padding-bottom: 4.5rem; } /* breathing room under sticky */
-    :is(.bg-slate-50, .bg-slate-100, .bg-slate-100\/70)
-      :where(h1,h2,h3,h4,h5,h6,strong,a,button,label) { color:#0f172a !important; }
-    :is(.bg-slate-50, .bg-slate-100, .bg-slate-100\/70)
-      :where(p,li,small,span,em,blockquote) { color:#334155 !important; }
     .h3-fixes { color:#0f172a !important; }
+  }
+
+  /* Light mode only - force dark text on light backgrounds */
+  @media (prefers-color-scheme: light) and (max-width: 640px) {
+    :is(.bg-slate-50, .bg-slate-100, .bg-slate-100\/70):not(.what-we-do-section)
+      :where(h1,h2,h3,h4,h5,h6,strong,a,button,label) { color:#0f172a !important; }
+    :is(.bg-slate-50, .bg-slate-100, .bg-slate-100\/70):not(.what-we-do-section)
+      :where(p,li,small,span,em,blockquote) { color:#334155 !important; }
   }
 
   /* testimonial color only in LIGHT MODE (so dark stays light text) */
@@ -332,11 +336,16 @@ body {
   .mobile-drawer .mobile-section-btn span,
   .mobile-drawer .mobile-section-btn svg { color:#0f172a !important; }
 
-  .mobile-drawer .btn-cta,
-  .mobile-drawer .btn-cta * { color:#ffffff !important; }
-
   .mobile-drawer a:hover,
   .mobile-drawer .drawer-link:hover { background: rgba(15,23,42,0.06); }
+
+  /* CTA button white text MUST come LAST to override */
+  .mobile-drawer .btn-cta,
+  .mobile-drawer .btn-cta *,
+  .mobile-drawer a[href="/book"],
+  .mobile-drawer a[href="/book"] * { 
+    color:#ffffff !important; 
+  }
 }
 
 /* ===============================
@@ -388,17 +397,6 @@ body {
   .site-header button[aria-haspopup="menu"] svg {
     stroke: currentColor !important;
     fill: currentColor !important;
-  }
-}
-
-/* ==========================================
-   MOBILE DRAWER: make the green CTA text WHITE
-   (keeps other drawer text black)
-   ========================================== */
-@media (max-width: 640px) {
-  .mobile-drawer .btn-cta,
-  .mobile-drawer .btn-cta * {
-    color: #ffffff !important;
   }
 }
 
