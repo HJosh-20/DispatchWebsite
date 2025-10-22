@@ -391,4 +391,10 @@ body {
   /* Keep header CTA pill text white */
   .site-header .btn-cta,
   .site-header .btn-cta * { color: #ffffff !important; }
+
+@media (prefers-color-scheme: dark) {
+  .what-we-do-section * { color:#ffffff !important; }
+}
+
+
 }
