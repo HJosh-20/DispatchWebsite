@@ -165,7 +165,7 @@ body {
     .h3-fixes { color:#0f172a !important; }
   }
 
-  /* NEW: testimonial color only in LIGHT MODE (so dark stays light text) */
+  /* testimonial color only in LIGHT MODE (so dark stays light text) */
   @media (prefers-color-scheme: light) and (max-width: 640px) {
     .testimonial-block,
     .testimonial-block blockquote,
@@ -269,7 +269,7 @@ body {
   .site-footer { background-color:#0b1220; border-color:#1f2937; }
   .site-footer__inner { color:#94a3b8; }
 
-  /* (A) DARK containers: force readable text inside */
+  /* DARK containers: force readable text inside */
   .card,
   .benefit-card,
   .section-alt,
@@ -301,7 +301,7 @@ body {
   .bg-teal-700 .bg-white { color:#0f766e !important; }
 }
 
-/* (B) DARK + MOBILE: belt-and-suspenders for content text */
+/* DARK + MOBILE: belt-and-suspenders for content text */
 @media (prefers-color-scheme: dark) and (max-width: 640px) {
   main, section, article, .container,
   .card, .benefit-card, .section-alt, .rounded-lg.border, .rounded-xl.border {
@@ -315,7 +315,7 @@ body {
   .sticky-cta a, .sticky-cta button { color:#ffffff !important; }
 }
 
-/* (C) MOBILE HEADER DRAWER: force ALL text to black; CTA stays white */
+/* MOBILE HEADER DRAWER: force ALL text to black; CTA stays white */
 @media (max-width: 640px) {
   .mobile-drawer,
   .mobile-drawer * { color:#0f172a !important; }

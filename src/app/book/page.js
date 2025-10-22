@@ -36,7 +36,7 @@ export default function BookPage() {
               <input type="hidden" name="_template" value="table" />
               <input type="hidden" name="_subject" value="New consultation request — DispATch" />
 
-              {/* 🔗 Redirect after success */}
+              {/* Redirect after success */}
               <input type="hidden" name="_next" value="http://localhost:3000/thanku" />
 
               <div className="grid sm:grid-cols-2 gap-6">

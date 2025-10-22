@@ -4,7 +4,6 @@ import Reveal from "./components/Reveal";
 
 export default function Home() {
   return (
-    // keep this <main> simple; backgrounds live on full-width <section>s
     <main className="home-main">
       {/* ===== HERO (full-bleed image) ===== */}
       <section className="relative h-[70vh] sm:h-[80vh] flex items-center w-full">
