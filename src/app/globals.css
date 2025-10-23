@@ -509,3 +509,14 @@ body {
     color: #e2e8f0 !important;
   }
 }
+
+/* ==========================================
+   ABOUT PAGE: "Team Approach to Care" card fix
+   ========================================== */
+@media (prefers-color-scheme: dark) and (max-width: 640px) {
+  /* Fix the gray text in card on About page */
+  .card .text-gray-700,
+  .card p.text-gray-700 {
+    color: #e2e8f0 !important;
+  }
+}
