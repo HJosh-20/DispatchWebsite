@@ -127,6 +127,7 @@ export default function EventCoveragePage() {
         </section>
 
 
+
         <div id="cta-sentinel" className="h-1 w-full"></div>
         {/* ===== CTA ===== */}
         <Reveal className="block">
