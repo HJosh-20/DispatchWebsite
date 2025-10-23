@@ -18,28 +18,40 @@ export default function StickyCTA() {
       return;
     }
 
-    const target =
-      document.getElementById("cta-sentinel") ||
-      document.querySelector("footer");
+    // Cleanup previous observer before setting up new one
+    if (observerRef.current) {
+      observerRef.current.disconnect();
+      observerRef.current = null;
+    }
 
-    if (!target) return;
+    // Small delay to ensure DOM is ready after navigation
+    const timeoutId = setTimeout(() => {
+      const target =
+        document.getElementById("cta-sentinel") ||
+        document.querySelector("footer");
 
-    const io = new window.IntersectionObserver(
-      (entries) => {
-        const isOnScreen = entries[0]?.isIntersecting === true;
-        setHidden(isOnScreen); // hide sticky button when CTA/footer is visible
-      },
-      { rootMargin: "0px 0px -10% 0px", threshold: 0.01 }
-    );
+      if (!target) return;
 
-    observerRef.current = io;
-    io.observe(target);
+      const io = new window.IntersectionObserver(
+        (entries) => {
+          const isOnScreen = entries[0]?.isIntersecting === true;
+          setHidden(isOnScreen); // hide sticky button when CTA/footer is visible
+        },
+        { rootMargin: "0px 0px -10% 0px", threshold: 0.01 }
+      );
+
+      observerRef.current = io;
+      io.observe(target);
+    }, 100); // 100ms delay to let Next.js finish rendering
 
     return () => {
-      observerRef.current?.disconnect();
-      observerRef.current = null;
+      clearTimeout(timeoutId);
+      if (observerRef.current) {
+        observerRef.current.disconnect();
+        observerRef.current = null;
+      }
     };
-  }, [excluded]);
+  }, [excluded, pathname]); // ← KEY CHANGE: Added pathname dependency
 
   if (excluded) return null;
 
