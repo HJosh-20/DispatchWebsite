@@ -456,3 +456,56 @@ body {
     color: #ffffff !important;
   }
 }
+
+/* ==========================================
+   BOOK PAGE: Dark mode mobile fixes
+   ========================================== */
+@media (prefers-color-scheme: dark) and (max-width: 640px) {
+  /* Top section with bg-teal-50/70 - make text white */
+  .bg-teal-50\/70 h1,
+  .bg-teal-50\/70 p {
+    color: #ffffff !important;
+  }
+  
+  /* Form labels - make them white and more visible */
+  form label,
+  form .text-slate-700,
+  form .text-slate-600 {
+    color: #f1f5f9 !important;
+  }
+  
+  /* Ensure form itself has proper dark background */
+  form.bg-white\/95 {
+    background-color: rgba(30, 41, 59, 0.95) !important;
+    border: 1px solid rgba(71, 85, 105, 0.5);
+  }
+  
+  /* Input fields - keep them readable */
+  form input,
+  form select,
+  form textarea {
+    background-color: #1e293b !important;
+    border-color: #475569 !important;
+    color: #f1f5f9 !important;
+  }
+  
+  form input::placeholder,
+  form textarea::placeholder {
+    color: #94a3b8 !important;
+  }
+  
+  /* Make sure the submit button stays teal with white text */
+  form button[type="submit"] {
+    background-color: #0d9488 !important;
+    color: #ffffff !important;
+  }
+  
+  form button[type="submit"]:hover {
+    background-color: #0f766e !important;
+  }
+  
+  /* Checkbox label text */
+  form label:has(input[type="checkbox"]) {
+    color: #e2e8f0 !important;
+  }
+}

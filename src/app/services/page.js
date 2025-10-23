@@ -140,8 +140,11 @@ export default function ServicesPage() {
           </section>
         </Reveal>
 
-        {/* Flexibility note + CTA */}
-        <Reveal div id="real-cta" data-real-cta className="mt-10 mb-12 block">
+        <div id="cta-sentinel" className="h-1 w-full"></div>
+
+
+        {/* Flexibility note */}
+        <Reveal className="mt-10 mb-12 block">
           <section
             className="max-w-3xl mx-auto rounded-xl bg-teal-600 text-white p-6 shadow-lg
                       flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4"

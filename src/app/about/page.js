@@ -190,7 +190,9 @@ export default function AboutPage() {
             </div>
           </Reveal>
         </section>
-        <div id="real-cta" data-real-cta className="h-1 w-full"></div>
+
+        <div id="cta-sentinel" className="h-1 w-full"></div>
+        <div className="h-1 w-full"></div>
         {/* Bottom CTA */}
         <Reveal className="block">
           <section className="rounded-xl bg-teal-600 text-white p-6 shadow-lg flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
