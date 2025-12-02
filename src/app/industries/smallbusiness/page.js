@@ -45,7 +45,7 @@ export default function SmallBusinessPage() {
                 Repetitive tasks, tight timelines, and physically demanding roles
                 create preventable injuries. A consultatiopn with our licensed ATs keep people ready for
                 work and resolve issues quickly—so operations keep moving. 
-                <br>Wellness or injury program design includes:</br>
+                <br />Wellness or injury program design includes:
               </p>
               <ul className="list-disc pl-6 text-sm text-gray-700 space-y-2">
                 {/* softened so it does not imply daily staffing */}
