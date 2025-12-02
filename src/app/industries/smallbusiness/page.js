@@ -40,11 +40,12 @@ export default function SmallBusinessPage() {
         <section className="grid lg:grid-cols-2 gap-10">
           <Reveal>
             <div className="space-y-4">
-              <h2 className="text-2xl font-semibold underlined">Why Athletic Trainers On-Site?</h2>
+              <h2 className="text-2xl font-semibold underlined">How An Athletic Trainer Consultatiopn Can Help Your Team</h2>
               <p className="hero-text leading-relaxed">
                 Repetitive tasks, tight timelines, and physically demanding roles
-                create preventable injuries. Our licensed ATs keep people ready for
-                work and resolve issues quickly—so operations keep moving.
+                create preventable injuries. A consultatiopn with our licensed ATs keep people ready for
+                work and resolve issues quickly—so operations keep moving. 
+                <br>Wellness or injury program design includes:</br>
               </p>
               <ul className="list-disc pl-6 text-sm text-gray-700 space-y-2">
                 {/* softened so it does not imply daily staffing */}

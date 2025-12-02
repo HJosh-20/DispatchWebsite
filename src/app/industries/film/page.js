@@ -42,7 +42,7 @@ export default function FilmPage() {
           <Reveal>
             <div className="space-y-4">
               <h2 className="text-2xl font-semibold underlined">
-                Why Athletic Trainers on Set?
+                How An Athletic Trainer Consultatiopn Can Help Your Crew
               </h2>
               <p className="hero-text leading-relaxed">
                 Long days, stunts, and repetitive tasks add up. Our licensed

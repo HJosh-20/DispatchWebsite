@@ -45,7 +45,16 @@ export default function RootLayout({ children }) {
           <div className="site-footer__inner">
             As a woman-owned small business, we bring flexibility, evidence-based care,
             and a collaborative approach that bridges performance training and medical expertise.
+            <br /><br />
+
+            <div style={{ textAlign: "center", lineHeight: "1.6" }}>
+              <strong>Contact Us</strong><br />
+              Email: <a href="mailto:Kristin.jarnagin@hiredispatch.com">Kristin.jarnagin@hiredispatch.com</a><br />
+              Phone: (512)298-2489<br />
+            </div>
+
             <br />
+
             <p style={{ textAlign: "center" }}>
               © {new Date().getFullYear()} DispATch Performance & Prevention
             </p>

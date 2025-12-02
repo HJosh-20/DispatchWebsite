@@ -66,6 +66,14 @@ export default function Home() {
               >
                 Schedule a consultation
               </Link>
+              <div className="mt-3 text-sm sm:text-base text-white/90">
+                <p>
+                  Email: <a href="mailto:Kristin.jarnagin@hiredispatch.com" className="underline">
+                    Kristin.jarnagin@hiredispatch.com
+                  </a>
+                </p>
+                <p>Phone: (512)298-2489</p>
+              </div>
             </div>
           </Reveal>
         </div>

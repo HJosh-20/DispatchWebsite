@@ -158,7 +158,6 @@ body {
   /* Extra mobile tweaks */
   @media (max-width: 640px) {
     footer { padding-bottom: 4.5rem; } /* breathing room under sticky */
-    .h3-fixes { color:#0f172a !important; }
   }
 
   /* Light mode only - force dark text on light backgrounds */
